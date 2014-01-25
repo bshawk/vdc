@@ -47,7 +47,7 @@ public:
 
     void retranslateUi(QMainWindow *VSCMainWindowsClass)
     {
-        VSCMainWindowsClass->setWindowTitle(QApplication::translate("VSCMainWindowsClass", "VDC - NVR", 0));
+        VSCMainWindowsClass->setWindowTitle(QApplication::translate("VSCMainWindowsClass", "vdcEye viewer", 0));
     } // retranslateUi
 
 };
