@@ -1,4 +1,4 @@
-﻿Build started 2014/1/26 21:46:16.
+﻿Build started 2014/1/26 22:33:45.
      1>Project "C:\work\03-vdc\github\vdc\vdc\win32\VSCloudNode.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\VSCloudNode.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -21,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.11
+Time Elapsed 00:00:00.22

@@ -36,10 +36,10 @@
    <item row="0" column="0">
     <widget class="QWidget" name="widget" native="true">
      <property name="autoFillBackground">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:red</string>
+      <string notr="true"/>
      </property>
     </widget>
    </item>

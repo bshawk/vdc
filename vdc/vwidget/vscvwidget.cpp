@@ -278,7 +278,7 @@ void VSCVWidget::mousePressEvent(QMouseEvent *e)
         return;
     }
     ui.videoControl->show();
-    //setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
+    setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
 
     emit ShowFocusClicked(m_nId);
 
@@ -295,7 +295,7 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
         this->setWindowState(Qt::WindowFullScreen);
     }
     ui.videoControl->setVisible(false);
-    //setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
+    setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
 }
 
 void VSCVWidget::updateSize()

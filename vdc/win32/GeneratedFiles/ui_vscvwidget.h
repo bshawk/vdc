@@ -26,6 +26,8 @@ QT_BEGIN_NAMESPACE
 class Ui_VSCVWidget
 {
 public:
+    QVBoxLayout *verticalLayout_2;
+    QWidget *widget_3;
     QVBoxLayout *verticalLayout;
     QWidget *widget;
     QHBoxLayout *horizontalLayout;
@@ -44,12 +46,18 @@ public:
         if (VSCVWidget->objectName().isEmpty())
             VSCVWidget->setObjectName(QStringLiteral("VSCVWidget"));
         VSCVWidget->resize(580, 358);
-        VSCVWidget->setStyleSheet(QStringLiteral("background-color:blue"));
-        verticalLayout = new QVBoxLayout(VSCVWidget);
+        VSCVWidget->setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
+        verticalLayout_2 = new QVBoxLayout(VSCVWidget);
+        verticalLayout_2->setSpacing(0);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        widget_3 = new QWidget(VSCVWidget);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        verticalLayout = new QVBoxLayout(widget_3);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(1, 0, 1, 0);
-        widget = new QWidget(VSCVWidget);
+        verticalLayout->setContentsMargins(1, 1, 1, 1);
+        widget = new QWidget(widget_3);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setMinimumSize(QSize(0, 30));
         widget->setMaximumSize(QSize(16777215, 30));
@@ -77,13 +85,13 @@ public:
 
         verticalLayout->addWidget(widget);
 
-        widget_2 = new QWidget(VSCVWidget);
+        widget_2 = new QWidget(widget_3);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
 
         verticalLayout->addWidget(widget_2);
 
-        videoControl = new QWidget(VSCVWidget);
+        videoControl = new QWidget(widget_3);
         videoControl->setObjectName(QStringLiteral("videoControl"));
         videoControl->setMinimumSize(QSize(0, 30));
         videoControl->setMaximumSize(QSize(16777215, 30));
@@ -117,6 +125,9 @@ public:
 
 
         verticalLayout->addWidget(videoControl);
+
+
+        verticalLayout_2->addWidget(widget_3);
 
 
         retranslateUi(VSCVWidget);

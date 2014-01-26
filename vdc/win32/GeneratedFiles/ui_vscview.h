@@ -50,8 +50,8 @@ public:
         gridLayout->setContentsMargins(1, 1, 1, 1);
         widget = new QWidget(VSCView);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setAutoFillBackground(false);
-        widget->setStyleSheet(QStringLiteral("background-color:red"));
+        widget->setAutoFillBackground(true);
+        widget->setStyleSheet(QStringLiteral(""));
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
