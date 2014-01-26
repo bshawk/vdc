@@ -12,12 +12,15 @@
 #include <QTime>
 #include <time.h>
 
+//background-color:rgb(42, 43, 44)
+
 extern Factory *gFactory;
 #define ENABLE_OSD_SDL_TTF 0
 
 VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags)
 {
+     
     m_pStarted = FALSE;
     m_nId = nId;
     m_nPlayId = 0;
@@ -31,38 +34,14 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
         return ;
     }
 #endif
-    if ( TTF_Init() < 0 ) 
-    {
-        fprintf(stderr, "Couldn't initialize TTF: %s\n",  SDL_GetError());
-        //SDL_Quit();
-        return;
-    }
+#if 0
     QPalette Pal(palette());
     Pal.setColor(QPalette::Background, Qt::black);
     setAutoFillBackground(true);
     setPalette(Pal);
+#endif
     
-    m_Scale = new FFmpegScale;
-    m_Scale->SetAttribute(SWS_PF_RGB24, SWS_PF_RGB24, SWS_SA_FAST_BILINEAR);
-
-    m_SdlWin = SDL_CreateWindowFrom((void *)this->winId());
-    /*  0 stand for direct3d */
-    m_SdlRender = SDL_CreateRenderer(m_SdlWin, 0, 
-        0);
-    m_w = width();
-    m_h = height();
-    m_w = (m_w/4) * 4;
-    m_h = (m_h/4) * 4;
-    m_pTex = SDL_CreateTexture(m_SdlRender, SDL_PIXELFORMAT_RGB24, 
-        SDL_TEXTUREACCESS_STREAMING, m_w, m_h);
-   //SDL_SetRenderDrawColor(m_SdlRender, 85, 255, 0, 255);
-
-   m_pRenderBuffer = (unsigned char *)malloc(m_w * m_h * 3);
-   
    m_pFont = NULL;
-   InitFont();
-   RenderBlack();
-   UpdateFontSurface();
    
    //SDL_SetRenderDrawBlendMode(m_SdlRender, SDL_BLENDMODE_NONE);
 
@@ -90,9 +69,10 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     m_pDisplay4 = new QAction(QIcon(tr(":/action/resources/display.png")), tr("DISPLAY4"), this);
     connect(m_pDisplay4, SIGNAL(triggered()), this, SLOT(showDisplay4()));
     createContentMenu();
-
+ui.setupUi(this);
+ui.videoControl->setVisible(false);
     /* Start idle thread */
-    m_IdleThread = new tthread::thread(VSCVWidget::RunIdle, (void *)this);
+    //m_IdleThread = new tthread::thread(VSCVWidget::RunIdle, (void *)this);
 }
 
 VSCVWidget::~VSCVWidget()
@@ -167,11 +147,11 @@ BOOL VSCVWidget::StartPlay(std::string strUrl)
     m_UpdateSize = false;
     m_pStarted = TRUE;
     m_bDeviceDeleted = FALSE;
-    m_IdleThread->join();
+    //m_IdleThread->join();
     delete m_IdleThread;
     m_IdleThread = NULL;
     UpdateFontSurface();
-    m_SdlThread = new tthread::thread(VSCVWidget::Run, (void *)this);
+    //m_SdlThread = new tthread::thread(VSCVWidget::Run, (void *)this);
     m_pStop->setEnabled(true);
     return TRUE;
 }
@@ -272,12 +252,14 @@ void VSCVWidget::DeviceDeletedCallback(u32 nId, void * pParam)
 void VSCVWidget::resizeEvent( QResizeEvent * event )
 {
     m_Mutex.lock();
+#if 0
     //m_UpdateSize = true;
     updateSize();
     //RenderBlack();
     
     QWidget::resizeEvent(event);
     RenderBlack();
+#endif
     m_Mutex.unlock();
 }
 
@@ -295,6 +277,8 @@ void VSCVWidget::mousePressEvent(QMouseEvent *e)
     {
         return;
     }
+    ui.videoControl->show();
+    //setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
 
     emit ShowFocusClicked(m_nId);
 
@@ -310,12 +294,14 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
         //showFullScreen();
         this->setWindowState(Qt::WindowFullScreen);
     }
+    ui.videoControl->setVisible(false);
+    //setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
 }
 
 void VSCVWidget::updateSize()
 {
     m_UpdateSize = false;
-
+#if 0
     SDL_DestroyTexture(m_pTex);
     m_pTex = NULL;
     SDL_DestroyRenderer(m_SdlRender);
@@ -346,7 +332,7 @@ void VSCVWidget::updateSize()
         free(m_pRenderBuffer);
         m_pRenderBuffer = (unsigned char *)malloc(m_w * m_h * 3);
     }
-
+#endif
 }
 
 void VSCVWidget::Run(void * pParam)
@@ -410,11 +396,12 @@ void VSCVWidget::RenderBlack()
         memcpy(pixels, m_pRenderBuffer, m_w * m_h * 3);
 
     SDL_UnlockTexture(m_pTex);
-#endif
+
     SDL_RenderClear(m_SdlRender);
     //SDL_RenderCopy(m_SdlRender, m_pTex, NULL, NULL);
     drawFocus();
     SDL_RenderPresent(m_SdlRender);
+#endif
     //DrawCurrent();
 }
 
@@ -425,6 +412,7 @@ void VSCVWidget::setVideoFocus(BOOL bFocus)
 
 void VSCVWidget::drawFocus()
 {
+#if 0
        if (m_bFocus != TRUE)
         {
              return;
@@ -450,10 +438,12 @@ void VSCVWidget::drawFocus()
 	SDL_RenderDrawRect(m_SdlRender, &rect);
 
        SDL_SetRenderDrawColor(m_SdlRender, 0, 0, 0, 0xff);
+#endif
 }
 
 void VSCVWidget::RunIdle(void * pParam)
 {
+#if 0
     VSCVWidget *pQtSdl2 = NULL;
     if (pParam == NULL)
     {
@@ -463,9 +453,11 @@ void VSCVWidget::RunIdle(void * pParam)
     //Sleep(3000);
 
     pQtSdl2->RunIdle1();
+#endif
 }
 void VSCVWidget::RunIdle1()
 {
+#if 0
     Sleep(1000);
     while (m_pStarted != TRUE)
     {
@@ -474,10 +466,12 @@ void VSCVWidget::RunIdle1()
         m_Mutex.unlock();
         Sleep(200);
     }
+#endif
 }
 
 void VSCVWidget::Run1()
 {
+#if 0
     NotificationQueue *pCmd = NULL;
     cmn_cmd cmd;
     int pitch;
@@ -535,7 +529,7 @@ void VSCVWidget::Run1()
                 m_nPlayId);
         gFactory->ReleaseRawDataQueue(m_nPlayId, pCmd);
     }
-
+#endif
 	return ;
 }
 

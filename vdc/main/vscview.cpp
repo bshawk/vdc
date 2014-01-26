@@ -42,7 +42,7 @@ void VSCView::SetupConnections()
     connect(ui.pushButton6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6()));
     connect(ui.pushButton1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode1()));
     connect(ui.pushButton12p1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode12p1()));
-    connect(ui.pushButtonPB, SIGNAL(clicked()), this, SLOT(ShowPlayControl()));
+    //connect(ui.pushButtonPB, SIGNAL(clicked()), this, SLOT(ShowPlayControl()));
     connect(m_pVideo, SIGNAL(ShowDisplayClicked(int)), this,
                                         SLOT(ShowDisplayClicked(int)));
     connect(m_pVideo, SIGNAL(ShowFloatingClicked()), this,

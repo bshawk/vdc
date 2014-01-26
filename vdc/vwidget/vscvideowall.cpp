@@ -31,10 +31,10 @@ VSCVideoWall::VSCVideoWall(QWidget *parent)
     }
 
     m_pLayout = new QGridLayout;
-    //m_pLayout->setSpacing(1);
+    m_pLayout->setSpacing(0);
     m_pLayout->setMargin(0);
-    m_pLayout->setVerticalSpacing(1);
-    m_pLayout->setHorizontalSpacing(1);
+    m_pLayout->setVerticalSpacing(0);
+    m_pLayout->setHorizontalSpacing(0);
 #if 0
 #if 0
     for (int i = 0; i < 3; i ++)

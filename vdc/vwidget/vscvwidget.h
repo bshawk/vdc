@@ -14,6 +14,7 @@
 #include "tinythread.h"
 #include "fast_mutex.h"
 #include "utility.hpp"
+#include "ui_vscvwidget.h"
 using  namespace tthread;
 
 class FFmpegScale;
@@ -112,6 +113,9 @@ private:
     SDL_Rect m_captionRect;
     SDL_Rect m_timeRect;
     int m_lastTime;
+
+public:
+    Ui::VSCVWidget ui;
     
 };
 

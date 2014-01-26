@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     VSCMainWindows w;
     //w.setWindowIcon(QIcon(":/logo/resources/vscsmall.jpg"));
     //w.show();
-    Sleep(1000);
+    //Sleep(1000);
     //w.setWindowFlags(Qt::FramelessWindowHint );
     w.showMaximized();
     //w.showFullScreen();

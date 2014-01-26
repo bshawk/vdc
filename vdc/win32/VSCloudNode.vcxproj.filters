@@ -95,6 +95,9 @@
     <CustomBuild Include="..\main\vscplaycontrol.h">
       <Filter>Include</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\vwidget\vscvwidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -226,6 +229,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscplaycontrol.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

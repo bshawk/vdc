@@ -34,8 +34,6 @@ public:
     QPushButton *pushButton6;
     QPushButton *pushButton4x4;
     QPushButton *pushButton12p1;
-    QPushButton *pushButtonPB;
-    QPushButton *pushButtonPTZ;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *VSCView)
@@ -53,7 +51,7 @@ public:
         widget = new QWidget(VSCView);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setAutoFillBackground(false);
-        widget->setStyleSheet(QStringLiteral(""));
+        widget->setStyleSheet(QStringLiteral("background-color:red"));
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -124,27 +122,6 @@ public:
 
         verticalLayout->addWidget(pushButton12p1);
 
-        pushButtonPB = new QPushButton(VSCView);
-        pushButtonPB->setObjectName(QStringLiteral("pushButtonPB"));
-        pushButtonPB->setMinimumSize(QSize(0, 0));
-        pushButtonPB->setMaximumSize(QSize(30, 30));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/view/resources/media-playback.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonPB->setIcon(icon7);
-        pushButtonPB->setIconSize(QSize(25, 25));
-
-        verticalLayout->addWidget(pushButtonPB);
-
-        pushButtonPTZ = new QPushButton(VSCView);
-        pushButtonPTZ->setObjectName(QStringLiteral("pushButtonPTZ"));
-        pushButtonPTZ->setMaximumSize(QSize(30, 30));
-        QIcon icon8;
-        icon8.addFile(QStringLiteral(":/view/resources/ptz.gif"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonPTZ->setIcon(icon8);
-        pushButtonPTZ->setIconSize(QSize(30, 30));
-
-        verticalLayout->addWidget(pushButtonPTZ);
-
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
@@ -167,8 +144,6 @@ public:
         pushButton6->setText(QString());
         pushButton4x4->setText(QString());
         pushButton12p1->setText(QString());
-        pushButtonPB->setText(QString());
-        pushButtonPTZ->setText(QString());
     } // retranslateUi
 
 };
