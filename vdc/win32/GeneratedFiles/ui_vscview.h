@@ -34,6 +34,9 @@ public:
     QPushButton *pushButton6;
     QPushButton *pushButton4x4;
     QPushButton *pushButton12p1;
+    QPushButton *pushButton12p1_2;
+    QPushButton *pushButton12p1_4;
+    QPushButton *pushButton12p1_3;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *VSCView)
@@ -122,6 +125,36 @@ public:
 
         verticalLayout->addWidget(pushButton12p1);
 
+        pushButton12p1_2 = new QPushButton(VSCView);
+        pushButton12p1_2->setObjectName(QStringLiteral("pushButton12p1_2"));
+        pushButton12p1_2->setMaximumSize(QSize(30, 30));
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/view/resources/5x5.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton12p1_2->setIcon(icon7);
+        pushButton12p1_2->setIconSize(QSize(25, 25));
+
+        verticalLayout->addWidget(pushButton12p1_2);
+
+        pushButton12p1_4 = new QPushButton(VSCView);
+        pushButton12p1_4->setObjectName(QStringLiteral("pushButton12p1_4"));
+        pushButton12p1_4->setMaximumSize(QSize(30, 30));
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/view/resources/6x6.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton12p1_4->setIcon(icon8);
+        pushButton12p1_4->setIconSize(QSize(25, 25));
+
+        verticalLayout->addWidget(pushButton12p1_4);
+
+        pushButton12p1_3 = new QPushButton(VSCView);
+        pushButton12p1_3->setObjectName(QStringLiteral("pushButton12p1_3"));
+        pushButton12p1_3->setMaximumSize(QSize(30, 30));
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/view/resources/8x8.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton12p1_3->setIcon(icon9);
+        pushButton12p1_3->setIconSize(QSize(25, 25));
+
+        verticalLayout->addWidget(pushButton12p1_3);
+
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
@@ -144,6 +177,9 @@ public:
         pushButton6->setText(QString());
         pushButton4x4->setText(QString());
         pushButton12p1->setText(QString());
+        pushButton12p1_2->setText(QString());
+        pushButton12p1_4->setText(QString());
+        pushButton12p1_3->setText(QString());
     } // retranslateUi
 
 };

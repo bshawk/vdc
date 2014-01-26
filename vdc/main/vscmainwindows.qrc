@@ -38,5 +38,8 @@
         <file>resources/playback-stop.png</file>
         <file>resources/ptz.gif</file>
         <file>resources/media-r-playback.png</file>
+        <file>resources/5x5.png</file>
+        <file>resources/6x6.png</file>
+        <file>resources/8x8.png</file>
     </qresource>
 </RCC>

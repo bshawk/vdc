@@ -95,7 +95,7 @@ public:
         videoControl->setObjectName(QStringLiteral("videoControl"));
         videoControl->setMinimumSize(QSize(0, 30));
         videoControl->setMaximumSize(QSize(16777215, 30));
-        videoControl->setStyleSheet(QStringLiteral("background-color:rgb(100, 100, 100)"));
+        videoControl->setStyleSheet(QStringLiteral("background-color:rgb(42, 43, 44)"));
         horizontalLayout_2 = new QHBoxLayout(videoControl);
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
