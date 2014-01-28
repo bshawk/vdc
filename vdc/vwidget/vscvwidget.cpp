@@ -27,6 +27,7 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     m_pRenderBuffer = NULL;
     m_bDeviceDeleted = FALSE;
     m_bFocus = FALSE;
+    m_lastMoveTime = 0;
 #if 0
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
         puts("# error initializing SDL");
@@ -71,8 +72,16 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     createContentMenu();
 ui.setupUi(this);
 ui.videoControl->setVisible(false);
+m_videoWindow = (guintptr)ui.video->winId();
+setMouseTracking(true);
     /* Start idle thread */
     //m_IdleThread = new tthread::thread(VSCVWidget::RunIdle, (void *)this);
+ //ui.videoControl->setMouseTracking(true);
+ //qApp->installEventFilter(this);
+ connect(ui.video, SIGNAL(videoMouseMove(QMouseEvent *)), this, SLOT(videoMouseMove(QMouseEvent *)));
+    m_Timer = new QTimer(this);
+    connect(m_Timer,SIGNAL(timeout()),this,SLOT(UpdateVideoControl()));  
+    m_Timer->start(800);  
 }
 
 VSCVWidget::~VSCVWidget()
@@ -86,6 +95,18 @@ VSCVWidget::~VSCVWidget()
         m_IdleThread->join();
         delete m_IdleThread;
         m_IdleThread = NULL;
+    }
+}
+
+void VSCVWidget::UpdateVideoControl()
+{
+   time_t current = time(NULL);
+    VDC_DEBUG( "UpdateVideoControl %d , m_lastMoveTime %d ", 
+		m_nId, m_lastMoveTime);
+    VDC_DEBUG( "current time %d\n",  current);
+    if (current - m_lastMoveTime > 1)
+    {
+        ui.videoControl->setVisible(false);
     }
 }
 
@@ -147,12 +168,9 @@ BOOL VSCVWidget::StartPlay(std::string strUrl)
     m_UpdateSize = false;
     m_pStarted = TRUE;
     m_bDeviceDeleted = FALSE;
-    //m_IdleThread->join();
-    delete m_IdleThread;
-    m_IdleThread = NULL;
-    UpdateFontSurface();
-    //m_SdlThread = new tthread::thread(VSCVWidget::Run, (void *)this);
+    m_videoThread = new tthread::thread(VSCVWidget::Run, (void *)this);
     m_pStop->setEnabled(true);
+    ui.video->setRunning(true);
     return TRUE;
 }
 
@@ -201,14 +219,8 @@ BOOL VSCVWidget::StopPlay()
         VDC_DEBUG( "%s StopPlay begin\n",__FUNCTION__);
         m_pStarted = false;
         m_bDeviceDeleted = false;
-        m_SdlThread->join();
-        delete m_SdlThread;
-        m_SdlThread = NULL;
-
-        RenderBlack();
         m_pStop->setEnabled(false);
         /* Start idle thread */
-        m_IdleThread = new tthread::thread(VSCVWidget::RunIdle, (void *)this);
         VDC_DEBUG( "%s StopPlay End\n",__FUNCTION__);
     }
     VDC_DEBUG( "%s StopPlay End\n",__FUNCTION__);
@@ -222,13 +234,9 @@ BOOL VSCVWidget::DeviceDeleted(u32 nId)
         VDC_DEBUG( "%s DeviceDeleted begin\n",__FUNCTION__);
         m_pStarted = false;
         m_bDeviceDeleted = TRUE;
-        m_SdlThread->join();
-        delete m_SdlThread;
 
-        RenderBlack();
         VDC_DEBUG( "%s DeviceDeleted end\n",__FUNCTION__);
         m_pStop->setEnabled(false);
-	 m_IdleThread = new tthread::thread(VSCVWidget::RunIdle, (void *)this);
     }
 
     return TRUE;
@@ -283,6 +291,26 @@ void VSCVWidget::mousePressEvent(QMouseEvent *e)
     emit ShowFocusClicked(m_nId);
 
 }
+void VSCVWidget::mouseMoveEvent(QMouseEvent *e)
+{
+    VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
+    //if (e->pos().y() > height() - ui.videoControl->height()) {
+        if (1) {
+            ui.videoControl->show();
+        }
+    //}
+}
+
+void VSCVWidget::videoMouseMove(QMouseEvent *e)
+{
+    VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
+    //if (e->pos().y() > height() - ui.videoControl->height()) {
+        if (1) {
+            ui.videoControl->show();
+	     m_lastMoveTime = time(NULL);
+        }
+}
+
 void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
 {
     VDC_DEBUG( "%s mouseDoubleClickEvent %d\n",__FUNCTION__, m_nId);
@@ -471,66 +499,19 @@ void VSCVWidget::RunIdle1()
 
 void VSCVWidget::Run1()
 {
-#if 0
+
     NotificationQueue *pCmd = NULL;
     cmn_cmd cmd;
     int pitch;
     void * pixels = NULL;
-    gFactory->StartDevice(m_nPlayId);
-    pCmd = gFactory->GetRawDataQueue(m_nPlayId);
+    std::string url;
+    gFactory->GetUrl(m_nPlayId, url);
     gFactory->RegDeleteCallback(m_nPlayId, VSCVWidget::DeviceDeletedCallback, (void *)this);
-
-    while (m_pStarted == TRUE)
-    {
-            //Get test queue
-
-                Notification::Ptr pNf(pCmd->waitDequeueNotification(1000));
-                if (pNf)
-                {
-                    SinkNotification::LPtr pWorkNf = pNf.cast<SinkNotification>();
-                    if (pWorkNf)
-                    {
-                        m_Mutex.lock();
-                        //VDC_DEBUG( "%s size %d \n",__FUNCTION__, pWorkNf->cmd.size);
-
-                        m_Scale->Scale((unsigned char *)(pWorkNf->cmd.data), pWorkNf->cmd.w, 
-                                        pWorkNf->cmd.h, pWorkNf->cmd.w * 3,
-                                    m_pRenderBuffer,
-                                    m_w, m_h, m_w * 3);
-                        pixels = NULL;
-
-                        SDL_LockTexture(m_pTex, NULL, &pixels, &pitch);
-                        if (pixels)
-                            memcpy(pixels, m_pRenderBuffer, m_w * m_h * 3);
-
-                        SDL_UnlockTexture(m_pTex);
-                        SDL_RenderClear(m_SdlRender);
-                        
-                        SDL_RenderCopy(m_SdlRender, m_pTex, NULL, NULL);
-                        DrawOSD();
-			  
-                        drawFocus();
-			  
-                        SDL_RenderPresent(m_SdlRender);
-                        m_Mutex.unlock();                      
-                    }
-                }else
-                {
-                    Sleep(100);
-                    //RenderBlack();
-                    continue;
-                }
-                //Sleep(0);
-        }
-
-    if (m_bDeviceDeleted != TRUE)
-    {
-        VDC_DEBUG( "%s ReleaseRawDataQueue m_nPlayId %d\n",__FUNCTION__, 
-                m_nPlayId);
-        gFactory->ReleaseRawDataQueue(m_nPlayId, pCmd);
-    }
-#endif
-	return ;
+    mediaPipeline devicePipeline(url);
+    devicePipeline.addWindows(m_videoWindow);
+    devicePipeline.run();
+ 
+    return ;
 }
 
 void VSCVWidget::UpdateTime()

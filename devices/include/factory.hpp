@@ -40,6 +40,7 @@ public:
     BOOL RegDeleteCallback(s32 nIndex, DeviceDeleteCallbackFunctionPtr pCallback, void * pParam);
     BOOL UnRegDeleteCallback(s32 nIndex, void * pParam);
     BOOL GetDeviceOnline(s32 nIndex);
+    BOOL GetUrl(s32 nIndex, std::string &url);
 
 public:
     void Lock(){m_Lock.lock();}
@@ -193,6 +194,20 @@ inline BOOL Factory::GetDeviceOnline(s32 nIndex)
     UnLock();
 
     return online;
+}
+
+inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
+{
+    BOOL ret = FALSE;
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        ret =  m_DeviceMap[nIndex]->GetUrl(url);
+    }
+
+    UnLock();
+
+    return ret;
 }
 
 inline BOOL Factory::UnRegDeleteCallback(s32 nIndex, void * pParam)

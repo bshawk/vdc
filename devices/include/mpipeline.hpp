@@ -6,6 +6,7 @@
 #include <gst/rtsp/gstrtsptransport.h>
 #include <glib.h>
 #include <gst/interfaces/xoverlay.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -22,8 +23,14 @@ public:
 	static void on_pad_added2 (GstElement *playbin, GstElement *source, gpointer  data);
 	
 public:
-	bool setupPipeline(guintptr handle);
+	bool setupPipeline();
+	bool addWindows(guintptr handle){handleWin = handle; return true;}
 	void run();
+	bool stop()
+	{
+	    m_started = false;
+	    return true;
+	}
 	
 public:
 	GMainLoop *m_pLoop;
@@ -38,11 +45,14 @@ public:
 	GstElement *m_pPlaybin2;
     GstElement *m_pPipeline;
     GstBus *m_pBus;
+	guintptr handleWin;
 	std::string m_url;
+private:
+	bool m_started;
 };
 
 inline mediaPipeline::mediaPipeline(std::string &url)
-:m_url(url)
+:m_url(url), m_started(true)
 {
 }
 
@@ -50,11 +60,11 @@ inline void mediaPipeline::init(int argc, char *argv[])
 {
     //int argc = 0;
     //char **argv = NULL;
-	_putenv("GST_PLUGIN_PATH=gstreamer-0.10");
+	//_putenv("GST_PLUGIN_PATH=gstreamer-0.10");
     gst_init( &argc, &argv);
 }
 
-void mediaPipeline::on_pad_added (GstElement *element, GstPad *pad, gpointer data)
+inline void mediaPipeline::on_pad_added (GstElement *element, GstPad *pad, gpointer data)
 {
   GstPad *sinkpad;
    GstCaps *new_pad_caps = NULL;
@@ -74,12 +84,13 @@ void mediaPipeline::on_pad_added (GstElement *element, GstPad *pad, gpointer dat
   gst_object_unref (sinkpad);
 }
 
-void mediaPipeline::on_pad_added2 (GstElement *playbin, GstElement *source, gpointer  data)
+inline void mediaPipeline::on_pad_added2 (GstElement *playbin, GstElement *source, gpointer  data)
 {
 	g_object_set(source, "latency", 0, NULL);
 	g_object_set(source, "do-rtsp-keep-alive", true, NULL);
-	g_object_set(source, "protocols", GST_RTSP_LOWER_TRANS_TCP, NULL);
-	g_object_set(source, "location", "OH-Ditang.wmv", NULL);
+	g_object_set(source, "protocols", GST_RTSP_LOWER_TRANS_TCP, NULL);	
+	//g_object_set(source, "tcp-timeout", 100000, NULL);
+    //g_object_set(source, "location", "OH-Ditang.wmv", NULL);	
 }
 
 /* Process messages from GStreamer */
@@ -88,7 +99,7 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
   GError *err;
   gchar *debug_info;
   GstElement *elmSrc;
-  //g_print ("Message. %d\n", GST_MESSAGE_TYPE (msg));
+  g_print ("Message. %d\n", GST_MESSAGE_TYPE (msg));
   
   switch (GST_MESSAGE_TYPE (msg)) {
     case GST_MESSAGE_ERROR:
@@ -97,11 +108,11 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
       g_printerr ("Debugging information: %s\n", debug_info ? debug_info : "none");
       g_clear_error (&err);
       g_free (debug_info);
-      //g_main_loop_quit (data->main_loop);
+      g_main_loop_quit (data->m_pLoop);
       break;
     case GST_MESSAGE_EOS:
       g_print ("End-Of-Stream reached.\n");
-      //g_main_loop_quit (data->main_loop);
+      g_main_loop_quit (data->m_pLoop);
       break;
     case GST_MESSAGE_STATE_CHANGED: {
 	  g_print ("GST_MESSAGE_STATE_CHANGED. %d\n", GST_MESSAGE_TYPE (msg));
@@ -123,7 +134,7 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
   return TRUE;
 }
 
-inline bool mediaPipeline::setupPipeline(guintptr handle)
+inline bool mediaPipeline::setupPipeline()
 {
     m_pLoop = g_main_loop_new (NULL, FALSE);
     m_pPipeline = gst_pipeline_new ("my_pipeline");
@@ -149,7 +160,7 @@ inline bool mediaPipeline::setupPipeline(guintptr handle)
 	m_pTimeOverlay = gst_element_factory_make ("clockoverlay", "timeoverlay");
 	g_object_set(m_pTimeOverlay, "halign", "left", NULL);
 	g_object_set(m_pTimeOverlay, "valign", "bottom", NULL);
-	g_object_set(m_pTimeOverlay, "text", "NVR 1032", NULL);
+	g_object_set(m_pTimeOverlay, "text", "Video", NULL);
 	//g_object_set(m_pTimeOverlay, "shaded-background", true, NULL);
 	g_object_set(m_pTimeOverlay, "font-desc", "Sans 16", NULL);
 	g_object_set(m_pTimeOverlay, "auto-resize", true, NULL);
@@ -159,9 +170,11 @@ inline bool mediaPipeline::setupPipeline(guintptr handle)
 	g_object_set(m_pPlaybin2, "uri", m_url.c_str(), NULL);
 	g_object_set(m_pPlaybin2, "video-sink", m_pVideoSink, NULL);
 	g_object_set(m_pPlaybin2, "delay", 0, NULL);
+	//g_object_set(m_pVideoSink, "force-aspect-ratio", true, NULL);
+	g_object_set(m_pPlaybin2, "force-aspect-ratio", false, NULL);
 #endif
 	
-	gst_x_overlay_set_window_handle(GST_X_OVERLAY(m_pVideoSink),(guintptr)handle);
+	gst_x_overlay_set_window_handle(GST_X_OVERLAY(m_pVideoSink),(guintptr)handleWin);
 	gst_bin_add_many (GST_BIN (m_pPipeline), m_pPlaybin2, NULL);
 	//gst_element_link_many ( m_pDecodebin2, m_pTimeOverlay, 
 		//m_pVideoSink, NULL);
@@ -169,26 +182,26 @@ inline bool mediaPipeline::setupPipeline(guintptr handle)
 	{
 	    g_warning ("Linking part (A) with part (B) Fail...");
 	}
-#if 0
-	/* Dynamic Pad Creation */
-	if(! g_signal_connect (m_pRtspSrc, "pad-added", G_CALLBACK (on_pad_added),this))
-	{
-	    g_warning ("Linking part (A) with part (B) Fail...");
-	}
-
-	if(! g_signal_connect (m_pDecodebin2, "pad-added", G_CALLBACK (on_pad_added2),this))
-	{
-	    g_warning ("Linking part (A) with part (B) Fail...");
-	}
-#endif
 	return true;
 	
 }
 
 inline void mediaPipeline::run()
 {
-	gst_element_set_state (m_pPipeline, GST_STATE_PLAYING);
-	g_main_loop_run (m_pLoop);
+	while(m_started)
+	{
+		setupPipeline();
+		if (gst_element_set_state (m_pPipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE             )
+		{
+			//TODO Clean up
+			Sleep(10000);
+			continue;
+		}
+		
+		g_main_loop_run (m_pLoop);
+		//TODO add a clean up
+		
+	}
 }
 
 #endif /* __MEDIA_PIPELINE_H___ */

@@ -15,6 +15,9 @@
 #include "fast_mutex.h"
 #include "utility.hpp"
 #include "ui_vscvwidget.h"
+#include "mpipeline.hpp"
+#include "debug.hpp"
+#include <QTimer>
 using  namespace tthread;
 
 class FFmpegScale;
@@ -32,9 +35,18 @@ public:
     void updateSize();
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    void mouseMoveEvent(QMouseEvent *e);
     void createContentMenu();
     void drawFocus();
     void setVideoFocus(BOOL bFocus);
+    virtual bool eventFilter(QObject *obj, QEvent *event)
+    {
+        if (event->type() == QEvent::MouseMove && obj == ui.videoControl)
+        {
+            VDC_DEBUG( "%s mouseMoveEvent %p\n",__FUNCTION__, this);
+        }
+	 return false;
+    }
 
 private slots:
     void stopAction();
@@ -42,6 +54,8 @@ private slots:
     void showDisplay2();
     void showDisplay3();
     void showDisplay4();
+    void videoMouseMove(QMouseEvent *e);
+    void UpdateVideoControl();
 
 signals:
     void ShowDisplayClicked(int nId);
@@ -75,10 +89,12 @@ public:
     void UpdateFontSurface();
     void DrawOSD();
     void UpdateTime();
+    
 
 /* Thread */
 private:
-    tthread::thread *m_SdlThread;
+    tthread::thread *m_videoThread;
+    guintptr m_videoWindow;
     tthread::thread *m_IdleThread;
     FFmpegScale* m_Scale;
     tthread::fast_mutex m_Mutex;
@@ -113,6 +129,10 @@ private:
     SDL_Rect m_captionRect;
     SDL_Rect m_timeRect;
     int m_lastTime;
+	
+private:
+    QTimer *m_Timer;
+    time_t m_lastMoveTime;
 
 public:
     Ui::VSCVWidget ui;

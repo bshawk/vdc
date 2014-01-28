@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <map>
 #include "utility.hpp"
+#include "debug.hpp"
 
 /* Control command */
 typedef enum
@@ -47,6 +48,10 @@ public:
     void SetupVideoLayout6();
     void StopVideoBeforeSetLayout();
     void SetVideoFocus(int nId, BOOL on);
+    void mouseMoveEvent(QMouseEvent *e)
+    	{
+    	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
+    	}
 
 public slots:
     void floatingAction();

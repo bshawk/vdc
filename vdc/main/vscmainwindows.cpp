@@ -91,6 +91,9 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
     statusBar()->showMessage(message);
     //pVideo->Start();
     SetupConnections();
+    //centralWidget()->setMouseTracking(true);
+    //setMouseTracking(true);
+    
 
 }
 

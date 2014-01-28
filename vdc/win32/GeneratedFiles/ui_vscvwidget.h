@@ -20,6 +20,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "videowidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -34,7 +35,7 @@ public:
     QLabel *label;
     QSpacerItem *horizontalSpacer_2;
     QLabel *label_2;
-    QWidget *widget_2;
+    VideoWidget *video;
     QWidget *videoControl;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
@@ -53,17 +54,20 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         widget_3 = new QWidget(VSCVWidget);
         widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setAutoFillBackground(true);
         verticalLayout = new QVBoxLayout(widget_3);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(1, 1, 1, 1);
         widget = new QWidget(widget_3);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setMinimumSize(QSize(0, 30));
-        widget->setMaximumSize(QSize(16777215, 30));
+        widget->setMinimumSize(QSize(0, 20));
+        widget->setMaximumSize(QSize(16777215, 20));
         widget->setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
         horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(widget);
         label->setObjectName(QStringLiteral("label"));
         label->setStyleSheet(QLatin1String("color : rgb(247, 247, 247);\n"
@@ -85,11 +89,12 @@ public:
 
         verticalLayout->addWidget(widget);
 
-        widget_2 = new QWidget(widget_3);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
+        video = new VideoWidget(widget_3);
+        video->setObjectName(QStringLiteral("video"));
+        video->setAutoFillBackground(false);
+        video->setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
 
-        verticalLayout->addWidget(widget_2);
+        verticalLayout->addWidget(video);
 
         videoControl = new QWidget(widget_3);
         videoControl->setObjectName(QStringLiteral("videoControl"));
@@ -126,6 +131,9 @@ public:
 
         verticalLayout->addWidget(videoControl);
 
+        widget->raise();
+        videoControl->raise();
+        video->raise();
 
         verticalLayout_2->addWidget(widget_3);
 

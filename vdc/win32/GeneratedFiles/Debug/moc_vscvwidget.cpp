@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VSCVWidget_t {
-    QByteArrayData data[12];
-    char stringdata[154];
+    QByteArrayData data[16];
+    char stringdata[203];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,12 +40,18 @@ QT_MOC_LITERAL(7, 90, 10),
 QT_MOC_LITERAL(8, 101, 12),
 QT_MOC_LITERAL(9, 114, 12),
 QT_MOC_LITERAL(10, 127, 12),
-QT_MOC_LITERAL(11, 140, 12)
+QT_MOC_LITERAL(11, 140, 12),
+QT_MOC_LITERAL(12, 153, 14),
+QT_MOC_LITERAL(13, 168, 12),
+QT_MOC_LITERAL(14, 181, 1),
+QT_MOC_LITERAL(15, 183, 18)
     },
     "VSCVWidget\0ShowDisplayClicked\0\0nId\0"
     "ShowFloatingClicked\0ShowTabbedClicked\0"
     "ShowFocusClicked\0stopAction\0showDisplay1\0"
     "showDisplay2\0showDisplay3\0showDisplay4\0"
+    "videoMouseMove\0QMouseEvent*\0e\0"
+    "UpdateVideoControl\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +61,7 @@ static const uint qt_meta_data_VSCVWidget[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,17 +69,19 @@ static const uint qt_meta_data_VSCVWidget[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   59,    2, 0x05,
-       4,    0,   62,    2, 0x05,
-       5,    0,   63,    2, 0x05,
-       6,    1,   64,    2, 0x05,
+       1,    1,   69,    2, 0x05,
+       4,    0,   72,    2, 0x05,
+       5,    0,   73,    2, 0x05,
+       6,    1,   74,    2, 0x05,
 
  // slots: name, argc, parameters, tag, flags
-       7,    0,   67,    2, 0x08,
-       8,    0,   68,    2, 0x08,
-       9,    0,   69,    2, 0x08,
-      10,    0,   70,    2, 0x08,
-      11,    0,   71,    2, 0x08,
+       7,    0,   77,    2, 0x08,
+       8,    0,   78,    2, 0x08,
+       9,    0,   79,    2, 0x08,
+      10,    0,   80,    2, 0x08,
+      11,    0,   81,    2, 0x08,
+      12,    1,   82,    2, 0x08,
+      15,    0,   85,    2, 0x08,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -86,6 +94,8 @@ static const uint qt_meta_data_VSCVWidget[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 13,   14,
     QMetaType::Void,
 
        0        // eod
@@ -105,6 +115,8 @@ void VSCVWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->showDisplay2(); break;
         case 7: _t->showDisplay3(); break;
         case 8: _t->showDisplay4(); break;
+        case 9: _t->videoMouseMove((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 10: _t->UpdateVideoControl(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -162,13 +174,13 @@ int VSCVWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

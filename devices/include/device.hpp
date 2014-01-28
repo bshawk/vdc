@@ -87,7 +87,8 @@ public:
     BOOL Cleanup();
     BOOL GetDeviceOnline()
     {
-        BOOL online = FALSE;
+        BOOL online = true;
+#if 0
         LockTime();
         s32 currentTime = time(NULL);
         VDC_DEBUG( "%s GetDeviceOnline  cur %d  last %d \n",__FUNCTION__, 
@@ -97,7 +98,13 @@ public:
             online = TRUE;
         }
         UnLockTime();
+#endif
         return online;
+    }
+    BOOL GetUrl(std::string &url)
+    {
+        url = m_param.m_strUrl;
+        return TRUE;
     }
 
 public:
@@ -408,16 +415,19 @@ inline BOOL Device::GetDataQueue(NotificationQueue * pQueue)
 
 inline BOOL Device::Start()
 {
+#if 0
     if (m_bStarted == FALSE)
     {
         m_pThread = new thread(Device::Run, (void *)this);
         m_bStarted = TRUE;
     }
+#endif
 
     return TRUE;
 }
 inline BOOL Device::Stop()
 {
+#if 0
     if (m_bStarted == true)
     {
         VDC_DEBUG( "%s Stop Begin\n", __FUNCTION__);
@@ -426,6 +436,7 @@ inline BOOL Device::Stop()
         delete m_pThread;
         VDC_DEBUG( "%s Stop End\n", __FUNCTION__);
     }
+#endif
 
     return TRUE;
 }

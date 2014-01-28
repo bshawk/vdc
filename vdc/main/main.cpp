@@ -7,6 +7,7 @@
 #include <QPixmap>
 #include <QSplashScreen>
 #include <QtWidgets/QMainWindow>
+#include "mpipeline.hpp"
 
 Debug * Debug::gDebug = NULL;
 thread * Debug::gThread = NULL;
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
     int dummy = errno;
     QApplication a(argc, argv);
     Debug::init(0);
+    mediaPipeline::init(argc, argv);
 
     QPixmap pixmap(":/logo/resources/splash.png");
     QSplashScreen *splash = new QSplashScreen(pixmap);

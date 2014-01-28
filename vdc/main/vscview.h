@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_vscview.h"
 #include "utility.hpp"
+#include "debug.hpp"
 #include "vscvwidget.h"
 #include "vscvideowall.h"
 #include "QTabWidget"
@@ -28,6 +29,10 @@ public slots:
     void ShowDisplayClicked(int nId);
     void ShowFocusClicked(int nId);
     void ShowPlayControl();
+    void mouseMoveEvent(QMouseEvent *e)
+    	{
+    	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
+    	}
 	
 public:
     Ui::VSCView ui;

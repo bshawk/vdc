@@ -30,6 +30,7 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed)
     m_pPlayControl = new VSCPlayControl();
     m_bPlayControl = FALSE;
     m_pPlayControl->hide();
+    //setMouseTracking(true);
 }
 
 void VSCView::SetupConnections()
