@@ -11,6 +11,5 @@ For more guide
 http://blog.csdn.net/video_dc
 http://www.vdceye.com/
 
-For Windows:
-Please install http://www.microsoft.com/en-us/download/details.aspx?id=8109
+Use gstreamer playbin2 and d3dvideosink as backend.
 
