@@ -48,14 +48,14 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
 
     this->setAcceptDrops(true);
 
-    m_pStop = new QAction(QIcon(tr("images/open.ico")), tr("Stop"), this);
+    m_pStop = new QAction(QIcon(tr("images/open.ico")), tr("STOP"), this);
     connect(m_pStop, SIGNAL(triggered()), this, SLOT(stopAction()));
     m_pStop->setEnabled(false);
 
-    m_pFloating = new QAction(QIcon(tr("images/open.ico")), tr("Float"), this);
+    m_pFloating = new QAction(QIcon(tr("images/open.ico")), tr("FLOAT"), this);
     connect(m_pFloating, SIGNAL(triggered()), this, SIGNAL(ShowFloatingClicked()));
 
-    m_pTabbed = new QAction(QIcon(tr("images/open.ico")), tr("Tabbed Document"), this);
+    m_pTabbed = new QAction(QIcon(tr("images/open.ico")), tr("TABBED"), this);
     connect(m_pTabbed, SIGNAL(triggered()), this, SIGNAL(ShowTabbedClicked()));
 
     m_pDisplay1 = new QAction(QIcon(tr(":/action/resources/display.png")), tr("DISPLAY1"), this);

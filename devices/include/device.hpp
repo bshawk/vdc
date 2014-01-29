@@ -154,7 +154,7 @@ inline string GetProgramDir()
 
 inline DeviceParam::DeviceParam()
 {
-    //static int CameraNum = 0;
+    static int CameraNum = 0;
     memset(&m_Conf, 0, sizeof(m_Conf));
     m_Conf.data.conf.nId = 0;
     m_Conf.data.conf.nType = VSC_DEVICE_CAM;
@@ -359,6 +359,7 @@ inline Device::Device(const DeviceParam &pParam)
 :m_bStarted(FALSE), m_param(pParam), m_nLastGetDataTime(0)
 {
     m_param.UpdateUrl();
+    sprintf(m_param.m_Conf.data.conf.Name, "CAMERA %d", m_param.m_Conf.data.conf.nId);
     VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 }
 

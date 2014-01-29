@@ -24,6 +24,7 @@ public:
 	
 public:
 	bool setupPipeline();
+	bool cleanPipeline();
 	bool addWindows(guintptr handle){handleWin = handle; return true;}
 	void run();
 	bool stop()
@@ -34,17 +35,10 @@ public:
 	
 public:
 	GMainLoop *m_pLoop;
-    GstElement *m_pRtspSrc;
-	GstElement *m_pRtpDepay;
-	GstElement *m_pDecodebin2;
-	GstElement *m_pFFColorspace;
-	GstElement *m_pH264parse;
-	GstElement *m_pTimeOverlay;
-	GstElement *m_pFakesink;
 	GstElement *m_pVideoSink;
 	GstElement *m_pPlaybin2;
-    GstElement *m_pPipeline;
-    GstBus *m_pBus;
+       GstElement *m_pPipeline;
+       GstBus *m_pBus;
 	guintptr handleWin;
 	std::string m_url;
 private:
@@ -77,7 +71,7 @@ inline void mediaPipeline::on_pad_added (GstElement *element, GstPad *pad, gpoin
   /* We can now link this pad with the rtsp-decoder sink pad */
   g_print ("Dynamic pad created, linking source/demuxer on_pad_added\n");
 
-  sinkpad = gst_element_get_static_pad (mediaPipe->m_pDecodebin2, "sink");
+  //sinkpad = gst_element_get_static_pad (mediaPipe->m_pDecodebin2, "sink");
 
   gst_pad_link (pad, sinkpad);
 
@@ -132,6 +126,18 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
   
   /* We want to keep receiving messages */
   return TRUE;
+}
+
+inline bool mediaPipeline::cleanPipeline()
+{
+    gst_element_set_state (m_pPipeline, GST_STATE_NULL);
+    gst_object_unref (m_pPipeline);
+    //gst_object_unref (m_pBus);
+    //gst_object_unref (m_pVideoSink);
+    //gst_object_unref (m_pPlaybin2);
+
+    g_main_loop_unref(m_pLoop);
+    return TRUE;
 }
 
 inline bool mediaPipeline::setupPipeline()
@@ -194,11 +200,13 @@ inline void mediaPipeline::run()
 		if (gst_element_set_state (m_pPipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE             )
 		{
 			//TODO Clean up
+			cleanPipeline();
 			Sleep(10000);
 			continue;
 		}
 		
 		g_main_loop_run (m_pLoop);
+		cleanPipeline();
 		//TODO add a clean up
 		
 	}
