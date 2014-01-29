@@ -4,6 +4,10 @@
 #define __VSC_DEVICE_H_
 
 #define NOMINMAX
+//#ifdef WIN32
+#include <Windows.h>
+#include <Winbase.h>
+//#endif 
 #include "ffmpeg_impl.hpp"
 #include "tcmalloc.h"
 #include "utility.hpp"
@@ -14,6 +18,7 @@
 #include "media_management/streamuri.h"
 #include "device_management/capabilities.h"
 #include "mediamanagement.h"
+
 
 
 using namespace UtilityLib;
@@ -131,6 +136,22 @@ private:
 typedef DeviceParam* LPDeviceParam;
 typedef Device* LPDevice;
 
+inline string GetProgramDir()
+{
+
+    char exeFullPath[MAX_PATH]; // Full path
+
+    string strPath = "";
+
+    GetModuleFileNameA(NULL,exeFullPath, MAX_PATH);
+    strPath=(string)exeFullPath;    // Get full path of the file
+
+    int pos = strPath.find_last_of('\\', strPath.length());
+
+    return strPath.substr(0, pos);  // Return the directory without the file name
+}
+
+
 inline DeviceParam::DeviceParam()
 {
     //static int CameraNum = 0;
@@ -148,7 +169,8 @@ inline DeviceParam::DeviceParam()
     strcpy(m_Conf.data.conf.Password, "admin");
 
     strcpy(m_Conf.data.conf.RtspLocation, "/");
-    strcpy(m_Conf.data.conf.FileLocation, "camera.avi");
+    string filePath = GetProgramDir() +  "/camera.mov";
+    strcpy(m_Conf.data.conf.FileLocation, filePath.c_str());
     strcpy(m_Conf.data.conf.OnvifAddress, "/onvif/device_service");
     strcpy(m_Conf.data.conf.CameraIndex, "1");
 
@@ -267,7 +289,8 @@ inline void DeviceParam::UpdateUrl()
     //TODO RTSP ONVIF call onvif sdk to get a Stream URL
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
     {
-        m_strUrl = m_Conf.data.conf.FileLocation;
+        string filePre = "file:///";
+        m_strUrl = filePre + m_Conf.data.conf.FileLocation;
     }
 
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_RTSP)
