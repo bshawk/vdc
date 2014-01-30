@@ -32,14 +32,14 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *widget;
     QHBoxLayout *horizontalLayout;
-    QLabel *label;
+    QLabel *labelName;
     QSpacerItem *horizontalSpacer_2;
     QLabel *label_2;
     VideoWidget *video;
     QWidget *videoControl;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton;
     QSpacerItem *horizontalSpacer_3;
+    QPushButton *pushButton;
     QPushButton *pushButton_2;
 
     void setupUi(QWidget *VSCVWidget)
@@ -54,7 +54,7 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         widget_3 = new QWidget(VSCVWidget);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setAutoFillBackground(true);
+        widget_3->setAutoFillBackground(false);
         verticalLayout = new QVBoxLayout(widget_3);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -68,12 +68,12 @@ public:
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setStyleSheet(QLatin1String("color : rgb(247, 247, 247);\n"
+        labelName = new QLabel(widget);
+        labelName->setObjectName(QStringLiteral("labelName"));
+        labelName->setStyleSheet(QLatin1String("color : rgb(247, 247, 247);\n"
 "font: 75 9pt \"Arial\";"));
 
-        horizontalLayout->addWidget(label);
+        horizontalLayout->addWidget(labelName);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -102,21 +102,21 @@ public:
         videoControl->setMaximumSize(QSize(16777215, 30));
         videoControl->setStyleSheet(QStringLiteral("background-color:rgb(42, 43, 44)"));
         horizontalLayout_2 = new QHBoxLayout(videoControl);
-        horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_3);
+
         pushButton = new QPushButton(videoControl);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setMaximumSize(QSize(70, 16777215));
+        pushButton->setMaximumSize(QSize(50, 16777215));
         pushButton->setStyleSheet(QLatin1String("background-color:rgb(80, 80, 80);\n"
 "color : rgb(247, 247, 247);\n"
 "font: 75 9pt \"Arial\";"));
 
         horizontalLayout_2->addWidget(pushButton);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_3);
 
         pushButton_2 = new QPushButton(videoControl);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
@@ -146,10 +146,10 @@ public:
     void retranslateUi(QWidget *VSCVWidget)
     {
         VSCVWidget->setWindowTitle(QApplication::translate("VSCVWidget", "Form", 0));
-        label->setText(QApplication::translate("VSCVWidget", "Camera", 0));
+        labelName->setText(QString());
         label_2->setText(QApplication::translate("VSCVWidget", "Recording", 0));
-        pushButton->setText(QApplication::translate("VSCVWidget", "Playback", 0));
-        pushButton_2->setText(QApplication::translate("VSCVWidget", "Zoom", 0));
+        pushButton->setText(QApplication::translate("VSCVWidget", "PLAY", 0));
+        pushButton_2->setText(QApplication::translate("VSCVWidget", "ZOOM", 0));
     } // retranslateUi
 
 };

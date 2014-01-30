@@ -29,16 +29,13 @@ class VSCVWidget : public QWidget
 public:
     VSCVWidget(s32 nId, QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~VSCVWidget();
-    void resizeEvent ( QResizeEvent * event );
     void mouseDoubleClickEvent(QMouseEvent *e);
     void mousePressEvent(QMouseEvent *event);
-    void updateSize();
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
     void mouseMoveEvent(QMouseEvent *e);
     void createContentMenu();
-    void drawFocus();
-    void setVideoFocus(BOOL bFocus);
+    void SetVideoFocus(BOOL bFocus);
     virtual bool eventFilter(QObject *obj, QEvent *event)
     {
         if (event->type() == QEvent::MouseMove && obj == ui.videoControl)
@@ -66,16 +63,7 @@ signals:
 public:
     static void Run(void * pParam);
     void Run1();
-    static void RunIdle(void * pParam);
-    void RunIdle1();
 
-public:
-    void RenderBlack();
-    void DrawCurrent();
-
-protected:
-    void paintEvent(QPaintEvent *);
-    void showEvent (QPaintEvent *);
 
 public:
     BOOL StartPlay(std::string strUrl);
@@ -83,23 +71,15 @@ public:
     BOOL DeviceDeleted(u32 nId);
     BOOL SetPlayId(u32 nPlayId);
     static void DeviceDeletedCallback(u32 nId, void * pParam);
-    void SetVideoFocus(BOOL on);
-    /* OSD related */
-    void InitFont();
-    void UpdateFontSurface();
-    void DrawOSD();
-    void UpdateTime();
     
 
 /* Thread */
 private:
     tthread::thread *m_videoThread;
     guintptr m_videoWindow;
-    tthread::thread *m_IdleThread;
-    FFmpegScale* m_Scale;
+    mediaPipeline *m_pipe;
     tthread::fast_mutex m_Mutex;
     BOOL m_bFocus;
-    bool m_UpdateSize;
     s32 m_nId;
     u32 m_nPlayId;
     s32 m_w;

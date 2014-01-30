@@ -160,7 +160,7 @@ inline DeviceParam::DeviceParam()
     m_Conf.data.conf.nType = VSC_DEVICE_CAM;
     m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_FILE;
 
-    sprintf(m_Conf.data.conf.Name, "CAMERA %d", 1);
+    sprintf(m_Conf.data.conf.Name, "Camera");
     //strcpy(m_Conf.data.conf.Name, "CAMERA ");
 
     strcpy(m_Conf.data.conf.IP, "192.168.0.1");
@@ -358,8 +358,11 @@ inline Device::Device()
 inline Device::Device(const DeviceParam &pParam)
 :m_bStarted(FALSE), m_param(pParam), m_nLastGetDataTime(0)
 {
+    
+    if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
+      sprintf((char *)pParam.m_Conf.data.conf.Name, "Camera %d", pParam.m_Conf.data.conf.nId);
+    m_param = pParam;
     m_param.UpdateUrl();
-    sprintf(m_param.m_Conf.data.conf.Name, "CAMERA %d", m_param.m_Conf.data.conf.nId);
     VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 }
 

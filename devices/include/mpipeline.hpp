@@ -14,7 +14,11 @@ class mediaPipeline
 {
 public:
     mediaPipeline(std::string &url);
-	~mediaPipeline(){}
+	~mediaPipeline()
+	{
+	    if (m_started == false)
+		g_main_loop_unref(m_pLoop);
+	}
 	
 public:
 	static void init(int argc, char *argv[]);
@@ -30,6 +34,8 @@ public:
 	bool stop()
 	{
 	    m_started = false;
+	    if (m_pLoop)
+	        g_main_loop_quit (m_pLoop);
 	    return true;
 	}
 	
@@ -37,8 +43,8 @@ public:
 	GMainLoop *m_pLoop;
 	GstElement *m_pVideoSink;
 	GstElement *m_pPlaybin2;
-       GstElement *m_pPipeline;
-       GstBus *m_pBus;
+    GstElement *m_pPipeline;
+    GstBus *m_pBus;
 	guintptr handleWin;
 	std::string m_url;
 private:
@@ -46,8 +52,10 @@ private:
 };
 
 inline mediaPipeline::mediaPipeline(std::string &url)
-:m_url(url), m_started(true)
+:m_url(url), m_started(true), m_pLoop(NULL), m_pVideoSink(NULL), 
+m_pPlaybin2(NULL), m_pPipeline(NULL), m_pBus(NULL), handleWin(NULL)
 {
+    m_pLoop = g_main_loop_new (NULL, FALSE);
 }
 
 inline void mediaPipeline::init(int argc, char *argv[])
@@ -130,19 +138,20 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
 
 inline bool mediaPipeline::cleanPipeline()
 {
-    gst_element_set_state (m_pPipeline, GST_STATE_NULL);
-    gst_object_unref (m_pPipeline);
+    if (m_pPipeline)
+        gst_element_set_state (m_pPipeline, GST_STATE_NULL);
+        gst_object_unref (m_pPipeline);
     //gst_object_unref (m_pBus);
     //gst_object_unref (m_pVideoSink);
     //gst_object_unref (m_pPlaybin2);
 
-    g_main_loop_unref(m_pLoop);
+    
     return TRUE;
 }
 
 inline bool mediaPipeline::setupPipeline()
 {
-    m_pLoop = g_main_loop_new (NULL, FALSE);
+    
     m_pPipeline = gst_pipeline_new ("my_pipeline");
 
     g_print("Initialize Message Watch...\n" );

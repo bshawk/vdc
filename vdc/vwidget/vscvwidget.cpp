@@ -28,24 +28,8 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     m_bDeviceDeleted = FALSE;
     m_bFocus = FALSE;
     m_lastMoveTime = 0;
-#if 0
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
-        puts("# error initializing SDL");
-        puts(SDL_GetError());
-        return ;
-    }
-#endif
-#if 0
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Background, Qt::black);
-    setAutoFillBackground(true);
-    setPalette(Pal);
-#endif
+    m_pipe = NULL;
     
-   m_pFont = NULL;
-   
-   //SDL_SetRenderDrawBlendMode(m_SdlRender, SDL_BLENDMODE_NONE);
-
     this->setAcceptDrops(true);
 
     m_pStop = new QAction(QIcon(tr("images/open.ico")), tr("STOP"), this);
@@ -70,18 +54,15 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     m_pDisplay4 = new QAction(QIcon(tr(":/action/resources/display.png")), tr("DISPLAY4"), this);
     connect(m_pDisplay4, SIGNAL(triggered()), this, SLOT(showDisplay4()));
     createContentMenu();
-ui.setupUi(this);
-ui.videoControl->setVisible(false);
-m_videoWindow = (guintptr)ui.video->winId();
-setMouseTracking(true);
-    /* Start idle thread */
-    //m_IdleThread = new tthread::thread(VSCVWidget::RunIdle, (void *)this);
- //ui.videoControl->setMouseTracking(true);
- //qApp->installEventFilter(this);
- connect(ui.video, SIGNAL(videoMouseMove(QMouseEvent *)), this, SLOT(videoMouseMove(QMouseEvent *)));
+    ui.setupUi(this);
+    ui.videoControl->setVisible(false);
+    m_videoWindow = (guintptr)ui.video->winId();
+    setMouseTracking(true);
+
+    connect(ui.video, SIGNAL(videoMouseMove(QMouseEvent *)), this, SLOT(videoMouseMove(QMouseEvent *)));
     m_Timer = new QTimer(this);
     connect(m_Timer,SIGNAL(timeout()),this,SLOT(UpdateVideoControl()));  
-    m_Timer->start(800);  
+    m_Timer->start(800); 
 }
 
 VSCVWidget::~VSCVWidget()
@@ -92,21 +73,22 @@ VSCVWidget::~VSCVWidget()
     if (m_pStarted != TRUE)
     {
         m_pStarted = TRUE;
-        m_IdleThread->join();
-        delete m_IdleThread;
-        m_IdleThread = NULL;
     }
 }
 
 void VSCVWidget::UpdateVideoControl()
 {
    time_t current = time(NULL);
-    VDC_DEBUG( "UpdateVideoControl %d , m_lastMoveTime %d ", 
-		m_nId, m_lastMoveTime);
-    VDC_DEBUG( "current time %d\n",  current);
+    //VDC_DEBUG( "UpdateVideoControl %d , m_lastMoveTime %d ", 
+//		m_nId, m_lastMoveTime);
+    //VDC_DEBUG( "current time %d\n",  current);
     if (current - m_lastMoveTime > 1)
     {
-        ui.videoControl->setVisible(false);
+        if (m_bFocus == true){
+            ui.videoControl->setVisible(false);
+	     m_bFocus = false;
+        }
+	 
     }
 }
 
@@ -165,9 +147,11 @@ BOOL VSCVWidget::SetPlayId(u32 nPlayId)
 
 BOOL VSCVWidget::StartPlay(std::string strUrl)
 {
-    m_UpdateSize = false;
     m_pStarted = TRUE;
     m_bDeviceDeleted = FALSE;
+    DeviceParam param;
+    gFactory->GetDeviceParamById(param, m_nPlayId);
+    ui.labelName->setText(param.m_Conf.data.conf.Name);
     m_videoThread = new tthread::thread(VSCVWidget::Run, (void *)this);
     m_pStop->setEnabled(true);
     ui.video->setRunning(true);
@@ -220,8 +204,11 @@ BOOL VSCVWidget::StopPlay()
         m_pStarted = false;
         m_bDeviceDeleted = false;
         m_pStop->setEnabled(false);
-        /* Start idle thread */
-        VDC_DEBUG( "%s StopPlay End\n",__FUNCTION__);
+        if (m_pipe)
+	    m_pipe->stop();
+	m_videoThread->join();
+	ui.video->setRunning(false);
+	ui.labelName->setText("");
     }
     VDC_DEBUG( "%s StopPlay End\n",__FUNCTION__);
     return TRUE;
@@ -253,27 +240,23 @@ void VSCVWidget::DeviceDeletedCallback(u32 nId, void * pParam)
 
     pWidget = (VSCVWidget *)pParam;
     pWidget->DeviceDeleted(nId);
-
-	return;
+    return;
 }
 
-void VSCVWidget::resizeEvent( QResizeEvent * event )
+
+void VSCVWidget::SetVideoFocus(BOOL bFocus)
 {
-    m_Mutex.lock();
-#if 0
-    //m_UpdateSize = true;
-    updateSize();
-    //RenderBlack();
     
-    QWidget::resizeEvent(event);
-    RenderBlack();
-#endif
-    m_Mutex.unlock();
-}
-
-void VSCVWidget::SetVideoFocus(BOOL on)
-{
-    m_bFocus = on;
+    if (bFocus == FALSE && m_bFocus == TRUE)
+    {
+        ui.videoControl->setVisible(false);
+	 setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
+    }else if (bFocus == TRUE && m_bFocus == FALSE)
+    {
+        ui.videoControl->setVisible(true);
+	 setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
+    }
+    m_bFocus = bFocus;
 }
 
 void VSCVWidget::mousePressEvent(QMouseEvent *e)
@@ -285,8 +268,6 @@ void VSCVWidget::mousePressEvent(QMouseEvent *e)
     {
         return;
     }
-    ui.videoControl->show();
-    setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
 
     emit ShowFocusClicked(m_nId);
 
@@ -296,8 +277,9 @@ void VSCVWidget::mouseMoveEvent(QMouseEvent *e)
     VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
-            ui.videoControl->show();
+            //ui.videoControl->show();
         }
+    emit ShowFocusClicked(m_nId);
     //}
 }
 
@@ -306,7 +288,8 @@ void VSCVWidget::videoMouseMove(QMouseEvent *e)
     VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
-            ui.videoControl->show();
+            //ui.videoControl->show();
+            emit ShowFocusClicked(m_nId);
 	     m_lastMoveTime = time(NULL);
         }
 }
@@ -322,45 +305,8 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
         //showFullScreen();
         this->setWindowState(Qt::WindowFullScreen);
     }
-    ui.videoControl->setVisible(false);
-    setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
-}
-
-void VSCVWidget::updateSize()
-{
-    m_UpdateSize = false;
-#if 0
-    SDL_DestroyTexture(m_pTex);
-    m_pTex = NULL;
-    SDL_DestroyRenderer(m_SdlRender);
-    m_SdlRender = NULL;
-    //SDL_DestroyWindow(m_SdlWin);
-    //m_SdlWin = NULL;
-    
-    //m_SdlWin = SDL_CreateWindowFrom((void *)this->winId());
-    m_w = width();
-    m_h = height();
-    //w = 1280;
-    //h = 700;
-    VDC_DEBUG( "%s updateSize %d (%d, %d)\n",__FUNCTION__, __LINE__,
-            m_w, m_h);
-    m_w = (m_w/4) * 4;
-    m_h = (m_h/4) * 4;
-    //m_Cap->setSize(w, h);
-    
-    m_SdlRender = SDL_CreateRenderer(m_SdlWin, 0, 
-        0);
-    m_pTex = SDL_CreateTexture(m_SdlRender, SDL_PIXELFORMAT_RGB24, 
-        SDL_TEXTUREACCESS_STREAMING, m_w, m_h);
-    //SDL_SetRenderDrawColor(m_SdlRender, 85, 255, 0, 255);
-	UpdateFontSurface();
-    //SDL_SetRenderDrawBlendMode(m_SdlRender, SDL_BLENDMODE_BLEND);
-    if (m_pRenderBuffer != NULL)
-    {
-        free(m_pRenderBuffer);
-        m_pRenderBuffer = (unsigned char *)malloc(m_w * m_h * 3);
-    }
-#endif
+    //ui.videoControl->setVisible(false);
+    //setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
 }
 
 void VSCVWidget::Run(void * pParam)
@@ -376,127 +322,6 @@ void VSCVWidget::Run(void * pParam)
     pQtSdl2->Run1();
 }
 
-void VSCVWidget::paintEvent(QPaintEvent *)
-{
-#if 0
-    m_Mutex.lock();
-    RenderBlack();
-    m_Mutex.unlock();
-#endif
-}
-
-void VSCVWidget::showEvent(QPaintEvent *)
-{
-#if 0
-    m_Mutex.lock();
-    RenderBlack();
-    m_Mutex.unlock();
-#endif
-}
-
-void VSCVWidget::DrawCurrent()
-{
-    return;
-    SDL_Rect Rect;
-    Rect.x = 0;
-    Rect.y = 0;
-    Rect.w = width();
-    Rect.h  = height();
-    SDL_RenderDrawRect(m_SdlRender, &Rect);
-    SDL_RenderPresent(m_SdlRender);
-}
-
-void VSCVWidget::RenderBlack()
-{
-    int pitch;
-    void * pixels = NULL;
-    SDL_Rect Rect;
-    Rect.x = 0;
-    Rect.y = 0;
-    Rect.w = width();
-    Rect.h  = height();
-#if 0
-    memset(m_pRenderBuffer, 0, m_w * m_h * 3);
-    pixels = NULL;
-
-    SDL_LockTexture(m_pTex, NULL, &pixels, &pitch);
-    if (pixels)
-        memcpy(pixels, m_pRenderBuffer, m_w * m_h * 3);
-
-    SDL_UnlockTexture(m_pTex);
-
-    SDL_RenderClear(m_SdlRender);
-    //SDL_RenderCopy(m_SdlRender, m_pTex, NULL, NULL);
-    drawFocus();
-    SDL_RenderPresent(m_SdlRender);
-#endif
-    //DrawCurrent();
-}
-
-void VSCVWidget::setVideoFocus(BOOL bFocus)
-{
-    m_bFocus = bFocus;
-}
-
-void VSCVWidget::drawFocus()
-{
-#if 0
-       if (m_bFocus != TRUE)
-        {
-             return;
-        }
-	int w = width();
-	int h = height();
-	//w = 1280;
-	//h = 700;
-	SDL_Rect rect;
-
-	//w = (w/4) * 4;
-	//h = (h/4) * 4;
-	rect.x = 0;
-	rect.y = 0;
-	rect.w = w;
-	rect.h = h;
-       SDL_SetRenderDrawColor(m_SdlRender, 85, 255, 0, 255);
-	SDL_RenderDrawRect(m_SdlRender, &rect);
-       rect.x = 1;
-	rect.y = 1;
-	rect.w = w - 1;
-	rect.h = h - 1;
-	SDL_RenderDrawRect(m_SdlRender, &rect);
-
-       SDL_SetRenderDrawColor(m_SdlRender, 0, 0, 0, 0xff);
-#endif
-}
-
-void VSCVWidget::RunIdle(void * pParam)
-{
-#if 0
-    VSCVWidget *pQtSdl2 = NULL;
-    if (pParam == NULL)
-    {
-        return;
-    }
-    pQtSdl2 = (VSCVWidget *)pParam;
-    //Sleep(3000);
-
-    pQtSdl2->RunIdle1();
-#endif
-}
-void VSCVWidget::RunIdle1()
-{
-#if 0
-    Sleep(1000);
-    while (m_pStarted != TRUE)
-    {
-        m_Mutex.lock();
-        RenderBlack();
-        m_Mutex.unlock();
-        Sleep(200);
-    }
-#endif
-}
-
 void VSCVWidget::Run1()
 {
 
@@ -507,124 +332,13 @@ void VSCVWidget::Run1()
     std::string url;
     gFactory->GetUrl(m_nPlayId, url);
     gFactory->RegDeleteCallback(m_nPlayId, VSCVWidget::DeviceDeletedCallback, (void *)this);
-    mediaPipeline devicePipeline(url);
-    devicePipeline.addWindows(m_videoWindow);
-    devicePipeline.run();
+    m_pipe = new mediaPipeline(url);
+    m_pipe->addWindows(m_videoWindow);
+    m_pipe->run();
+    delete m_pipe;
+    m_pipe = NULL;
  
     return ;
-}
-
-void VSCVWidget::UpdateTime()
-{
-#if ENABLE_OSD_SDL_TTF
-    int currentTime = time(NULL);
-    SDL_Color white = { 0xFF, 0xFF, 0xFF, 0 };
-
-    QDateTime current = QDateTime::currentDateTime();
-    if (currentTime == m_lastTime)
-    {
-        return;
-    }
-    current.setTime_t(currentTime);
-
-    m_lastTime = currentTime;
-
-    astring timeStr = current.toTimeSpec(Qt::UTC).toString("yyyy-MM-dd hh:mm:ss").toStdString();
-    if (m_pTime)
-    {
-    	SDL_DestroyTexture(m_pTime);
-    }
-    SDL_Surface *pTime = TTF_RenderText_Solid(m_pFont, 
-    			timeStr.c_str(), white);
-    m_timeRect.x = 4;
-    m_timeRect.y = 30;
-    m_timeRect.w = pTime->w;
-    m_timeRect.h = pTime->h;
-    m_pTime = SDL_CreateTextureFromSurface(m_SdlRender, pTime);
-    SDL_FreeSurface(pTime);
- #endif   
-}
-
-void VSCVWidget::InitFont()
-{
-#if ENABLE_OSD_SDL_TTF
-	m_nFontSize = 20; 
-       m_pFont =  TTF_OpenFont("FreeSansBold.ttf", m_nFontSize);
-	if (m_pFont == NULL)
-	{
-		VDC_DEBUG( "%s Font Open Error\n",__FUNCTION__);
-		return;
-	}
-	TTF_SetFontStyle(m_pFont, 1);
-	m_pCaption = NULL;
-	m_pTime = NULL;
-       m_lastTime = time(NULL);
-
-	return;
-#endif
-}
-
-
-void VSCVWidget::UpdateFontSurface()
-{
-#if ENABLE_OSD_SDL_TTF
-	if (m_pFont == NULL)
-	{
-		VDC_DEBUG( "%s Font Open Error\n",__FUNCTION__);
-		return;
-	}
-	SDL_Color white = { 0xFF, 0xFF, 0xFF, 0 };
-	
-	if (m_pCaption)
-	{
-		SDL_DestroyTexture(m_pCaption);
-	}
-	
-	if (m_pTime)
-	{
-		SDL_DestroyTexture(m_pTime);
-	}
-	char OSD[64];
-       sprintf(OSD, "Camera %d", m_nPlayId);
-       QDateTime current = QDateTime::currentDateTime();
-	SDL_Surface *pCaption = TTF_RenderText_Solid(m_pFont, OSD, white);
-       astring timeStr = current.toTimeSpec(Qt::UTC).toString("yyyy-MM-dd hh:mm:ss").toStdString();
-	SDL_Surface *pTime = TTF_RenderText_Solid(m_pFont, 
-					timeStr.c_str(), white);
-
-	m_captionRect.x = 4;
-	m_captionRect.y = 4;
-	m_captionRect.w = pCaption->w;
-	m_captionRect.h = pCaption->h;
-
-	m_pCaption = SDL_CreateTextureFromSurface(m_SdlRender, pCaption);
-	SDL_FreeSurface(pCaption);	
-
-
-	m_timeRect.x = 4;
-	m_timeRect.y = 30;
-	m_timeRect.w = pTime->w;
-	m_timeRect.h = pTime->h;
-	m_pTime = SDL_CreateTextureFromSurface(m_SdlRender, pTime);
-	SDL_FreeSurface(pTime);
-	
-  #endif
-
-
-}
-void VSCVWidget::DrawOSD()
-{
- #if ENABLE_OSD_SDL_TTF
-	if (m_pFont == NULL)
-	{
-		VDC_DEBUG( "%s Font Open Error\n",__FUNCTION__);
-		return;
-	}
-
-       UpdateTime();
-	SDL_RenderCopy(m_SdlRender, m_pCaption, NULL, &m_captionRect);
-	SDL_RenderCopy(m_SdlRender, m_pTime, NULL, &m_timeRect);
-#endif
 }
 
 
