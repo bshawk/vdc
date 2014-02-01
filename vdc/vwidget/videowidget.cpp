@@ -35,7 +35,7 @@ VideoWidget::~VideoWidget()
 
 void VideoWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    VDC_DEBUG( "%s mouseMoveEvent %p\n",__FUNCTION__, this);
+    //VDC_DEBUG( "%s mouseMoveEvent %p\n",__FUNCTION__, this);
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
             //ui.videoControl->show();

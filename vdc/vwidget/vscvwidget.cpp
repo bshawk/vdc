@@ -251,10 +251,12 @@ void VSCVWidget::SetVideoFocus(BOOL bFocus)
     {
         ui.videoControl->setVisible(false);
 	 setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
+	 VDC_DEBUG( "%s SetVideoFocus %d false\n",__FUNCTION__, m_nId);
     }else if (bFocus == TRUE && m_bFocus == FALSE)
     {
         ui.videoControl->setVisible(true);
 	 setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
+	 VDC_DEBUG( "%s SetVideoFocus %d true\n",__FUNCTION__, m_nId);
     }
     m_bFocus = bFocus;
 }
@@ -274,7 +276,7 @@ void VSCVWidget::mousePressEvent(QMouseEvent *e)
 }
 void VSCVWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
+    //VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
             //ui.videoControl->show();
@@ -285,7 +287,7 @@ void VSCVWidget::mouseMoveEvent(QMouseEvent *e)
 
 void VSCVWidget::videoMouseMove(QMouseEvent *e)
 {
-    VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
+    //VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
             //ui.videoControl->show();
