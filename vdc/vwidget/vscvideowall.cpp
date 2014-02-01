@@ -11,12 +11,6 @@ VSCVideoWall::VSCVideoWall(QWidget *parent)
     //setMinimumWidth(800);
     //setMinimumHeight(600);
     m_VideoWallMode = LAYOUT_MODE_2X2;
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
-        puts("# error initializing SDL");
-        puts(SDL_GetError());
-        return;
-    }
-    
     for (int i = 0; i < VIDEO_WALL_WIDGET_MAX; i ++)
     {
         m_VideoMap[i] = new VSCVWidget(i, this);

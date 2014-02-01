@@ -1,7 +1,6 @@
 #include "vscvwidget.h"
 #include "factory.hpp"
 #include "ffmpeg_scale.hpp"
-#include "tcmalloc.h"
 #include <QResizeEvent>
 #include <QMimeData>
 #include <QDrag>

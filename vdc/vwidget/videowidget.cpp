@@ -1,6 +1,5 @@
 #include "videowidget.h"
 #include "factory.hpp"
-#include "tcmalloc.h"
 #include <QResizeEvent>
 #include <QMimeData>
 #include <QDrag>

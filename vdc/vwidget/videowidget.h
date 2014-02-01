@@ -7,9 +7,6 @@
 #define NOMINMAX 
 //#include <inttypes.h>
 
-#include "SDL.h"
-#include "SDL_ttf.h"
-#undef main
 
 #include "tinythread.h"
 #include "fast_mutex.h"

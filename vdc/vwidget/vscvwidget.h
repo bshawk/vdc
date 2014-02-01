@@ -7,9 +7,7 @@
 #define NOMINMAX 
 //#include <inttypes.h>
 
-#include "SDL.h"
-#include "SDL_ttf.h"
-#undef main
+
 
 #include "tinythread.h"
 #include "fast_mutex.h"
@@ -97,17 +95,8 @@ private:
     QAction *m_pTabbed;
 
 
-	/* SDL2 */
-    SDL_Window *m_SdlWin;
-    SDL_Renderer *m_SdlRender;
-    SDL_Texture *m_pTex;
     /* TTF Font */
 	int m_nFontSize;
-    TTF_Font *m_pFont;
-    SDL_Texture *m_pCaption;
-    SDL_Texture *m_pTime;
-    SDL_Rect m_captionRect;
-    SDL_Rect m_timeRect;
     int m_lastTime;
 	
 private:
