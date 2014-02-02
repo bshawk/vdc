@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VSCMainWindows_t {
-    QByteArrayData data[11];
-    char stringdata[111];
+    QByteArrayData data[12];
+    char stringdata[117];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,12 +39,13 @@ QT_MOC_LITERAL(6, 63, 10),
 QT_MOC_LITERAL(7, 74, 3),
 QT_MOC_LITERAL(8, 78, 12),
 QT_MOC_LITERAL(9, 91, 12),
-QT_MOC_LITERAL(10, 104, 5)
+QT_MOC_LITERAL(10, 104, 5),
+QT_MOC_LITERAL(11, 110, 5)
     },
     "VSCMainWindows\0CameraDeleted\0\0"
     "AddSurveillance\0AddCamera\0Search\0"
     "EditCamera\0nId\0DeleteCamera\0MainCloseTab\0"
-    "index\0"
+    "index\0about\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +55,7 @@ static const uint qt_meta_data_VSCMainWindows[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,15 +63,16 @@ static const uint qt_meta_data_VSCMainWindows[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x05,
+       1,    0,   54,    2, 0x05,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   50,    2, 0x0a,
-       4,    0,   51,    2, 0x0a,
-       5,    0,   52,    2, 0x0a,
-       6,    1,   53,    2, 0x0a,
-       8,    1,   56,    2, 0x0a,
-       9,    1,   59,    2, 0x0a,
+       3,    0,   55,    2, 0x0a,
+       4,    0,   56,    2, 0x0a,
+       5,    0,   57,    2, 0x0a,
+       6,    1,   58,    2, 0x0a,
+       8,    1,   61,    2, 0x0a,
+       9,    1,   64,    2, 0x0a,
+      11,    0,   67,    2, 0x0a,
 
  // signals: parameters
     QMetaType::Void,
@@ -82,6 +84,7 @@ static const uint qt_meta_data_VSCMainWindows[] = {
     QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -98,6 +101,7 @@ void VSCMainWindows::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 4: _t->EditCamera((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 5: _t->DeleteCamera((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->MainCloseTab((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->about(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -137,13 +141,13 @@ int VSCMainWindows::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

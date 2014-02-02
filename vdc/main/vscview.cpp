@@ -43,6 +43,9 @@ void VSCView::SetupConnections()
     connect(ui.pushButton6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6()));
     connect(ui.pushButton1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode1()));
     connect(ui.pushButton12p1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode12p1()));
+    connect(ui.pushButton5x5, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode5x5()));
+    connect(ui.pushButton6x6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6x6()));
+    connect(ui.pushButton8x8, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode8x8()));
     //connect(ui.pushButtonPB, SIGNAL(clicked()), this, SLOT(ShowPlayControl()));
     connect(m_pVideo, SIGNAL(ShowDisplayClicked(int)), this,
                                         SLOT(ShowDisplayClicked(int)));
@@ -52,6 +55,8 @@ void VSCView::SetupConnections()
                                         SLOT(TabbedClicked()));
     connect(m_pVideo, SIGNAL(ShowFocusClicked(int)), this,
                                         SLOT(ShowFocusClicked(int)));
+    connect(m_pVideo, SIGNAL(Layout1Clicked(int)), this,
+                                        SLOT(ShowLayout1Clicked(int)));
 }
 
 VSCView::~VSCView()
@@ -116,10 +121,16 @@ void VSCView::ShowFocusClicked(int nId)
     }
 }
 
+void VSCView::ShowLayout1Clicked(int nId)
+{
+    m_pVideo->SetLayout1Mode(nId);
+}
+
 void VSCView::mouseDoubleClickEvent(QMouseEvent *e)
 {
     VDC_DEBUG( "%s mouseDoubleClickEvent\n",__FUNCTION__);
     QWidget::mouseDoubleClickEvent(e);
+#if 0
     if(isFullScreen()) {
         //setParent(m_pParent);
         //resize(m_pParent->width(), m_pParent->height());
@@ -131,6 +142,7 @@ void VSCView::mouseDoubleClickEvent(QMouseEvent *e)
         //showFullScreen();
         this->setWindowState(Qt::WindowFullScreen);
     }
+#endif
 }
 
 void VSCView::floatingClicked()

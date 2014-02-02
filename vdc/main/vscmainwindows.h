@@ -27,6 +27,7 @@ public slots:
     void EditCamera(int nId);
     void DeleteCamera(int nId);
     void MainCloseTab(int index);
+    void about();
 
 signals:
     void CameraDeleted();
@@ -46,6 +47,8 @@ private:
     QAction *pActDeviceAdd;
     QAction *pActDeviceDel;
     QAction *pActDeviceConf;
+    QAction *aboutAct;
+    QAction *aboutQtAct;
 
 private:
     VSCDeviceList * m_pDeviceList;

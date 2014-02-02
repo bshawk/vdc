@@ -98,6 +98,12 @@ void VSCSearch::intTest(int a)
 void VSCSearch::AddItem(astring IP, astring Port, astring Manufacturer, astring Model, 
 	astring FirmwareVersion, astring ONVIFAddress)
 {
+    
+    if (CheckIP((s8 *)IP.c_str()) == true)
+    {
+        VDC_DEBUG( " AddItem === > %s exist\n", IP.c_str());
+	 return;
+    }
     VDC_DEBUG( " AddItem === >\n");
     int insertRow = ui.tableWidget->rowCount();
     ui.tableWidget->insertRow(insertRow);
@@ -375,6 +381,30 @@ void VSCSearch::AddAll()
 	}
 	
 	emit CameraTreeUpdated();
+}
+
+
+bool VSCSearch::CheckIP(s8 * ipAddr)
+{
+	int nId = 0;
+	int insertRow = ui.tableWidget->rowCount();
+	s8 rowip[1024];
+       VDC_DEBUG( "[ONVIF]: Searched %d", insertRow);
+	/* Loop to add device */
+	for (int i = 0; i < insertRow; i ++)
+	{
+
+		/* Update  from UI  */
+
+		updateParamValue(ui.tableWidget->item(i, 1), rowip);
+		if (strcmp(ipAddr, rowip) == 0)
+		{
+		    VDC_DEBUG( "%s  Find IP %s\n",__FUNCTION__, rowip);
+		    return true;
+		}
+	}
+
+	return false;
 }
 
 void VSCSearch::SelectAll()

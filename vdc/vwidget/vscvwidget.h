@@ -57,6 +57,7 @@ signals:
     void ShowFloatingClicked();
     void ShowTabbedClicked();
     void ShowFocusClicked(int nId);
+    void Layout1Clicked(int nId);
 
 public:
     static void Run(void * pParam);

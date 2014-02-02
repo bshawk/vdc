@@ -18,10 +18,14 @@ typedef enum
     LAYOUT_MODE_6,
     LAYOUT_MODE_8,
     LAYOUT_MODE_12p1,
+    LAYOUT_MODE_5x5,
+    LAYOUT_MODE_6x6,
+    LAYOUT_MODE_8x8,
+    LAYOUT_MODE_ONE,
     LAYOUT_MODE_LAST
 } VideoWallLayoutMode;
 
-#define VIDEO_WALL_WIDGET_MAX 16
+#define VIDEO_WALL_WIDGET_MAX 64
 
 class VSCVWidget;
 typedef std::map<int, VSCVWidget *> VideoWidgetMap;
@@ -46,6 +50,9 @@ public:
     void SetupVideoLayout1();
     void SetupVideoLayout12p1();
     void SetupVideoLayout6();
+    void SetupVideoLayout5x5();
+    void SetupVideoLayout6x6();
+    void SetupVideoLayout8x8();
     void StopVideoBeforeSetLayout();
     void SetVideoFocus(int nId, BOOL on);
     void mouseMoveEvent(QMouseEvent *e)
@@ -62,16 +69,21 @@ public slots:
     void SetLayoutMode6(){SetLayoutMode(LAYOUT_MODE_6);}
     void SetLayoutMode12p1(){SetLayoutMode(LAYOUT_MODE_12p1);}
     void SetLayoutMode1(){SetLayoutMode(LAYOUT_MODE_1);}
+    void SetLayoutMode5x5(){SetLayoutMode(LAYOUT_MODE_5x5);}
+    void SetLayoutMode6x6(){SetLayoutMode(LAYOUT_MODE_6x6);}
+    void SetLayoutMode8x8(){SetLayoutMode(LAYOUT_MODE_8x8);}
 
 public:
     void UpdateVideoWallLayout();
     void SetLayoutMode(VideoWallLayoutMode nMode);
+    void SetLayout1Mode(int nId);
 
 signals:
     void ShowDisplayClicked(int nId);
     void ShowFloatingClicked();
     void ShowTabbedClicked();
     void ShowFocusClicked(int nId);
+    void Layout1Clicked(int nId);
 
 public:
     bool Start();
@@ -84,6 +96,7 @@ private:
     QAction *m_pUnFloating;
     BOOL m_bFloated;
     VideoWallLayoutMode m_VideoWallMode;
+    VideoWallLayoutMode m_LastVideoWallMode;
 
 
 };

@@ -11,6 +11,7 @@ VSCVideoWall::VSCVideoWall(QWidget *parent)
     //setMinimumWidth(800);
     //setMinimumHeight(600);
     m_VideoWallMode = LAYOUT_MODE_2X2;
+    m_LastVideoWallMode = LAYOUT_MODE_2X2;
     for (int i = 0; i < VIDEO_WALL_WIDGET_MAX; i ++)
     {
         m_VideoMap[i] = new VSCVWidget(i, this);
@@ -22,6 +23,8 @@ VSCVideoWall::VSCVideoWall(QWidget *parent)
                 SIGNAL(ShowTabbedClicked()));
         connect(m_VideoMap[i], SIGNAL(ShowFocusClicked(int)), this,
                 SIGNAL(ShowFocusClicked(int)));
+        connect(m_VideoMap[i], SIGNAL(Layout1Clicked(int)), this,
+                SIGNAL(Layout1Clicked(int)));
     }
 
     m_pLayout = new QGridLayout;
@@ -200,6 +203,44 @@ void VSCVideoWall::SetupVideoLayout6()
     m_pLayout->addWidget(m_VideoMap[5], 2, 2);
 }
 
+void VSCVideoWall::SetupVideoLayout5x5()
+{
+    s32 w, h;
+    int i = 0;
+    for (w = 0; w < 5 ; w ++)
+    {
+        for (h = 0; h < 5; h ++)
+        {
+            m_pLayout->addWidget(m_VideoMap[i++], w, h);
+	         VDC_DEBUG( "%s 5x5 w %d h %d\n",__FUNCTION__, w, h);
+        }
+    }
+}
+void VSCVideoWall::SetupVideoLayout6x6()
+{
+    s32 w, h;
+    int i = 0;
+    for (w = 0; w < 6 ; w ++)
+    {
+        for (h = 0; h < 6; h ++)
+        {
+            m_pLayout->addWidget(m_VideoMap[i++], w, h);
+        }
+    }
+}
+void VSCVideoWall::SetupVideoLayout8x8()
+{
+    s32 w, h;
+    int i = 0;
+    for (w = 0; w < 8 ; w ++)
+    {
+        for (h = 0; h < 8; h ++)
+        {
+            m_pLayout->addWidget(m_VideoMap[i++], w, h);
+        }
+    }
+}
+
 void VSCVideoWall::SetLayoutMode(VideoWallLayoutMode nMode)
 {
     if (nMode != m_VideoWallMode)
@@ -209,6 +250,23 @@ void VSCVideoWall::SetLayoutMode(VideoWallLayoutMode nMode)
     }
 
     return;
+}
+
+void VSCVideoWall::SetLayout1Mode(int nId)
+{
+    if (m_VideoWallMode == LAYOUT_MODE_ONE)
+    {
+        SetLayoutMode(m_LastVideoWallMode);
+	 m_LastVideoWallMode = LAYOUT_MODE_2X2;
+    }else
+    {
+        m_LastVideoWallMode = m_VideoWallMode;
+        m_VideoWallMode = LAYOUT_MODE_ONE;
+        StopVideoBeforeSetLayout();
+        ClearVideoLayout();
+        m_pLayout->addWidget(m_VideoMap[nId], 0, 0);
+        m_VideoMap[nId]->show();
+    }
 }
 
 void VSCVideoWall::StopVideoBeforeSetLayout()
@@ -234,12 +292,24 @@ void VSCVideoWall::StopVideoBeforeSetLayout()
         case LAYOUT_MODE_12p1:
             videoCnt = 13;
             break;
+        case LAYOUT_MODE_5x5:
+            videoCnt = 25;
+            break;
+        case LAYOUT_MODE_6x6:
+            videoCnt = 36;
+            break;
+        case LAYOUT_MODE_8x8:
+            videoCnt = 64;
+            break;
+        case LAYOUT_MODE_ONE:
+            videoCnt = 1;
+            break;
         default:
             break;
     }
     for (int i = videoCnt; i < VIDEO_WALL_WIDGET_MAX; i ++)
     {
-        m_VideoMap[i]->StopPlay();
+        //m_VideoMap[i]->StopPlay();
         m_VideoMap[i]->hide();
     }
     for (int i = 0; i < videoCnt; i ++)
@@ -272,6 +342,15 @@ void VSCVideoWall::UpdateVideoWallLayout()
             break;
         case LAYOUT_MODE_12p1:
             SetupVideoLayout12p1();
+            break;
+        case LAYOUT_MODE_5x5:
+            SetupVideoLayout5x5();
+            break;
+        case LAYOUT_MODE_6x6:
+            SetupVideoLayout6x6();
+            break;
+        case LAYOUT_MODE_8x8:
+            SetupVideoLayout8x8();
             break;
         default:
             break;
@@ -318,6 +397,7 @@ void VSCVideoWall::mouseDoubleClickEvent(QMouseEvent *e)
 {
     VDC_DEBUG( "%s mouseDoubleClickEvent\n",__FUNCTION__);
     QWidget::mouseDoubleClickEvent(e);
+#if 0
     if(isFullScreen()) {
         //setParent(m_pParent);
         //resize(m_pParent->width(), m_pParent->height());
@@ -329,6 +409,7 @@ void VSCVideoWall::mouseDoubleClickEvent(QMouseEvent *e)
         //showFullScreen();
         this->setWindowState(Qt::WindowFullScreen);
     }
+#endif
 }
 
 bool VSCVideoWall::Start()

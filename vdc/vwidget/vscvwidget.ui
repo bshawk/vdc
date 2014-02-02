@@ -184,14 +184,17 @@ font: 75 9pt &quot;Arial&quot;;</string>
           <widget class="QPushButton" name="pushButton">
            <property name="maximumSize">
             <size>
-             <width>50</width>
+             <width>30</width>
              <height>16777215</height>
             </size>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color:rgb(80, 80, 80);
 color : rgb(247, 247, 247);
-font: 75 9pt &quot;Arial&quot;;</string>
+font: 75 6pt &quot;Arial&quot;;</string>
+           </property>
+           <property name="locale">
+            <locale language="Colognian" country="Germany"/>
            </property>
            <property name="text">
             <string>PLAY</string>
@@ -202,20 +205,20 @@ font: 75 9pt &quot;Arial&quot;;</string>
           <widget class="QPushButton" name="pushButton_2">
            <property name="minimumSize">
             <size>
-             <width>50</width>
+             <width>30</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>50</width>
+             <width>30</width>
              <height>16777215</height>
             </size>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color:rgb(80, 80, 80);
 color : rgb(247, 247, 247);
-font: 75 9pt &quot;Arial&quot;;</string>
+font: 75 6pt &quot;Arial&quot;;</string>
            </property>
            <property name="text">
             <string>ZOOM</string>

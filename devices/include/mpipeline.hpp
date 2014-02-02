@@ -62,7 +62,7 @@ inline void mediaPipeline::init(int argc, char *argv[])
 {
     //int argc = 0;
     //char **argv = NULL;
-	//_putenv("GST_PLUGIN_PATH=gstreamer-0.10");
+    _putenv("GST_PLUGIN_PATH=gstreamer-0.10");
     gst_init( &argc, &argv);
 }
 
@@ -90,7 +90,7 @@ inline void mediaPipeline::on_pad_added2 (GstElement *playbin, GstElement *sourc
 {
 	g_object_set(source, "latency", 0, NULL);
 	g_object_set(source, "do-rtsp-keep-alive", true, NULL);
-	g_object_set(source, "protocols", GST_RTSP_LOWER_TRANS_TCP, NULL);	
+	//g_object_set(source, "protocols", GST_RTSP_LOWER_TRANS_TCP, NULL);	
 	//g_object_set(source, "tcp-timeout", 100000, NULL);
     //g_object_set(source, "location", "OH-Ditang.wmv", NULL);	
 }
@@ -117,9 +117,11 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
       g_main_loop_quit (data->m_pLoop);
       break;
     case GST_MESSAGE_STATE_CHANGED: {
+
 	  g_print ("GST_MESSAGE_STATE_CHANGED. %d\n", GST_MESSAGE_TYPE (msg));
       GstState old_state, new_state, pending_state;
       gst_message_parse_state_changed (msg, &old_state, &new_state, &pending_state);
+#if 0
       if (GST_MESSAGE_SRC (msg) == GST_OBJECT (data->m_pPipeline)) {
         if (new_state == GST_STATE_PLAYING) {
           /* Once we are in the playing state, analyze the streams */
@@ -127,6 +129,7 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
 		  g_print ("Playing ...\n");
         }
       }
+#endif
     } break;
     default:
       break;

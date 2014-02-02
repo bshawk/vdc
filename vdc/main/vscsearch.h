@@ -28,6 +28,7 @@ public:
 	void intTest(int a);
 	
 	bool event(QEvent *event);
+	bool CheckIP(s8 * ipAddr);
 	
 public slots:
     void StartSearch();

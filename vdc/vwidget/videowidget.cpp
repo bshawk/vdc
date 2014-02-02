@@ -42,10 +42,10 @@ void VideoWidget::mouseMoveEvent(QMouseEvent *e)
     //}
 	emit videoMouseMove(e);
 }
-
+#if 1
 void VideoWidget::paintEvent(QPaintEvent *)
 {
-	 //if (m_isRunning == false)
+	// if (m_isRunning == false)
 	 {
 		 QStyleOption opt;
 		 opt.init(this);
@@ -53,3 +53,4 @@ void VideoWidget::paintEvent(QPaintEvent *)
 		 style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 	 }
 }
+#endif

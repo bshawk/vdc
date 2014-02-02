@@ -83,9 +83,9 @@ void VSCVWidget::UpdateVideoControl()
     //VDC_DEBUG( "current time %d\n",  current);
     if (current - m_lastMoveTime > 1)
     {
-        if (m_bFocus == true){
-            ui.videoControl->setVisible(false);
-	     m_bFocus = false;
+        if (m_bFocus == FALSE){
+            ui.videoControl->hide();
+	     m_bFocus = FALSE;
         }
 	 
     }
@@ -245,19 +245,21 @@ void VSCVWidget::DeviceDeletedCallback(u32 nId, void * pParam)
 
 void VSCVWidget::SetVideoFocus(BOOL bFocus)
 {
-    
+
     if (bFocus == FALSE && m_bFocus == TRUE)
     {
-        ui.videoControl->setVisible(false);
+        ui.videoControl->hide();
 	 setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
 	 VDC_DEBUG( "%s SetVideoFocus %d false\n",__FUNCTION__, m_nId);
+	 m_bFocus = bFocus;
     }else if (bFocus == TRUE && m_bFocus == FALSE)
     {
-        ui.videoControl->setVisible(true);
+        ui.videoControl->show();
 	 setStyleSheet(QStringLiteral("background-color:rgb(85, 255, 0)"));
 	 VDC_DEBUG( "%s SetVideoFocus %d true\n",__FUNCTION__, m_nId);
+	 m_bFocus = bFocus;
     }
-    m_bFocus = bFocus;
+    
 }
 
 void VSCVWidget::mousePressEvent(QMouseEvent *e)
@@ -299,6 +301,7 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
 {
     VDC_DEBUG( "%s mouseDoubleClickEvent %d\n",__FUNCTION__, m_nId);
     QWidget::mouseDoubleClickEvent(e);
+#if 0
     if(isFullScreen()) {
         this->setWindowState(Qt::WindowMaximized);
     } else {
@@ -306,6 +309,8 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
         //showFullScreen();
         this->setWindowState(Qt::WindowFullScreen);
     }
+#endif
+    emit Layout1Clicked(m_nId);
     //ui.videoControl->setVisible(false);
     //setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
 }

@@ -34,9 +34,9 @@ public:
     QPushButton *pushButton6;
     QPushButton *pushButton4x4;
     QPushButton *pushButton12p1;
-    QPushButton *pushButton12p1_2;
-    QPushButton *pushButton12p1_4;
-    QPushButton *pushButton12p1_3;
+    QPushButton *pushButton5x5;
+    QPushButton *pushButton6x6;
+    QPushButton *pushButton8x8;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *VSCView)
@@ -125,35 +125,35 @@ public:
 
         verticalLayout->addWidget(pushButton12p1);
 
-        pushButton12p1_2 = new QPushButton(VSCView);
-        pushButton12p1_2->setObjectName(QStringLiteral("pushButton12p1_2"));
-        pushButton12p1_2->setMaximumSize(QSize(30, 30));
+        pushButton5x5 = new QPushButton(VSCView);
+        pushButton5x5->setObjectName(QStringLiteral("pushButton5x5"));
+        pushButton5x5->setMaximumSize(QSize(30, 30));
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/view/resources/5x5.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton12p1_2->setIcon(icon7);
-        pushButton12p1_2->setIconSize(QSize(25, 25));
+        pushButton5x5->setIcon(icon7);
+        pushButton5x5->setIconSize(QSize(25, 25));
 
-        verticalLayout->addWidget(pushButton12p1_2);
+        verticalLayout->addWidget(pushButton5x5);
 
-        pushButton12p1_4 = new QPushButton(VSCView);
-        pushButton12p1_4->setObjectName(QStringLiteral("pushButton12p1_4"));
-        pushButton12p1_4->setMaximumSize(QSize(30, 30));
+        pushButton6x6 = new QPushButton(VSCView);
+        pushButton6x6->setObjectName(QStringLiteral("pushButton6x6"));
+        pushButton6x6->setMaximumSize(QSize(30, 30));
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/view/resources/6x6.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton12p1_4->setIcon(icon8);
-        pushButton12p1_4->setIconSize(QSize(25, 25));
+        pushButton6x6->setIcon(icon8);
+        pushButton6x6->setIconSize(QSize(25, 25));
 
-        verticalLayout->addWidget(pushButton12p1_4);
+        verticalLayout->addWidget(pushButton6x6);
 
-        pushButton12p1_3 = new QPushButton(VSCView);
-        pushButton12p1_3->setObjectName(QStringLiteral("pushButton12p1_3"));
-        pushButton12p1_3->setMaximumSize(QSize(30, 30));
+        pushButton8x8 = new QPushButton(VSCView);
+        pushButton8x8->setObjectName(QStringLiteral("pushButton8x8"));
+        pushButton8x8->setMaximumSize(QSize(30, 30));
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/view/resources/8x8.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton12p1_3->setIcon(icon9);
-        pushButton12p1_3->setIconSize(QSize(25, 25));
+        pushButton8x8->setIcon(icon9);
+        pushButton8x8->setIconSize(QSize(25, 25));
 
-        verticalLayout->addWidget(pushButton12p1_3);
+        verticalLayout->addWidget(pushButton8x8);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -177,9 +177,9 @@ public:
         pushButton6->setText(QString());
         pushButton4x4->setText(QString());
         pushButton12p1->setText(QString());
-        pushButton12p1_2->setText(QString());
-        pushButton12p1_4->setText(QString());
-        pushButton12p1_3->setText(QString());
+        pushButton5x5->setText(QString());
+        pushButton6x6->setText(QString());
+        pushButton8x8->setText(QString());
     } // retranslateUi
 
 };

@@ -9,6 +9,7 @@
 #ifndef UI_VSCVWIDGET_H
 #define UI_VSCVWIDGET_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -111,20 +112,21 @@ public:
 
         pushButton = new QPushButton(videoControl);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setMaximumSize(QSize(50, 16777215));
+        pushButton->setMaximumSize(QSize(30, 16777215));
         pushButton->setStyleSheet(QLatin1String("background-color:rgb(80, 80, 80);\n"
 "color : rgb(247, 247, 247);\n"
-"font: 75 9pt \"Arial\";"));
+"font: 75 6pt \"Arial\";"));
+        pushButton->setLocale(QLocale(QLocale::Colognian, QLocale::Germany));
 
         horizontalLayout_2->addWidget(pushButton);
 
         pushButton_2 = new QPushButton(videoControl);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setMinimumSize(QSize(50, 0));
-        pushButton_2->setMaximumSize(QSize(50, 16777215));
+        pushButton_2->setMinimumSize(QSize(30, 0));
+        pushButton_2->setMaximumSize(QSize(30, 16777215));
         pushButton_2->setStyleSheet(QLatin1String("background-color:rgb(80, 80, 80);\n"
 "color : rgb(247, 247, 247);\n"
-"font: 75 9pt \"Arial\";"));
+"font: 75 6pt \"Arial\";"));
 
         horizontalLayout_2->addWidget(pushButton_2);
 

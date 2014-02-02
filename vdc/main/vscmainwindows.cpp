@@ -67,7 +67,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 
     VSCView *pView = new VSCView(m_pMainArea, *m_pMainArea);
     //VSCView *pView2 = new VSCView(this);
-    m_pMainArea->addTab(pView,"VSCView");
+    m_pMainArea->addTab(pView,"Viewer");
     //m_pMainArea->addTab(pView2,"2x2 View");
 
 
@@ -121,7 +121,7 @@ void VSCMainWindows::AddSurveillance()
 {
     VSCView *pView = new VSCView(m_pMainArea,  *m_pMainArea);
     //VSCView *pView2 = new VSCView(this);
-    m_pMainArea->addTab(pView,"VSCView");
+    m_pMainArea->addTab(pView,"Viewer");
     //m_pMainArea->addTab(pView2,"2x2 View");
 
 #if 0
@@ -281,7 +281,22 @@ void VSCMainWindows::SetupMenuBar()
     QMenu *pMenuSystem = menuBar()->addMenu(tr("&System"));
 #endif
     QMenu *pMenuHelp = menuBar()->addMenu(tr("&Help"));
+    aboutAct = new QAction(tr("&About"), this);
+    aboutAct->setStatusTip(tr("Show the vdcEye viewer"));
+    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
 
+    aboutQtAct = new QAction(tr("About &Qt"), this);
+    aboutQtAct->setStatusTip(tr("Show the Qt library's"));
+    connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    pMenuHelp->addAction(aboutAct);
+    pMenuHelp->addAction(aboutQtAct);
+
+}
+void VSCMainWindows::about()
+{
+   QMessageBox::about(this, tr("About vdcEye viewer"),
+            tr("The <b>vdcEye viewer</b> is a Open source NVR platform viewer. <br> <a href=\"https://github.com/xsmart\">https://github.com/xsmart</a>"
+            "  <br><a href=\"http://www.vdceye.com/\">http://www.vdceye.com/</a>"));
 }
 
 void VSCMainWindows::CreateDockWindows()

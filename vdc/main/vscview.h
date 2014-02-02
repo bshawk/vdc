@@ -29,6 +29,7 @@ public slots:
     void ShowDisplayClicked(int nId);
     void ShowFocusClicked(int nId);
     void ShowPlayControl();
+    void ShowLayout1Clicked(int nId);
     void mouseMoveEvent(QMouseEvent *e)
     	{
     	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);

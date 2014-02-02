@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VSCView_t {
-    QByteArrayData data[11];
-    char stringdata[126];
+    QByteArrayData data[12];
+    char stringdata[145];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,14 +37,15 @@ QT_MOC_LITERAL(4, 39, 18),
 QT_MOC_LITERAL(5, 58, 3),
 QT_MOC_LITERAL(6, 62, 16),
 QT_MOC_LITERAL(7, 79, 15),
-QT_MOC_LITERAL(8, 95, 14),
-QT_MOC_LITERAL(9, 110, 12),
-QT_MOC_LITERAL(10, 123, 1)
+QT_MOC_LITERAL(8, 95, 18),
+QT_MOC_LITERAL(9, 114, 14),
+QT_MOC_LITERAL(10, 129, 12),
+QT_MOC_LITERAL(11, 142, 1)
     },
     "VSCView\0floatingClicked\0\0TabbedClicked\0"
     "ShowDisplayClicked\0nId\0ShowFocusClicked\0"
-    "ShowPlayControl\0mouseMoveEvent\0"
-    "QMouseEvent*\0e\0"
+    "ShowPlayControl\0ShowLayout1Clicked\0"
+    "mouseMoveEvent\0QMouseEvent*\0e\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +55,7 @@ static const uint qt_meta_data_VSCView[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,12 +63,13 @@ static const uint qt_meta_data_VSCView[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x0a,
-       3,    0,   45,    2, 0x0a,
-       4,    1,   46,    2, 0x0a,
-       6,    1,   49,    2, 0x0a,
-       7,    0,   52,    2, 0x0a,
-       8,    1,   53,    2, 0x0a,
+       1,    0,   49,    2, 0x0a,
+       3,    0,   50,    2, 0x0a,
+       4,    1,   51,    2, 0x0a,
+       6,    1,   54,    2, 0x0a,
+       7,    0,   57,    2, 0x0a,
+       8,    1,   58,    2, 0x0a,
+       9,    1,   61,    2, 0x0a,
 
  // slots: parameters
     QMetaType::Void,
@@ -75,7 +77,8 @@ static const uint qt_meta_data_VSCView[] = {
     QMetaType::Void, QMetaType::Int,    5,
     QMetaType::Void, QMetaType::Int,    5,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, 0x80000000 | 10,   11,
 
        0        // eod
 };
@@ -90,7 +93,8 @@ void VSCView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 2: _t->ShowDisplayClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->ShowFocusClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 4: _t->ShowPlayControl(); break;
-        case 5: _t->mouseMoveEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 5: _t->ShowLayout1Clicked((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->mouseMoveEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -121,13 +125,13 @@ int VSCView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }
