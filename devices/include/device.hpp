@@ -209,7 +209,7 @@ inline void DeviceParam::UpdateUrlOnvif()
     astring Password = m_Conf.data.conf.Password;
     astring OnvifAddress = m_Conf.data.conf.OnvifAddress;
 
-    astring OnvifDeviceService = "http://" + IP + ":" + Port + "/" + OnvifAddress;
+    astring OnvifDeviceService = "http://" + IP + ":" + Port + OnvifAddress;
 	astring url = "rtsp://" + IP + ":" + "554" + "/";
 
     DeviceManagement *pDm = new DeviceManagement(OnvifDeviceService.c_str(), 

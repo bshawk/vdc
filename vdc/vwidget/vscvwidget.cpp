@@ -151,6 +151,7 @@ BOOL VSCVWidget::StartPlay(std::string strUrl)
     DeviceParam param;
     gFactory->GetDeviceParamById(param, m_nPlayId);
     ui.labelName->setText(param.m_Conf.data.conf.Name);
+    ui.video->setUpdatesEnabled(false);
     m_videoThread = new tthread::thread(VSCVWidget::Run, (void *)this);
     m_pStop->setEnabled(true);
     ui.video->setRunning(true);
@@ -208,6 +209,7 @@ BOOL VSCVWidget::StopPlay()
 	m_videoThread->join();
 	ui.video->setRunning(false);
 	ui.labelName->setText("");
+	ui.video->setUpdatesEnabled(true);
     }
     VDC_DEBUG( "%s StopPlay End\n",__FUNCTION__);
     return TRUE;
