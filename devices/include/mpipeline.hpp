@@ -73,11 +73,11 @@ inline void mediaPipeline::on_pad_added (GstElement *element, GstPad *pad, gpoin
   GstStructure *new_pad_struct = NULL;
   mediaPipeline *mediaPipe = (mediaPipeline *) data;
   
-  g_print ("Received new pad '%s' from '%s':\n", 
-	GST_PAD_NAME (pad), GST_ELEMENT_NAME (element));
+  //g_print ("Received new pad '%s' from '%s':\n", 
+//	GST_PAD_NAME (pad), GST_ELEMENT_NAME (element));
 
   /* We can now link this pad with the rtsp-decoder sink pad */
-  g_print ("Dynamic pad created, linking source/demuxer on_pad_added\n");
+  //g_print ("Dynamic pad created, linking source/demuxer on_pad_added\n");
 
   //sinkpad = gst_element_get_static_pad (mediaPipe->m_pDecodebin2, "sink");
 
@@ -101,24 +101,24 @@ inline gboolean mediaPipeline::handleMessage (GstBus *bus, GstMessage *msg, medi
   GError *err;
   gchar *debug_info;
   GstElement *elmSrc;
-  g_print ("Message. %d\n", GST_MESSAGE_TYPE (msg));
+  //g_print ("Message. %d\n", GST_MESSAGE_TYPE (msg));
   
   switch (GST_MESSAGE_TYPE (msg)) {
     case GST_MESSAGE_ERROR:
       gst_message_parse_error (msg, &err, &debug_info);
-      g_printerr ("Error received from element %s: %s\n", GST_OBJECT_NAME (msg->src), err->message);
-      g_printerr ("Debugging information: %s\n", debug_info ? debug_info : "none");
+      //g_printerr ("Error received from element %s: %s\n", GST_OBJECT_NAME (msg->src), err->message);
+      //g_printerr ("Debugging information: %s\n", debug_info ? debug_info : "none");
       g_clear_error (&err);
       g_free (debug_info);
       g_main_loop_quit (data->m_pLoop);
       break;
     case GST_MESSAGE_EOS:
-      g_print ("End-Of-Stream reached.\n");
+      //g_print ("End-Of-Stream reached.\n");
       g_main_loop_quit (data->m_pLoop);
       break;
     case GST_MESSAGE_STATE_CHANGED: {
 
-	  g_print ("GST_MESSAGE_STATE_CHANGED. %d\n", GST_MESSAGE_TYPE (msg));
+	  //g_print ("GST_MESSAGE_STATE_CHANGED. %d\n", GST_MESSAGE_TYPE (msg));
       GstState old_state, new_state, pending_state;
       gst_message_parse_state_changed (msg, &old_state, &new_state, &pending_state);
 #if 0
@@ -157,7 +157,7 @@ inline bool mediaPipeline::setupPipeline()
     
     m_pPipeline = gst_pipeline_new ("my_pipeline");
 
-    g_print("Initialize Message Watch...\n" );
+    //g_print("Initialize Message Watch...\n" );
     m_pBus = gst_pipeline_get_bus (GST_PIPELINE (m_pPipeline));
     gst_bus_add_watch (m_pBus, (GstBusFunc)handleMessage, this);
     gst_object_unref (m_pBus);
@@ -198,7 +198,7 @@ inline bool mediaPipeline::setupPipeline()
 		//m_pVideoSink, NULL);
 	if(! g_signal_connect (m_pPlaybin2, "source-setup", G_CALLBACK (on_pad_added2),this))
 	{
-	    g_warning ("Linking part (A) with part (B) Fail...");
+	    //g_warning ("Linking part (A) with part (B) Fail...");
 	}
 	return true;
 	

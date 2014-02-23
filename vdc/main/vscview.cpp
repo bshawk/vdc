@@ -167,7 +167,7 @@ void VSCView::TabbedClicked()
     {
         return;
     }
-    m_pTabbed.addTab(this,"VSCView");
+    m_pTabbed.addTab(this,"Viewer");
     m_pTabbed.setCurrentWidget(this);
     //showFullScreen();
     //setParent(m_pParent);
