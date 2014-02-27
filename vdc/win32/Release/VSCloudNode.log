@@ -1,14 +1,20 @@
-﻿Build started 2014-02-22 9:26:23.
+﻿Build started 2014-02-27 18:55:19.
      1>Project "C:\work\03-vdc\github\vdc\vdc\win32\VSCloudNode.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Release\VSCloudNode.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Release\VSCloudNode.unsuccessfulbuild".
        CustomBuild:
          All outputs are up-to-date.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtCore /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtGui /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtMultimedia /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtMultimediaWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtNetwork /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtQml /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtQuick /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtSql /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWebKit /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\ActiveQt /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtConcurrent /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtHelp /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtOpenGL /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtPrintSupport /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtScript /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtSvg /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWebkitWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtXml /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtXmlPatterns /I..\main /I..\vwidget /I"..\..\3rdparty\ffmpeg-54\include" /I..\..\3rdparty\TinyThread++\source\ /I..\..\devices\include /I..\..\3rdparty\leveldb\include /I..\..\utility\ /I..\..\3rdparty\libcli\libcli\src\ /I..\..\3rdparty\libcli\libcli\src\libcli /I..\..\3rdparty\libcli\libcli\src\plib\ /I"..\..\3rdparty\poco-1.4.6p1\Foundation\include\\" /I"..\..\3rdparty\poco-1.4.6p1\Net\include\\" /I"..\..\3rdparty\poco-1.4.6p1\Util\include" /I..\..\3rdparty\onvifc\include\ /I"C:\gstreamer-sdk\0.10\x86\\include\gstreamer-0.10" /I"C:\gstreamer-sdk\0.10\x86\\include\libxml2" /I"C:\gstreamer-sdk\0.10\x86\\include\glib-2.0" /I"C:\gstreamer-sdk\0.10\x86\\lib\glib-2.0\include" /I"C:\gstreamer-sdk\0.10\x86\\include" /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /D QT_NETWORK_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_SQL_LIB /D QT_CONCURRENT_LIB /D QT_HELP_LIB /D QT_OPENGL_LIB /D QT_PRINTSUPPORT_LIB /D QT_SCRIPT_LIB /D QT_SVG_LIB /D QT_WEBKITWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main\main.cpp ..\main\vsccameraadd.cpp ..\main\vscmainwindows.cpp ..\main\vscsearch.cpp ..\main\vscview.cpp ..\vwidget\videowidget.cpp ..\vwidget\vscvideowall.cpp ..\vwidget\vscvwidget.cpp GeneratedFiles\Release\moc_videowidget.cpp GeneratedFiles\Release\moc_vsccameraadd.cpp GeneratedFiles\Release\moc_vscview.cpp GeneratedFiles\Release\moc_vscvwidget.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtCore /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtGui /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtMultimedia /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtMultimediaWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtNetwork /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtQml /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtQuick /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtSql /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWebKit /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\ActiveQt /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtConcurrent /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtHelp /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtOpenGL /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtPrintSupport /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtScript /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtSvg /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWebkitWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtXml /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtXmlPatterns /I..\main /I..\vwidget /I"..\..\3rdparty\ffmpeg-54\include" /I..\..\3rdparty\TinyThread++\source\ /I..\..\devices\include /I..\..\3rdparty\leveldb\include /I..\..\utility\ /I..\..\3rdparty\libcli\libcli\src\ /I..\..\3rdparty\libcli\libcli\src\libcli /I..\..\3rdparty\libcli\libcli\src\plib\ /I"..\..\3rdparty\poco-1.4.6p1\Foundation\include\\" /I"..\..\3rdparty\poco-1.4.6p1\Net\include\\" /I"..\..\3rdparty\poco-1.4.6p1\Util\include" /I..\..\3rdparty\onvifc\include\ /I"C:\gstreamer-sdk\0.10\x86\\include\gstreamer-0.10" /I"C:\gstreamer-sdk\0.10\x86\\include\libxml2" /I"C:\gstreamer-sdk\0.10\x86\\include\glib-2.0" /I"C:\gstreamer-sdk\0.10\x86\\lib\glib-2.0\include" /I"C:\gstreamer-sdk\0.10\x86\\include" /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /D QT_NETWORK_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_SQL_LIB /D QT_CONCURRENT_LIB /D QT_HELP_LIB /D QT_OPENGL_LIB /D QT_PRINTSUPPORT_LIB /D QT_SCRIPT_LIB /D QT_SVG_LIB /D QT_WEBKITWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main\main.cpp ..\main\vsccameraadd.cpp ..\main\vscdeviceipc.cpp ..\main\vscdevicelist.cpp ..\main\vscdevicetrash.cpp ..\main\vscdevicetree.cpp ..\main\vscdockwidget.cpp ..\main\vscmainwindows.cpp ..\main\vscplaycontrol.cpp ..\main\vscsearch.cpp ..\main\vscview.cpp ..\vwidget\videowidget.cpp ..\vwidget\vscvideowall.cpp ..\vwidget\vscvwidget.cpp GeneratedFiles\Release\moc_videowidget.cpp GeneratedFiles\Release\moc_vsccameraadd.cpp GeneratedFiles\Release\moc_vscdevicelist.cpp GeneratedFiles\Release\moc_vscdevicetrash.cpp GeneratedFiles\Release\moc_vscdevicetree.cpp GeneratedFiles\Release\moc_vscdockwidget.cpp GeneratedFiles\Release\moc_vscmainwindows.cpp GeneratedFiles\Release\moc_vscplaycontrol.cpp GeneratedFiles\Release\moc_vscsearch.cpp GeneratedFiles\Release\moc_vscvideowall.cpp GeneratedFiles\Release\moc_vscview.cpp GeneratedFiles\Release\moc_vscvwidget.cpp
          main.cpp
          vsccameraadd.cpp
+         vscdeviceipc.cpp
+         vscdevicelist.cpp
+         vscdevicetrash.cpp
+         vscdevicetree.cpp
+         vscdockwidget.cpp
          vscmainwindows.cpp
+         vscplaycontrol.cpp
          vscsearch.cpp
          vscview.cpp
          videowidget.cpp
@@ -18,12 +24,23 @@
      1>..\vwidget\vscvwidget.cpp(220): warning C4805: '==' : unsafe mix of type 'BOOL' and type 'bool' in operation
          moc_videowidget.cpp
          moc_vsccameraadd.cpp
+         moc_vscdevicelist.cpp
+         moc_vscdevicetrash.cpp
+         moc_vscdevicetree.cpp
+         moc_vscdockwidget.cpp
+         Generating Code...
+         Compiling...
+         moc_vscmainwindows.cpp
+         moc_vscplaycontrol.cpp
+         moc_vscsearch.cpp
+         moc_vscvideowall.cpp
          moc_vscview.cpp
          moc_vscvwidget.cpp
          Generating Code...
-         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtCore /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtGui /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtMultimedia /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtMultimediaWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtNetwork /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtQml /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtQuick /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtSql /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWebKit /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\ActiveQt /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtConcurrent /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtHelp /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtOpenGL /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtPrintSupport /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtScript /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtSvg /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWebkitWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtWidgets /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtXml /IC:\Qt\Qt5.0.2\5.0.2\msvc2010\include\QtXmlPatterns /I..\main /I..\vwidget /I"..\..\3rdparty\ffmpeg-54\include" /I..\..\3rdparty\TinyThread++\source\ /I..\..\devices\include /I..\..\3rdparty\leveldb\include /I..\..\utility\ /I..\..\3rdparty\libcli\libcli\src\ /I..\..\3rdparty\libcli\libcli\src\libcli /I..\..\3rdparty\libcli\libcli\src\plib\ /I"..\..\3rdparty\poco-1.4.6p1\Foundation\include\\" /I"..\..\3rdparty\poco-1.4.6p1\Net\include\\" /I"..\..\3rdparty\poco-1.4.6p1\Util\include" /I..\..\3rdparty\onvifc\include\ /I"C:\gstreamer-sdk\0.10\x86\\include\gstreamer-0.10" /I"C:\gstreamer-sdk\0.10\x86\\include\libxml2" /I"C:\gstreamer-sdk\0.10\x86\\include\glib-2.0" /I"C:\gstreamer-sdk\0.10\x86\\lib\glib-2.0\include" /I"C:\gstreamer-sdk\0.10\x86\\include" /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /D QT_NETWORK_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_SQL_LIB /D QT_CONCURRENT_LIB /D QT_HELP_LIB /D QT_OPENGL_LIB /D QT_PRINTSUPPORT_LIB /D QT_SCRIPT_LIB /D QT_SVG_LIB /D QT_WEBKITWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\qrc_vscmainwindows.cpp
+         qrc_vscmainwindows.cpp
        ResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\VSCloudNode.res" VSCloudNode.rc 
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\work\03-vdc\github\vdc\vdc\win32\Win32\Release\VSCloudNode.exe) does not match the Linker's OutputFile property value (C:\work\03-vdc\github\vdc\vdc\win32\Win32\Release\vdcEye viewer.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(VSCloudNode) does not match the Linker's OutputFile property value (vdcEye viewer). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
        Link:
@@ -68,4 +85,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:36.41
+Time Elapsed 00:01:12.88
