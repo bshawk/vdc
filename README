@@ -1,6 +1,9 @@
 vdcEye viewer
 open source ONVIF IP Camera viewer
 
+vdcEye Manager which support recording and unlimited timeline playback
+https://sourceforge.net/projects/onvifmanager/
+
 License:
 BSD license
 
