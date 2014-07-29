@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{838bf31f-34f2-4683-b929-f476f336df5f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{70841eca-b9a9-4fdf-8302-e1a9d76e462f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="VWidget">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{fd16c105-62a2-4dae-842d-eb204e0c2c01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Playback">
+      <UniqueIdentifier>{75580d18-0091-4e00-a201-43a7e9088f36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device">
+      <UniqueIdentifier>{1ef706c6-f688-47a3-a18f-3a28efaa0d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\include">
+      <UniqueIdentifier>{46f2814e-8ffe-4906-8ccc-8211f8c17ace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\src">
+      <UniqueIdentifier>{5a5d6da8-112b-40f6-9a76-350a1c217099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Setting">
+      <UniqueIdentifier>{dab7c1be-2376-4d74-8a74-4c04517acf0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Systeminfo">
+      <UniqueIdentifier>{b43be065-6a23-4f07-b950-bc666d3790fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systeminfo\windows">
+      <UniqueIdentifier>{63cfe8a2-c19d-4276-976c-ca30ce67781c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Disk">
+      <UniqueIdentifier>{51470e07-0b5c-4145-b1df-15336adeea74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vms">
+      <UniqueIdentifier>{07fb6512-4b3f-4465-acf8-1cb684651bba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\main\vscmainwindows.qrc">
+      <Filter>Resource</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscview.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscmainwindows.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdevicelist.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscview.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscmainwindows.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdockwidget.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdevicelist.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vwidget\vscvideowall.h">
+      <Filter>VWidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vwidget\vscvwidget.h">
+      <Filter>VWidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdeviceipc.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdevicetree.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vsccameraadd.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vsccameraadd.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdevicetrash.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscsearch.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscsearch.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscplaycontrol.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscplaycontrol.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vwidget\vscvwidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vwidget\videowidget.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscplayback.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscplayback.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vsctoolbar.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vsctoolbar.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\playback\vscsimpletl.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\playback\vscsimpletl.h">
+      <Filter>Playback</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\playback\vscpbthread.h">
+      <Filter>Playback</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscsetting.ui">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscsetting.h">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\devices\include\factory.hpp">
+      <Filter>Device\include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\systeminfo\qnetworkinfo.h">
+      <Filter>Systeminfo</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\systeminfo\qstorageinfo.h">
+      <Filter>Systeminfo</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\systeminfo\windows\qnetworkinfo_win_p.h">
+      <Filter>Systeminfo\windows</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\systeminfo\windows\qstorageinfo_win_p.h">
+      <Filter>Systeminfo\windows</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\systeminfo\windows\qwmihelper_win_p.h">
+      <Filter>Systeminfo\windows</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\disk\vschdddevice.h">
+      <Filter>Disk</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\disk\vschddone.h">
+      <Filter>Disk</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\disk\vschdddevice.ui">
+      <Filter>Disk</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\disk\vschddone.ui">
+      <Filter>Disk</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\disk\vschddedit.ui">
+      <Filter>Disk</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\disk\vschddedit.h">
+      <Filter>Disk</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vsclicense.h">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vsclicense.ui">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscversion.h">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscversion.ui">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscrecorderadd.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscrecorderadd.ui">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscsiteadd.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscsiteadd.ui">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscvms.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscrecorderone.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscrecorderone.ui">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscrecorderconf.h">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscrecorderconf.ui">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscrecorderpanel.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vscrecorder.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscview.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscview.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscmainwindows.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscmainwindows.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdockwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdockwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicelist.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicelist.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscmainwindows.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscdockwidget.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscdevicelist.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vwidget\vscvideowall.cpp">
+      <Filter>VWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vwidget\vscvwidget.cpp">
+      <Filter>VWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvideowall.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvideowall.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscdeviceipc.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicetree.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicetree.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscdevicetree.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsccameraadd.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsccameraadd.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vsccameraadd.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscdevicetrash.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicetrash.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicetrash.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscsearch.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscsearch.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscsearch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscplaycontrol.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscplaycontrol.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscplaycontrol.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videowidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videowidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vwidget\videowidget.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscplayback.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscplayback.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscplayback.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsctoolbar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsctoolbar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vsctoobar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\playback\vscsimpletl.cpp">
+      <Filter>Playback</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscsimpletl.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscsimpletl.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\playback\vscpbthread.cpp">
+      <Filter>Playback</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscpbthread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscpbthread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\vscview.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vscsetting.cpp">
+      <Filter>Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscsetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_factory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\systeminfo\qnetworkinfo.cpp">
+      <Filter>Systeminfo</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qnetworkinfo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qnetworkinfo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\systeminfo\qstorageinfo.cpp">
+      <Filter>Systeminfo</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qstorageinfo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qstorageinfo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\systeminfo\windows\qnetworkinfo_win.cpp">
+      <Filter>Systeminfo\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qnetworkinfo_win_p.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qnetworkinfo_win_p.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\systeminfo\windows\qstorageinfo_win.cpp">
+      <Filter>Systeminfo\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qstorageinfo_win_p.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qstorageinfo_win_p.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\systeminfo\windows\qwmihelper_win.cpp">
+      <Filter>Systeminfo\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwmihelper_win_p.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwmihelper_win_p.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\disk\vschdddevice.cpp">
+      <Filter>Disk</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschdddevice.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschdddevice.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\disk\vschddone.cpp">
+      <Filter>Disk</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschddone.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschddone.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\disk\vschddedit.cpp">
+      <Filter>Disk</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschddedit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschddedit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vsclicense.cpp">
+      <Filter>Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclicense.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclicense.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vscversion.cpp">
+      <Filter>Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscversion.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscversion.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vscrecorderadd.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderadd.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderadd.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vscsiteadd.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscsiteadd.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscsiteadd.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vscvms.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vsczbtreeitem.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvms.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvms.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vscrecorderone.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderone.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderone.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vscrecorderconf.cpp">
+      <Filter>Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vscrecorderpanel.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderpanel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderpanel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vscrecorder.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorder.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorder.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_vscview.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscmainwindows.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscdevicelist.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsccameraadd.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscsearch.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscplaycontrol.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscplayback.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsctoolbar.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscsimpletl.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\cefactory.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\conf.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\confdb.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\config.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\database.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\datasink.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\datasrc.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\device.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\ffmpeg_api.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\ffmpeg_codecs.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\ffmpeg_impl.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\ffmpeg_scale.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\hdddevice.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\mpipeline.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\sysdb.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscsetting.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\systeminfo\qsysteminfoglobal.h">
+      <Filter>Systeminfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\systeminfo\qsysteminfoglobal_p.h">
+      <Filter>Systeminfo</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschdddevice.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschddone.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschddedit.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsclicense.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscversion.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscrecorderadd.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscsiteadd.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vms\vsczbtreeitem.h">
+      <Filter>vms</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscrecorderone.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscrecorderconf.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VSCloudNode.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
+    <None Include="..\main\translations\vscloudnode_zh.ts">
+      <Filter>Translation Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

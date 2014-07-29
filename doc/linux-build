@@ -1,0 +1,9 @@
+ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev
+centos: sudo yum install nasm xorg-x11-server-devel zlib-devel
+
+1. Install qt-opensource-linux-x64-5.2.1.run
+	export  PATH=$PATH:/home/ubu/Qt5.2.1/5.2.1/gcc_64/bin:/home/ubu/Qt5.2.1/Tools/QtCreator/bin/
+	 
+
+		
+		
