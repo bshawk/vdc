@@ -1,0 +1,1 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/zutil.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/zutil.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/zutil.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/zutil.o: src/zutil.c src/zutil.h src/zlib.h src/zconf.h src/gzguts.h

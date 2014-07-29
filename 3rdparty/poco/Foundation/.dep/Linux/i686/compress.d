@@ -1,0 +1,1 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/compress.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/compress.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/compress.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/compress.o: src/compress.c src/zlib.h src/zconf.h

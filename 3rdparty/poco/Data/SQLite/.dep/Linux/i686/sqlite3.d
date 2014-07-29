@@ -1,0 +1,1 @@
+/home/ubu/work/ve/3rdparty/poco/Data/SQLite/obj/Linux/i686/debug_static/sqlite3.o /home/ubu/work/ve/3rdparty/poco/Data/SQLite/obj/Linux/i686/release_static/sqlite3.o /home/ubu/work/ve/3rdparty/poco/Data/SQLite/obj/Linux/i686/debug_shared/sqlite3.o /home/ubu/work/ve/3rdparty/poco/Data/SQLite/obj/Linux/i686/release_shared/sqlite3.o: src/sqlite3.c

@@ -1,0 +1,2 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/inftrees.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/inftrees.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/inftrees.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/inftrees.o: src/inftrees.c src/zutil.h src/zlib.h src/zconf.h \
+ src/inftrees.h

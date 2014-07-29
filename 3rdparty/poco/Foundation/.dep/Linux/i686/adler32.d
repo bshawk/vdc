@@ -1,0 +1,1 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/adler32.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/adler32.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/adler32.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/adler32.o: src/adler32.c src/zutil.h src/zlib.h src/zconf.h

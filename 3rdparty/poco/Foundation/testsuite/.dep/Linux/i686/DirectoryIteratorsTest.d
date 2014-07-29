@@ -1,0 +1,32 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/testsuite/obj/Linux/i686/debug_static/DirectoryIteratorsTest.o /home/ubu/work/ve/3rdparty/poco/Foundation/testsuite/obj/Linux/i686/release_static/DirectoryIteratorsTest.o /home/ubu/work/ve/3rdparty/poco/Foundation/testsuite/obj/Linux/i686/debug_shared/DirectoryIteratorsTest.o /home/ubu/work/ve/3rdparty/poco/Foundation/testsuite/obj/Linux/i686/release_shared/DirectoryIteratorsTest.o: src/DirectoryIteratorsTest.cpp \
+ src/DirectoryIteratorsTest.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Foundation.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Config.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Platform.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Alignment.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Types.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Path.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/TestCase.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/CppUnit.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/Guards.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/Test.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/CppUnitException.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/TestCaller.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/Guards.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/TestCase.h \
+ /home/ubu/work/ve/3rdparty/poco/CppUnit/include/CppUnit/TestSuite.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/DirectoryIterator.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/File.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/File_UNIX.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/SortedDirectoryIterator.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/RecursiveDirectoryIterator.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/RecursiveDirectoryIteratorImpl.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/DirectoryIteratorStrategy.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/FileStream.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/FileStream_POSIX.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/BufferedBidirectionalStreamBuf.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/BufferAllocator.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/StreamUtil.h

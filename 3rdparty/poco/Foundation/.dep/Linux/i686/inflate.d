@@ -1,0 +1,2 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/inflate.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/inflate.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/inflate.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/inflate.o: src/inflate.c src/zutil.h src/zlib.h src/zconf.h \
+ src/inftrees.h src/inflate.h src/inffast.h src/inffixed.h

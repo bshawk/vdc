@@ -1,0 +1,1 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/crc32.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/crc32.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/crc32.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/crc32.o: src/crc32.c src/zutil.h src/zlib.h src/zconf.h src/crc32.h

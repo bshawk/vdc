@@ -1,0 +1,34 @@
+/home/ubu/work/ve/3rdparty/poco/PageCompiler/samples/HTTPTimeServer/obj/Linux/i686/debug_static/TimeHandler.o /home/ubu/work/ve/3rdparty/poco/PageCompiler/samples/HTTPTimeServer/obj/Linux/i686/release_static/TimeHandler.o /home/ubu/work/ve/3rdparty/poco/PageCompiler/samples/HTTPTimeServer/obj/Linux/i686/debug_shared/TimeHandler.o /home/ubu/work/ve/3rdparty/poco/PageCompiler/samples/HTTPTimeServer/obj/Linux/i686/release_shared/TimeHandler.o: src/TimeHandler.cpp src/TimeHandler.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPRequestHandler.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/Net.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Foundation.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Config.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Platform.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Alignment.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Types.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPServerRequest.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPRequest.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPMessage.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/MessageHeader.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/NameValueCollection.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/String.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Ascii.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/ListMap.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Exception.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/SocketAddress.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/SocketAddressImpl.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/SocketDefs.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/IPAddress.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/IPAddressImpl.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPServerResponse.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPResponse.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTTPCookie.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+ /home/ubu/work/ve/3rdparty/poco/Net/include/Poco/Net/HTMLForm.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/DateTime.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/Timespan.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+ /home/ubu/work/ve/3rdparty/poco/Foundation/include/Poco/LocalDateTime.h

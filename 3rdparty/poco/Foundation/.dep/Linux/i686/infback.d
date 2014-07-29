@@ -1,0 +1,2 @@
+/home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_static/infback.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_static/infback.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/debug_shared/infback.o /home/ubu/work/ve/3rdparty/poco/Foundation/obj/Linux/i686/release_shared/infback.o: src/infback.c src/zutil.h src/zlib.h src/zconf.h \
+ src/inftrees.h src/inflate.h src/inffast.h src/inffixed.h
