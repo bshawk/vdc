@@ -1,0 +1,101 @@
+﻿Build started 2014-05-02 13:12:40.
+     1>Project "C:\work\05-vepro\vepro\3rdparty\onvifc\win32\onvifc.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\onvifc.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       CustomBuild:
+         All outputs are up-to-date.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles\Debug\ /I.\GeneratedFiles /I. /I"C:\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtNetwork /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtHelp /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtScript /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtXml /IC:\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtXmlPatterns /I..\include\ /I..\include\device_management\ /I..\include\media_management\ /I..\include\ptz_management\ /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NETWORK_LIB /D QT_HELP_LIB /D QT_SCRIPT_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D ONVIFC_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\client.cpp
+         client.cpp
+       Lib:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\work\05-vepro\vepro\3rdparty\onvifc\win32\\..\lib\Release\\onvifc.lib" /LIBPATH:C:\Qt\Qt5.2.1\5.2.1\msvc2010\lib /NOLOGO Release\client.obj
+         Release\devicemanagement.obj
+         Release\devicesearcher.obj
+         Release\capabilities.obj
+         Release\networkinterfaces.obj
+         Release\networkprotocols.obj
+         Release\systemdateandtime.obj
+         Release\systemfactorydefault.obj
+         Release\systemreboot.obj
+         Release\user.obj
+         Release\mediamanagement.obj
+         Release\audioencoderconfiguration.obj
+         Release\audioencoderconfigurationoptions.obj
+         Release\audioencoderconfigurations.obj
+         Release\audiosourceconfiigurations.obj
+         Release\profile.obj
+         Release\profiles.obj
+         Release\streamuri.obj
+         Release\videoencoderconfiguration.obj
+         Release\videoencoderconfigurationoptions.obj
+         Release\videoencoderconfigurations.obj
+         Release\videosourceconfiguration.obj
+         Release\videosourceconfigurations.obj
+         Release\message.obj
+         Release\messageparser.obj
+         Release\ptzmanagement.obj
+         Release\absolutemove.obj
+         Release\configuration.obj
+         Release\configurations.obj
+         Release\continuousmove.obj
+         Release\gotohomeposition.obj
+         Release\gotopreset.obj
+         Release\node.obj
+         Release\nodes.obj
+         Release\preset.obj
+         Release\presets.obj
+         Release\relativemove.obj
+         Release\removepreset.obj
+         Release\stop.obj
+         Release\qhttp.obj
+         Release\qhttpauthenticator.obj
+         Release\service.obj
+         Release\moc_absolutemove.obj
+         Release\moc_audioencoderconfiguration.obj
+         Release\moc_audioencoderconfigurationoptions.obj
+         Release\moc_audioencoderconfigurations.obj
+         Release\moc_audiosourceconfigurations.obj
+         Release\moc_capabilities.obj
+         Release\moc_client.obj
+         Release\moc_configuration.obj
+         Release\moc_configurations.obj
+         Release\moc_continuousmove.obj
+         Release\moc_devicemanagement.obj
+         Release\moc_devicesearcher.obj
+         Release\moc_gotohomeposition.obj
+         Release\moc_gotopreset.obj
+         Release\moc_mediamanagement.obj
+         Release\moc_message.obj
+         Release\moc_messageparser.obj
+         Release\moc_networkinterfaces.obj
+         Release\moc_networkprotocols.obj
+         Release\moc_node.obj
+         Release\moc_nodes.obj
+         Release\moc_preset.obj
+         Release\moc_presets.obj
+         Release\moc_profile.obj
+         Release\moc_profiles.obj
+         Release\moc_ptzmanagement.obj
+         Release\moc_relativemove.obj
+         Release\moc_removepreset.obj
+         Release\moc_service.obj
+         Release\moc_stop.obj
+         Release\moc_streamuri.obj
+         Release\moc_systemdateandtime.obj
+         Release\moc_systemfactorydefault.obj
+         Release\moc_systemreboot.obj
+         Release\moc_user.obj
+         Release\moc_videoencoderconfiguration.obj
+         Release\moc_videoencoderconfigurationoptions.obj
+         Release\moc_videoencoderconfigurations.obj
+         Release\moc_videosourceconfiguration.obj
+         Release\moc_videosourceconfigurations.obj
+         onvifc.vcxproj -> C:\work\05-vepro\vepro\3rdparty\onvifc\win32\\..\lib\Release\onvifc.lib
+       FinalizeBuildStatus:
+         Deleting file "Release\onvifc.unsuccessfulbuild".
+         Touching "Release\onvifc.lastbuildstate".
+     1>Done Building Project "C:\work\05-vepro\vepro\3rdparty\onvifc\win32\onvifc.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.55
