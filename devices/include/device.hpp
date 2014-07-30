@@ -228,7 +228,8 @@ inline DeviceParam::DeviceParam()
     strcpy(m_Conf.data.conf.CameraIndex, "1");
 
     m_Conf.data.conf.UseProfileToken = 0;
-    m_Conf.data.conf.Recording = 1;//Default start recording
+    //m_Conf.data.conf.Recording = 1;//Default start recording
+    m_Conf.data.conf.Recording = 0;//Default start recording//xsmart
     strcpy(m_Conf.data.conf.OnvifProfileToken, "quality_h264");
     m_bOnvifUrlGetted = FALSE;
 
