@@ -360,6 +360,10 @@ void VSCVWidget::dragEnterEvent(QDragEnterEvent *event)
 void VSCVWidget::dropEvent(QDropEvent *event)
 {
     VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_nId);
+    if (event->mimeData()->hasText() == false)
+    {
+    	return;
+    }
 
     s32 nPlayId = atoi(event->mimeData()->text().toLatin1().data());
     if (nPlayId < VWIDGET_ID_OFFSET)
