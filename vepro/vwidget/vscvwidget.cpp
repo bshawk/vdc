@@ -791,7 +791,14 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
 void VSCVWidget::wheelEvent ( QWheelEvent * event )
 {
 	VDC_DEBUG( "%s wheelEvent %d %d\n",__FUNCTION__, m_nId, event->delta());
-	//scale+=(event->delta()/120); //or use any other step for zooming 
+	float scale =(event->delta()/120); //or use any other step for zooming 
+	if(scale > 0)
+	{
+	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_IN, scale);
+	}else
+	{
+	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_OUT, -scale);
+	}
 }
 
 
