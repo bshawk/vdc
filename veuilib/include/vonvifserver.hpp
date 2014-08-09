@@ -15,7 +15,9 @@ public:
 	VONVIFServer();
 	~VONVIFServer();
 public:
+	/* RTSP server for ProfileS simulator  and ProfileS */
 	InitRTSPServer();
+	/* Start ONVIF ProfileS simulator */
 	InitProfileSSim();
 private:
 
