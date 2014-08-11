@@ -32,7 +32,7 @@ centos: sudo yum install nasm xorg-x11-server-devel zlib-devel
 License:
 BSD license
 
-xsmart@163.com
+xsmart@vdceye.com
 
 For more guide 
 http://blog.csdn.net/video_dc
