@@ -44,6 +44,11 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void wheelEvent ( QWheelEvent * event );
     void dragEnterEvent(QDragEnterEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event);
+    Qt::DropActions supportedDropActions () const
+    {
+            return Qt::MoveAction;
+    }
     void dropEvent(QDropEvent *event);
     void createContentMenu();
     void setId(s32 nId)

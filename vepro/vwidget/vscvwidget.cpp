@@ -40,7 +40,8 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     m_PtzEnable = FALSE;
     gettimeofday(&m_lastPtz, NULL);
     
-    this->setAcceptDrops(true);
+    setAcceptDrops(true);
+    setMouseTracking(true);
 
     m_pStop = new QAction(QIcon(tr(":/action/resources/stop.png")), tr("Stop"), this);
     connect(m_pStop, SIGNAL(triggered()), this, SLOT(stopAction()));
@@ -351,12 +352,32 @@ void VSCVWidget::instantPbClick()
 
 void VSCVWidget::dragEnterEvent(QDragEnterEvent *event)
 {
+    VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_nId);
+    if (event->mimeData()->hasText() == false)
+    {
+    	return;
+    }
     VDC_DEBUG( "%s Event %s id %d\n",__FUNCTION__,
             event->mimeData()->text().toLatin1().data(),
             m_nId);
-    event->acceptProposedAction();
-    QWidget::dragEnterEvent(event);
+    //event->acceptProposedAction();
+    event->accept();
+    //QWidget::dragEnterEvent(event);
 }
+
+void VSCVWidget::dragMoveEvent(QDragMoveEvent *event)
+{
+    VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_nId);
+    if (event->mimeData()->hasText() == false)
+    {
+    	return;
+    }
+    VDC_DEBUG( "%s Event %s id %d\n",__FUNCTION__,
+            event->mimeData()->text().toLatin1().data(),
+            m_nId);
+    event->accept();
+}
+
 void VSCVWidget::dropEvent(QDropEvent *event)
 {
     VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_nId);
@@ -455,7 +476,7 @@ BOOL VSCVWidget::StartPlayLive(std::string strUrl)
 
 void VSCVWidget::videoResizeEvent()
 {    
-	VDC_DEBUG( "%s Resize %d\n",__FUNCTION__, m_nPlayId);   
+	//VDC_DEBUG( "%s Resize %d\n",__FUNCTION__, m_nPlayId);   
 	if (m_pStarted == TRUE)
 	{
     		gFactory->UpdateWidget(m_nPlayId, m_videoWindow, ui.video->width(), 
@@ -611,7 +632,7 @@ void VSCVWidget::SetVideoFocus(BOOL bFocus)
 
 void VSCVWidget::mousePressEvent(QMouseEvent *e)
 {
-    VDC_DEBUG( "%s mousePressEvent %d\n",__FUNCTION__, m_nId);
+    //VDC_DEBUG( "%s mousePressEvent %d\n",__FUNCTION__, m_nId);
     QWidget::mousePressEvent(e);
     Qt::MouseButtons mouseButtons = e->buttons();
     if( mouseButtons != Qt::LeftButton )
@@ -715,7 +736,7 @@ void VSCVWidget::PtzAction(int x1, int y1, int x2, int y2)
 
 void VSCVWidget::videoMouseMove(QMouseEvent *e)
 {
-    VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
+    //VDC_DEBUG( "%s mouseMoveEvent %d\n",__FUNCTION__, m_nId);
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
             //ui.videoControl->show();
@@ -733,7 +754,7 @@ void VSCVWidget::videoMouseMove(QMouseEvent *e)
            }
         }else if (m_PtzStart == TRUE)
         {
-		if (abs(e->x() - m_lastPtzX) < 10 || abs(e->y() - m_lastPtzY) < 10 )
+		if (abs(e->x() - m_lastPtzX) < 2 || abs(e->y() - m_lastPtzY) < 2 )
 		{
 		   return;
 		}
@@ -794,11 +815,13 @@ void VSCVWidget::wheelEvent ( QWheelEvent * event )
 	float scale =(event->delta()/120); //or use any other step for zooming 
 	if(scale > 0)
 	{
-	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_IN, scale);
+	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_IN, 0.2);//TODO Change//speed is 0.0 to 1.0
 	}else
 	{
-	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_OUT, -scale);
+	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_OUT, 0.2);//TODO Change//speed is 0.0 to 1.0
 	}
+	Sleep(100);//TODO change 
+	PtzActionStop();
 }
 
 
