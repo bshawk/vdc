@@ -67,7 +67,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
     m_pEventThread->start();
 	
     VSCView *pView = new VSCView(m_pMainArea, *m_pMainArea);
-    m_pMainArea->addTab(pView,QIcon(tr(":/view/resources/3x3.png")), "View");
+    m_pMainArea->addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("View"));
     connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 			pView, SLOT(DeviceEvent(int, int)));
 
@@ -122,18 +122,17 @@ void VSCMainWindows::AddEvent()
 {
     VEvent *pEvent = VEvent::CreateObject(m_pMainArea);
 	
-    m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarm.jpg")), "Alarm");
+    m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarm.jpg")), tr("Alarm"));
     m_pMainArea->setCurrentWidget(pEvent);
 }
 
 void VSCMainWindows::AddSurveillance()
 {
     VSCView *pView = new VSCView(m_pMainArea,  *m_pMainArea);
-    m_pMainArea->addTab(pView, QIcon(tr(":/view/resources/3x3.png")), "View");
+    m_pMainArea->addTab(pView, QIcon(tr(":/view/resources/3x3.png")), tr("View"));
 
     m_pMainArea->setCurrentWidget(pView);
-    connect(m_pEventThread, SIGNAL(EventNotify(int, VscEventType)), 
-			pView, SLOT(DeviceEvent(int, VscEventType)));
+    connect(m_pEventThread, SIGNAL(EventNotify(int, VscEventType)), pView, SLOT(DeviceEvent(int, VscEventType)));
 }
 
 void VSCMainWindows::AddPlayback()
