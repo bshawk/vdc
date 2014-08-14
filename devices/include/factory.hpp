@@ -1,3 +1,10 @@
+//------------------------------------------------------------------------------
+// File: factory.hpp
+//
+// Desc: Device factory - Manage IP Camera.
+//
+// Copyright (c) 2014-2018 vdceye. All rights reserved.
+//------------------------------------------------------------------------------
 
 #ifndef __VSC_FACTORY_H_
 #define __VSC_FACTORY_H_
@@ -7,6 +14,7 @@
 #include "vplay.hpp"
 #include "sysdb.hpp"
 #include <QThread>
+#include <qdebug.h>
 
 typedef enum
 {
@@ -129,8 +137,8 @@ public:
     BOOL ReleaseRawDataQueue(s32 nIndex, NotificationQueue * pQueue);
     NotificationQueue * GetDataQueue(s32 nIndex);
     BOOL GetDataQueue(s32 nIndex, NotificationQueue * pQueue);
-    BOOL RegDeleteCallback(s32 nIndex, DeviceDeleteCallbackFunctionPtr pCallback, void * pParam);
-    BOOL UnRegDeleteCallback(s32 nIndex, void * pParam);
+    BOOL RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback, void * pParam);
+    BOOL UnRegDataCallback(s32 nIndex, void * pParam);
     BOOL GetDeviceOnline(s32 nIndex, BOOL &bStatus);
     BOOL GetUrl(s32 nIndex, std::string &url);
     BOOL SetSystemPath(astring &strPath);
@@ -342,14 +350,14 @@ inline BOOL Factory::GetDataQueue(s32 nIndex, NotificationQueue * pQueue)
     return TRUE;
 }
 
-inline BOOL Factory::RegDeleteCallback(s32 nIndex, DeviceDeleteCallbackFunctionPtr pCallback,
+inline BOOL Factory::RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback,
         void * pParam)
 {
     Lock();
     if (m_DeviceMap[nIndex] != NULL)
     {
         UnLock();
-        return m_DeviceMap[nIndex]->RegDeleteCallback(pCallback, pParam);
+        return m_DeviceMap[nIndex]->RegDataCallback(pCallback, pParam);
     }
 
     UnLock();
@@ -388,13 +396,13 @@ inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
     return ret;
 }
 
-inline BOOL Factory::UnRegDeleteCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegDataCallback(s32 nIndex, void * pParam)
 {
     Lock();
     if (m_DeviceMap[nIndex] != NULL)
     {
         UnLock();
-        return m_DeviceMap[nIndex]->UnRegDeleteCallback(pParam);
+        return m_DeviceMap[nIndex]->UnRegDataCallback(pParam);
     }
 
     UnLock();
