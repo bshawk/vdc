@@ -107,7 +107,7 @@ public:
     inline DeviceStatus CheckDevice();
 	
 public:
-    static BOOL DataHandler(void* pData, VideoFrame& frame);
+    inline static BOOL DataHandler(void* pData, VideoFrame& frame);
     inline BOOL DataHandler1(VideoFrame& frame);
 
 public:
@@ -181,7 +181,7 @@ private:
 typedef DeviceParam* LPDeviceParam;
 typedef Device* LPDevice;
 
-string GetProgramDir()
+inline string GetProgramDir()
 {
 #ifdef WIN32
     char exeFullPath[MAX_PATH]; // Full path
