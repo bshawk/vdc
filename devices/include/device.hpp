@@ -1,4 +1,10 @@
-
+//------------------------------------------------------------------------------
+// File: device.hpp
+//
+// Desc: Device factory - Manage IP Camera.
+//
+// Copyright (c) 2014-2018 vdceye. All rights reserved.
+//------------------------------------------------------------------------------
 
 #ifndef __VSC_DEVICE_H_
 #define __VSC_DEVICE_H_
@@ -53,19 +59,19 @@ class CvCapture_FFMPEG;
 typedef std::list<NotificationQueue*> CmdQueueList;
 //typedef UtilityListIterator<NotificationQueue> CmdQueueIterator;
 #ifdef WIN32
-typedef void (__cdecl * DeviceDeleteCallbackFunctionPtr)(u32 nId, void * pParam);
+typedef void (__cdecl * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
 #else
-typedef void ( * DeviceDeleteCallbackFunctionPtr)(u32 nId, void * pParam);
+typedef void ( * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
 #endif
-typedef std::map<void *, DeviceDeleteCallbackFunctionPtr> DeviceDeleteCallbackMap;
+typedef std::map<void *, DeviceDataCallbackFunctionPtr> DeviceDataCallbackMap;
 
 class DeviceParam
 {
 public:
-    DeviceParam();
-    DeviceParam(const DeviceParam &pParam);
-    DeviceParam(VSCDeviceData &pData);
-    ~DeviceParam();
+    inline DeviceParam();
+    inline DeviceParam(const DeviceParam &pParam);
+    inline DeviceParam(VSCDeviceData &pData);
+    inline ~DeviceParam();
     DeviceParam & operator=(const DeviceParam &pParam)
     {
         memset(&m_Conf, 0, sizeof(m_Conf));
@@ -76,9 +82,9 @@ public:
     }
 
 public:
-    BOOL UpdateUrl();
-    BOOL UpdateUrlOnvif();
-    BOOL CheckOnline();
+    inline BOOL UpdateUrl();
+    inline BOOL UpdateUrlOnvif();
+    inline BOOL CheckOnline();
 
 public:
     VSCDeviceData m_Conf;
@@ -89,49 +95,45 @@ public:
 class Device
 {
 public:
-    Device(VDB &pVdb, const DeviceParam &pParam);
-    ~Device();
+    inline Device(VDB &pVdb, const DeviceParam &pParam);
+    inline ~Device();
 	
 public:
-    BOOL Start();
-    BOOL Stop();
-    BOOL StartRecord();
-    BOOL StopRecord();
-    BOOL SetRecord(BOOL bRecording);
-    DeviceStatus CheckDevice();
+    inline BOOL Start();
+    inline BOOL Stop();
+    inline BOOL StartRecord();
+    inline BOOL StopRecord();
+    inline BOOL SetRecord(BOOL bRecording);
+    inline DeviceStatus CheckDevice();
 	
 public:
-    static void Run(void * pParam);
-    void Run1();
     static BOOL DataHandler(void* pData, VideoFrame& frame);
-    BOOL DataHandler1(VideoFrame& frame);
+    inline BOOL DataHandler1(VideoFrame& frame);
 
 public:
-    void Lock(){m_Lock.lock();}
-    void UnLock(){m_Lock.unlock();}
-    void LockTime(){m_DataTimeLock.lock();}
-    void UnLockTime(){m_DataTimeLock.unlock();}
+    inline void Lock(){m_Lock.lock();}
+    inline void UnLock(){m_Lock.unlock();}
 
 public:
-    NotificationQueue * GetRawDataQueue();
-    BOOL ReleaseRawDataQueue(NotificationQueue * pQueue);
-    NotificationQueue * GetDataQueue();
-    BOOL GetDataQueue(NotificationQueue * pQueue);
-    BOOL RegDeleteCallback(DeviceDeleteCallbackFunctionPtr pCallback, void * pParam);
-    BOOL UnRegDeleteCallback(void * pParam);
-    BOOL Cleanup();
-    BOOL GetDeviceOnline()
+    inline NotificationQueue * GetRawDataQueue();
+    inline BOOL ReleaseRawDataQueue(NotificationQueue * pQueue);
+    inline NotificationQueue * GetDataQueue();
+    inline BOOL GetDataQueue(NotificationQueue * pQueue);
+    inline BOOL RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam);
+    inline BOOL UnRegDataCallback(void * pParam);
+    inline BOOL Cleanup();
+    inline BOOL GetDeviceOnline()
     {
         BOOL online = true;
         return m_Online;
     }
 	
-    BOOL GetUrl(std::string &url)
+    inline BOOL GetUrl(std::string &url)
     {
         url = m_param.m_strUrl;
         return TRUE;
     }
-    BOOL GetDeviceRtspUrl(astring & strUrl)
+    inline BOOL GetDeviceRtspUrl(astring & strUrl)
     {
     	if (m_OnlineUrl == FALSE)
     	{
@@ -140,25 +142,20 @@ public:
 	strUrl = m_param.m_strUrl;
 	return TRUE;
     }
-    BOOL AttachPlayer(HWND hWnd, int w, int h);
-    BOOL UpdateWidget(HWND hWnd, int w, int h);
-    BOOL DetachPlayer(HWND hWnd);
-	BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
-	BOOL ClearPtzDirection(HWND hWnd);
-	BOOL ShowAlarm(HWND hWnd);
-	BOOL PtzAction(FPtzAction action, float speed);
-	BOOL UpdatePTZConf();
-
-public:
-    BOOL WriteFrame(unsigned char* dataRGB, int step, int width, int height, int cn,
-            unsigned char* data, int size);
+	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
+	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
+	inline BOOL DetachPlayer(HWND hWnd);
+	inline BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
+	inline BOOL ClearPtzDirection(HWND hWnd);
+	inline BOOL ShowAlarm(HWND hWnd);
+	inline BOOL PtzAction(FPtzAction action, float speed);
+	inline BOOL UpdatePTZConf();
 
 private:
     CmdQueueList m_RawDataList;
     CmdQueueList m_DataList;
     BOOL m_bStarted;
-    DeviceDeleteCallbackMap m_DeleteMap;
-
+    DeviceDataCallbackMap m_DataMap;
     VPlay m_vPlay;
 
 private:
@@ -168,8 +165,6 @@ private:
     tthread::thread *m_pThread;
     CvCapture_FFMPEG* m_Cap;
     fast_mutex m_Lock;
-    s32 m_nLastGetDataTime;
-    fast_mutex m_DataTimeLock;
 private:
     VDB &m_pVdb;
     RecordSession *m_pRecord;
@@ -186,7 +181,7 @@ private:
 typedef DeviceParam* LPDeviceParam;
 typedef Device* LPDevice;
 
-inline string GetProgramDir()
+string GetProgramDir()
 {
 #ifdef WIN32
     char exeFullPath[MAX_PATH]; // Full path
@@ -205,7 +200,7 @@ inline string GetProgramDir()
 }
 
 
-inline DeviceParam::DeviceParam()
+DeviceParam::DeviceParam()
 {
     static int CameraNum = 0;
     memset(&m_Conf, 0, sizeof(m_Conf));
@@ -235,7 +230,7 @@ inline DeviceParam::DeviceParam()
 
 }
 
-inline DeviceParam::DeviceParam(VSCDeviceData &pData)
+DeviceParam::DeviceParam(VSCDeviceData &pData)
 {
     memset(&m_Conf, 0, sizeof(m_Conf));
 
@@ -258,7 +253,7 @@ inline std::string Replace(std::string &str, const char *string_to_replace, cons
   return str;
 }
 
-inline BOOL DeviceParam::CheckOnline()
+BOOL DeviceParam::CheckOnline()
 {
     astring IP = m_Conf.data.conf.IP;
     astring Port = m_Conf.data.conf.Port;
@@ -289,7 +284,7 @@ inline BOOL DeviceParam::CheckOnline()
     return TRUE;
 }
 
-inline BOOL DeviceParam::UpdateUrlOnvif()
+BOOL DeviceParam::UpdateUrlOnvif()
 {
     astring IP = m_Conf.data.conf.IP;
     astring Port = m_Conf.data.conf.Port;
@@ -373,7 +368,7 @@ inline BOOL DeviceParam::UpdateUrlOnvif()
     return TRUE;
 }
 
-inline BOOL DeviceParam::UpdateUrl()
+BOOL DeviceParam::UpdateUrl()
 {
     //TODO RTSP ONVIF call onvif sdk to get a Stream URL
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
@@ -400,7 +395,7 @@ inline BOOL DeviceParam::UpdateUrl()
     return TRUE;
 }
 
-inline DeviceParam::DeviceParam(const DeviceParam &pParam)
+DeviceParam::DeviceParam(const DeviceParam &pParam)
 {
     memset(&m_Conf, 0, sizeof(m_Conf));
 
@@ -408,12 +403,12 @@ inline DeviceParam::DeviceParam(const DeviceParam &pParam)
 }
 
 
-inline DeviceParam::~DeviceParam()
+DeviceParam::~DeviceParam()
 {
 }
 
-inline Device::Device(VDB &pVdb, const DeviceParam &pParam)
-:m_bStarted(FALSE), m_param(pParam), m_nLastGetDataTime(0), 
+Device::Device(VDB &pVdb, const DeviceParam &pParam)
+:m_bStarted(FALSE), m_param(pParam),
 m_pVdb(pVdb), m_pRecord(NULL), m_Online(FALSE), m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
 m_ptz(NULL)
 {
@@ -438,11 +433,11 @@ m_ptz(NULL)
     UpdatePTZConf();
 }
 
-inline Device::~Device()
+Device::~Device()
 {
 }
 
-inline DeviceStatus Device::CheckDevice()
+DeviceStatus Device::CheckDevice()
 {
     if (m_param.CheckOnline() == TRUE)
     {
@@ -479,7 +474,7 @@ inline DeviceStatus Device::CheckDevice()
     
 }
     
-inline NotificationQueue * Device::GetRawDataQueue()
+NotificationQueue * Device::GetRawDataQueue()
 {
     NotificationQueue *pQueue = NULL;
 
@@ -492,7 +487,7 @@ inline NotificationQueue * Device::GetRawDataQueue()
     return pQueue;
 
 }
-inline BOOL Device::ReleaseRawDataQueue(NotificationQueue * pQueue)
+BOOL Device::ReleaseRawDataQueue(NotificationQueue * pQueue)
 {
     if (pQueue == NULL)
     {
@@ -509,45 +504,45 @@ inline BOOL Device::ReleaseRawDataQueue(NotificationQueue * pQueue)
     return TRUE;
 }
 
-inline BOOL Device::AttachPlayer(HWND hWnd, int w, int h)
+BOOL Device::AttachPlayer(HWND hWnd, int w, int h)
 {
     m_vPlay.AttachWidget(hWnd, w, h);
 
     return TRUE;
 }
 
-inline BOOL Device::UpdateWidget(HWND hWnd, int w, int h)
+BOOL Device::UpdateWidget(HWND hWnd, int w, int h)
 {
     m_vPlay.UpdateWidget(hWnd, w, h);
 
     return TRUE;
 }
 
-inline BOOL Device::DetachPlayer(HWND hWnd)
+BOOL Device::DetachPlayer(HWND hWnd)
 {
     m_vPlay.DetachWidget(hWnd);
     
     return TRUE;
 }
 
-inline BOOL Device::DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2)
+BOOL Device::DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2)
 {
 	m_vPlay.DrawPtzDirection(hWnd, x1, y1, x2, y2);
 	return TRUE;
 }
-inline BOOL Device::ClearPtzDirection(HWND hWnd)
+BOOL Device::ClearPtzDirection(HWND hWnd)
 {
 	m_vPlay.ClearPtzDirection(hWnd);
 	return TRUE;
 }
 
-inline BOOL Device::ShowAlarm(HWND hWnd)
+BOOL Device::ShowAlarm(HWND hWnd)
 {
 	m_vPlay.ShowAlarm(hWnd);
 	return TRUE;
 }
 
-inline BOOL Device::UpdatePTZConf()
+ BOOL Device::UpdatePTZConf()
 {
     QString strToken;
     astring IP = m_param.m_Conf.data.conf.IP;
@@ -639,7 +634,7 @@ inline BOOL Device::UpdatePTZConf()
     m_ptzInited = TRUE;
 }
 
-inline BOOL Device::PtzAction(FPtzAction action, float speed)
+ BOOL Device::PtzAction(FPtzAction action, float speed)
 {
 	if (m_Online == FALSE || m_ptzInited == FALSE)
 	{
@@ -714,40 +709,44 @@ inline BOOL Device::PtzAction(FPtzAction action, float speed)
 	}
 }
 
-inline BOOL Device::RegDeleteCallback(DeviceDeleteCallbackFunctionPtr pCallback, void * pParam)
+ BOOL Device::RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam)
 {
-    m_DeleteMap[pParam] = pCallback;
+    Lock();
+    m_DataMap[pParam] = pCallback;
+    UnLock();
     return TRUE;
 }
 
-inline BOOL Device::UnRegDeleteCallback(void * pParam)
+ BOOL Device::UnRegDataCallback(void * pParam)
 {
-    m_DeleteMap.erase(pParam);
+    Lock();
+    m_DataMap.erase(pParam);
+    UnLock();
     return TRUE;
 }
 
-inline NotificationQueue * Device::GetDataQueue()
+ NotificationQueue * Device::GetDataQueue()
 {
     return NULL;
 }
-inline BOOL Device::GetDataQueue(NotificationQueue * pQueue)
+ BOOL Device::GetDataQueue(NotificationQueue * pQueue)
 {
     return TRUE;
 }
 
-inline BOOL Device::Start()
+ BOOL Device::Start()
 {
 
     return TRUE;
 }
-inline BOOL Device::Stop()
+ BOOL Device::Stop()
 {
 
 
     return TRUE;
 }
 
-inline BOOL Device::SetRecord(BOOL bRecording)
+ BOOL Device::SetRecord(BOOL bRecording)
 {
     if (bRecording == TRUE)
     {
@@ -760,7 +759,7 @@ inline BOOL Device::SetRecord(BOOL bRecording)
     return TRUE;
 }
 
-inline BOOL Device::StartRecord()
+ BOOL Device::StartRecord()
 {
     if (m_param.m_Conf.data.conf.Recording == 0)
     {
@@ -771,7 +770,7 @@ inline BOOL Device::StartRecord()
 
     return TRUE;
 }
-inline BOOL Device::StopRecord()
+ BOOL Device::StopRecord()
 {
     if (m_param.m_Conf.data.conf.Recording == 1)
     {
@@ -793,7 +792,7 @@ inline BOOL Device::StopRecord()
     return TRUE;
 }
 
- inline BOOL Device::DataHandler(void* pData, VideoFrame& frame)
+  BOOL Device::DataHandler(void* pData, VideoFrame& frame)
 {
     int dummy = errno;
     LPDevice pThread = (LPDevice)pData;
@@ -804,7 +803,7 @@ inline BOOL Device::StopRecord()
     }
 }
 
- inline BOOL Device::DataHandler1(VideoFrame& frame)
+  BOOL Device::DataHandler1(VideoFrame& frame)
 {
 
     if (m_pRecord == NULL)
@@ -832,13 +831,27 @@ inline BOOL Device::StopRecord()
     	}
         m_pRecord->PushAFrame(&frame);	 
     }
+    Lock();
+
+    DeviceDataCallbackMap::iterator it = m_DataMap.begin();
+
+    for(; it!=m_DataMap.end(); ++it)
+    {
+        void *pParam = (*it).first;
+        DeviceDataCallbackFunctionPtr pFunc = (*it).second;
+        if (pFunc)
+        {
+            pFunc(frame, pParam);
+        }
+    }
+    UnLock();
 
     return TRUE;
 }
 
-inline BOOL Device::Cleanup()
+ BOOL Device::Cleanup()
 {
-
+#if 0
     VDC_DEBUG( "%s Callback begin\n",__FUNCTION__);
     /* Call the callbacks for this device */
     DeviceDeleteCallbackMap::iterator it = m_DeleteMap.begin();
@@ -853,21 +866,8 @@ inline BOOL Device::Cleanup()
         }
     }
     VDC_DEBUG( "%s Callback end\n",__FUNCTION__);
-
+#endif
     Stop();
-
-    return TRUE;
-}
-
-inline void Device::Run(void * pParam)
-{
-
-}
-
-inline BOOL Device::WriteFrame(unsigned char* dataRGB, int step, int width, int height, int cn,
-        unsigned char* data, int size)
-{
-
 
     return TRUE;
 }
