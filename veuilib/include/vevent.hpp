@@ -1,3 +1,11 @@
+//------------------------------------------------------------------------------
+// File: vevent.hpp
+//
+// Desc: onvif event - Manage ONVIF IPC event.
+//
+// Copyright (c) 2014-2018 vdceye. All rights reserved.
+//------------------------------------------------------------------------------
+
 #ifndef __V_EVENT_HPP__
 #define __V_EVENT_HPP__
 #include "utility.hpp"
