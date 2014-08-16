@@ -1,3 +1,10 @@
+//------------------------------------------------------------------------------
+// File: main.cpp
+//
+// Desc: main - main.
+//
+// Copyright (c) 2014-2018 vdceye. All rights reserved.
+//------------------------------------------------------------------------------
 
 
 #include "vscmainwindows.h"
@@ -47,8 +54,10 @@ int main(int argc, char *argv[])
     
     splash->show();
 
-    //QApplication::setStyle(QStyleFactory::create("Fusion"));
-    //QApplication::setStyle("cleanlooks"); 
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
+	//QApplication::setStyle(QStyleFactory::create("Plastique"));
+    //QApplication::setStyle("WindowsVista"); 
+
     gFactory = new Factory;
     splash->showMessage("Starting ...");
 
