@@ -5,6 +5,8 @@
 #include <QTranslator>
 #include <QtWidgets/QApplication>
 #include <vscdevicetree.h>
+#include <QEventLoop>
+
 
 extern Factory *gFactory;
 
@@ -49,31 +51,25 @@ VSCVmsZb::VSCVmsZb(QTreeWidgetItem *parent, VSCVmsDataItem &pParam)
     : VSCVms(parent, pParam)
 {
 
-}
 
-void VSCVmsZb::printIPCList(const QJsonObject& json)//hjy
-{
 
+
+	
 }
 
 void VSCVmsZb::printNVRList(const QJsonObject& json)
 {
-
 }
 
 BOOL VSCVmsZb::Refresh()
 {
-
-
 	return TRUE;	
 }
 
 
-BOOL VSCVmsZb::ShowRefresh()
+void VSCVmsZb::ShowRefresh(const QJsonObject& json)
 {
-
-	return TRUE;
-	
+	return ;	
 }
 
 void VSCVmsZb::mousePressEvent(QMouseEvent *event)
