@@ -2,6 +2,7 @@
 #include "vscrecorderpanel.h"
 #include <QMimeData>
 #include <QDrag>
+#include <QString>
 #include "factory.hpp"
 #include "vscdeviceipc.h"
 #include <QPainter>
@@ -42,6 +43,7 @@ void VSCRecorderPanel::dropEvent(QDropEvent *event)
         //Set focus of ok button
     msgBox.setDefaultButton(QMessageBox::Ok);
 
+
         //execute message box. method exec() return the button value of cliecke button
     int ret = msgBox.exec();
 
@@ -50,10 +52,13 @@ void VSCRecorderPanel::dropEvent(QDropEvent *event)
     case QMessageBox::Ok:
        if (gFactory->GetDeviceRtspUrl(strUrl, nId) == TRUE)
 	   {
+		   //qDebug() << "Item:"  << (QString::fromLocal8Bit(strUrl.c_str()));//just for test
 			m_Recorder->AddAnIPCamera();//TODO set the url to the function
-	   }else
+	   }
+	   else
 	   {
 		  //Can not get the url
+		  //  qDebug() << "Item:"  << (QString::fromLocal8Bit(strUrl.c_str()));//just for test
 	   }
        break;
     default:
