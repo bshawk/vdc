@@ -2,7 +2,7 @@
 #include "vscrecorder.h"
 #include "factory.hpp"
 #include "QColor"
-#include <QDebug>
+#include <QEventLoop>
 
 extern Factory *gFactory;
 
@@ -27,16 +27,11 @@ VSCRecorder::~VSCRecorder()
 
 void VSCRecorder::GetResult(const QJsonObject& json)//hjy
 {
-	qDebug() << QString("GetResult");
+	//qDebug() << QString("GetResult");
 }
 
 BOOL VSCRecorder::AddAnIPCamera()
 {
 
-	return TRUE;
-}
-
-BOOL VSCRecorder::DelAnIPCamera()
-{
 	return TRUE;
 }
