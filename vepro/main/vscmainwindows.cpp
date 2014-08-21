@@ -40,6 +40,7 @@
 #include "vscsiteadd.h"
 #include "vscsetting.h"
 #include "vschddedit.h"
+#include "vscsearchpb.h"
 
 extern Factory *gFactory;
 
@@ -122,7 +123,7 @@ void VSCMainWindows::AddEvent()
 {
     VEvent *pEvent = VEvent::CreateObject(m_pMainArea);
 	
-    m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarm.jpg")), tr("Alarm"));
+    m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarmno.png")), tr("Alarm"));
     m_pMainArea->setCurrentWidget(pEvent);
 }
 
@@ -137,7 +138,12 @@ void VSCMainWindows::AddSurveillance()
 
 void VSCMainWindows::AddPlayback()
 {
-
+#if 0
+    VSCSearchPb *pPb = new VSCSearchPb(m_pMainArea);
+	
+    m_pMainArea->addTab(pPb, QIcon(tr(":/action/resources/videosearch.png")), tr("Playback"));
+    m_pMainArea->setCurrentWidget(pPb);
+#endif
 }
 
 void VSCMainWindows::Setting()
@@ -185,9 +191,9 @@ void VSCMainWindows::Search()
     {
         QMessageBox msgBox;
         //Set text
-        msgBox.setText("Search is In Processing ...");
+        msgBox.setText(tr("Search is In Processing ..."));
             //Set predefined icon, icon is show on left side of text.
-        msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.jpg"));
+        msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
         msgBox.setStandardButtons(QMessageBox::Ok);
             //Set focus of ok button
         msgBox.setDefaultButton(QMessageBox::Ok);
@@ -231,9 +237,9 @@ void VSCMainWindows::DeleteCamera(s32 nId)
     VDC_DEBUG( "%s %d\n",__FUNCTION__, nId);
     QMessageBox msgBox;
     //Set text
-    msgBox.setText("Delete the Camera ...");
+    msgBox.setText(tr("Delete the Camera ..."));
         //Set predefined icon, icon is show on left side of text.
-    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.jpg"));
+    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
 
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         //Set focus of ok button
@@ -270,9 +276,9 @@ void VSCMainWindows::DeleteSite(s32 nId)
     VDC_DEBUG( "%s %d\n",__FUNCTION__, nId);
     QMessageBox msgBox;
     //Set text
-    msgBox.setText("Delete the Site ...");
+    msgBox.setText(tr("Delete the Site ..."));
         //Set predefined icon, icon is show on left side of text.
-    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.jpg"));
+    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
 
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         //Set focus of ok button
