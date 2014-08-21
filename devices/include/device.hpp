@@ -145,6 +145,8 @@ public:
 	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
 	inline BOOL DetachPlayer(HWND hWnd);
+	
+	BOOL EnablePtz(HWND hWnd, bool enable);
 	inline BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
 	inline BOOL ClearPtzDirection(HWND hWnd);
 	inline BOOL ShowAlarm(HWND hWnd);
@@ -525,6 +527,11 @@ BOOL Device::DetachPlayer(HWND hWnd)
     return TRUE;
 }
 
+inline BOOL Device::EnablePtz(HWND hWnd, bool enable)
+{
+	m_vPlay.EnablePtz(hWnd, enable);
+	return TRUE;
+}
 BOOL Device::DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2)
 {
 	m_vPlay.DrawPtzDirection(hWnd, x1, y1, x2, y2);

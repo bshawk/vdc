@@ -41,6 +41,7 @@ public:
 	BOOL DetachWidget(HWND hWnd);
 	BOOL SetPbTimeCallback(HWND hWnd, void * pData, VPlayPBTimeCallback callback);
 	BOOL Control(VPlayCmd cmd, VPlayCmdParam param);
+	BOOL EnablePtz(HWND hWnd, bool enable);
 	BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
 	BOOL ClearPtzDirection(HWND hWnd);
 

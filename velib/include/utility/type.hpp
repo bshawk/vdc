@@ -84,5 +84,9 @@ typedef unsigned long long  UINT64, *PUINT64;
 typedef void * HWND; 	
 #endif
 
+#ifdef WIN32
+#define snprintf _snprintf
+#endif
+
 
 #endif /* _VDC_UTILITY_H_ */
