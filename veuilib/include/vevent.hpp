@@ -3,7 +3,7 @@
 //
 // Desc: onvif event - Manage ONVIF IPC event.
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __V_EVENT_HPP__
