@@ -3,7 +3,7 @@
 //
 // Desc: Video player wrapper - VLC player wrapper
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018 INTINT. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __V_VIDEO_WRAPPER_HPP__

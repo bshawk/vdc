@@ -3,7 +3,7 @@
 //
 // Desc: Device factory - Manage IP Camera.
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018 INTINT. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __VSC_FACTORY_H_
@@ -112,6 +112,8 @@ public:
 	BOOL AttachPlayer(s32 nIndex, HWND hWnd, int w, int h);
 	BOOL UpdateWidget(s32 nIndex, HWND hWnd, int w, int h);
 	BOOL DetachPlayer(s32 nIndex, HWND hWnd);
+	
+	BOOL EnablePtz(s32 nIndex, HWND hWnd, bool enable);
 	BOOL DrawPtzDirection(s32 nIndex, HWND hWnd, int x1, int y1, int x2,  int y2);
 	BOOL ClearPtzDirection(s32 nIndex, HWND hWnd);
 	BOOL PtzAction(s32 nIndex, FPtzAction action, float speed);
@@ -453,6 +455,18 @@ inline BOOL Factory::DetachPlayer(s32 nIndex, HWND hWnd)
     if (m_DeviceMap[nIndex] != NULL)
     {
         m_DeviceMap[nIndex]->DetachPlayer(hWnd);
+    }
+    UnLock();
+
+	return TRUE;
+}
+
+inline BOOL Factory::EnablePtz(s32 nIndex, HWND hWnd, bool enable)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->EnablePtz(hWnd, enable);
     }
     UnLock();
 
