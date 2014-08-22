@@ -5,7 +5,7 @@
 
 #include "utility.hpp"
 
-#define VE_VERSION "V2014-0715"
+#define VE_VERSION "V2014-0821"
 #define VE_INFO "VdcEye Manager"
 
 #ifdef WIN32
@@ -66,14 +66,16 @@ typedef enum
 {
     VSC_VMS_RECORDER = 1,
     VSC_VMS_SITE,
+    VSC_VMS_VIRTUL_IPC,
     
     VSC_VMS_LAST
 } VSCVmsType;
 
 typedef enum
 {
-    VSC_SUB_VMS_PROFILEG = 1,
+    VSC_SUB_VMS_PG = 1,
     VSC_SUB_VMS_ZB,
+    VSC_SUB_VIRTUL_IPC,
     
     VSC_SUB_VMS_LAST
 } VSCVmsSubType;
