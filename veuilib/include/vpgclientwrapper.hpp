@@ -3,7 +3,7 @@
 //
 // Desc: Profile G client - Profile G client wrapper
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018 INTINT. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __V_PG_CLIENT_WRAPPER_HPP__

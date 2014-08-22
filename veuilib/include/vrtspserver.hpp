@@ -3,7 +3,7 @@
 //
 // Desc: rtsp server - RTSP server.
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018 INTINT. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __V_RTSP_SERVER_HPP__

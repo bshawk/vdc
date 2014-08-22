@@ -3,7 +3,7 @@
 //
 // Desc: virtual IPC manager - Manage virtual IP Camera.
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018 INTINT. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __V_V_IPC_MGR_HPP__

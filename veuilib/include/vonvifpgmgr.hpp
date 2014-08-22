@@ -3,7 +3,7 @@
 //
 // Desc: ONIVF Profile G manager - Profile G
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018 INTINT. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __V_ONVIF_PG_MGR_HPP__
