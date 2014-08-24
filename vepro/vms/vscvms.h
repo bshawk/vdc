@@ -62,13 +62,29 @@ public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
 	virtual BOOL GetRecorderMap(RecorderMap & pMap);
-	void printIPCList(const QJsonObject& json);//
 	void printNVRList(const QJsonObject& json);//	
-
+	void ShowRefresh(const QJsonObject& json);
 private:
-	BOOL VSCVmsZb::ShowRefresh();
 	RecorderMap mMap;
 	QString mIp;
 };
+
+class VSCVmsVirtualIPC : public VSCVms
+{
+public:
+	void mousePressEvent(QMouseEvent *event);
+
+public:
+	VSCVmsVirtualIPC(QTreeWidgetItem *parent, VSCVmsDataItem &pParam):
+		VSCVms(parent, pParam){}
+	~VSCVmsVirtualIPC(){}
+public:
+	/* Reconnect site to refresh the data */
+	virtual BOOL Refresh(){return true;}
+	virtual BOOL GetRecorderMap(RecorderMap & pMap){return true;}
+private:
+
+};
+
 
 #endif // __VSC_VMS_H__
