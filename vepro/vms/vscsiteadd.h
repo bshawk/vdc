@@ -2,7 +2,7 @@
 #define VSC_SITE_ADD_H
 
 #include <QWidget>
-#include "ui_vscsiteAdd.h"
+#include "ui_vscsiteadd.h"
 #include "utility.hpp"
 #include "factory.hpp"
 #include "vscvwidget.h"

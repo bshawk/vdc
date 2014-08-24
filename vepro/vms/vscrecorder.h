@@ -6,10 +6,6 @@
 #include <QTreeWidgetItem>
 #include "factory.hpp"
 #include <QObject>
-#include <QString>
-#include <QUrl>
-#include <QUrlQuery>
-#include <QJsonObject>
 
 
 class VSCRecorder: public QObject
@@ -28,7 +24,6 @@ public:
 	}
 
 	BOOL AddAnIPCamera();
-	BOOL DelAnIPCamera();
 	void GetResult(const QJsonObject& json);//
 
 	u32 m_Id;
