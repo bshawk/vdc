@@ -92,6 +92,37 @@ public:
     astring m_strUrl;
 };
 
+
+class VIPCDeviceParam
+{
+public:
+    inline VIPCDeviceParam()
+    {
+        VSCVIPCDataItemDefault(m_Conf.data.conf);
+    }
+    inline VIPCDeviceParam(const DeviceParam &pParam)
+    {
+        memset(&m_Conf, 0, sizeof(m_Conf));
+        memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+    }
+    inline VIPCDeviceParam(VSCDeviceData &pData)
+    {
+        memset(&m_Conf, 0, sizeof(m_Conf));
+        memcpy(&m_Conf, &(pData), sizeof(m_Conf));
+    }
+    inline ~VIPCDeviceParam(){}
+    VIPCDeviceParam & operator=(const VIPCDeviceParam &pParam)
+    {
+        memset(&m_Conf, 0, sizeof(m_Conf));
+
+        memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+        return *this;
+    }
+
+public:
+    VSCVIPCData m_Conf;
+};
+
 class Device
 {
 public:
