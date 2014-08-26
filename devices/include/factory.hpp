@@ -171,6 +171,9 @@ public:
 private:
     DeviceMap m_DeviceMap;
     DeviceParamMap m_DeviceParamMap;
+  
+    /* Virtual IP camera param */
+    VIPCDeviceParamMap m_VIPCDeviceParamMap;
     fast_mutex m_Lock;
     tthread::thread *m_pThread;
 
