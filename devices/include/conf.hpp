@@ -41,6 +41,7 @@
 #define VSC_CONF_CHANNEL_KEY "ConfVSCDevice"
 #define VSC_CONF_VMS_KEY "ConfVSCVms"
 #define VSC_CONF_PARAM_MAX 1024
+#define VSC_CONF_PARAM_S_MAX 128
 
 typedef enum
 {
