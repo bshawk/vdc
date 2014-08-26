@@ -319,6 +319,13 @@ inline BOOL Factory::GetDeviceParamMap(DeviceParamMap &pMap)
     return TRUE;
 }
 
+inline BOOL Factory::GetVIPCDeviceParamMap(VIPCDeviceParamMap &pMap)
+{
+    pMap = m_VIPCDeviceParamMap;
+
+    return TRUE;
+}
+
 inline s32 Factory::InitAddDevice(DeviceParam & pParam, u32 nIndex)
 {
     if (pParam.m_Conf.data.conf.nType == VSC_DEVICE_CAM)
