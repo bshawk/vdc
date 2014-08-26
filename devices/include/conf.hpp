@@ -208,6 +208,16 @@ inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
     item.GroupId = 0;
 }
 
+inline void VSCVIPCDataItemDefault(VSCVIPCDataItem__ &item)
+{
+    sprintf(item.Name, "Virutal Camera");
+
+    strcpy(item.IP, "192.168.0.1");
+    strcpy(item.Port, "8000");
+    strcpy(item.User, "admin");
+    strcpy(item.Password, "admin");
+}
+
 typedef struct __VSCVmsData__ {
 	VSCVmsDataItem vms[CONF_VMS_NUM_MAX];
 }VSCVmsData__;
