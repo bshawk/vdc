@@ -179,6 +179,22 @@ typedef struct __VSCVmsDataItem__ {
 	u32 Used;/* 1 stand for used, 0 stand for not used */
 }VSCVmsDataItem;
 
+typedef struct __VSCVIPCDataItem__ {
+	u32 nId;
+	VSCVmsType nType;
+	VSCVmsSubType nSubType;
+
+	s8 Name[CONF_NAME_MAX];
+	s8 Param[VSC_CONF_PARAM_S_MAX];
+
+	s8 IP[VSC_CONF_PARAM_S_MAX];
+	s8 Port[VSC_CONF_PARAM_S_MAX];
+	s8 User[VSC_CONF_PARAM_S_MAX];
+	s8 Password[VSC_CONF_PARAM_S_MAX];
+
+	s8 OnvifAddress[VSC_CONF_PARAM_S_MAX];
+}VSCVIPCDataItem__;
+
 inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
 {
     sprintf(item.Name, "Site");
