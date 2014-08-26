@@ -45,6 +45,7 @@ typedef std::list<LPDevice> DeviceList;
 typedef std::list<DeviceParam> DeviceParamList;
 typedef std::map<int, LPDevice> DeviceMap;
 typedef std::map<int, DeviceParam> DeviceParamMap;
+typedef std::map<int, VIPCDeviceParam> VIPCDeviceParamMap;
 typedef std::map<void *, FactoryDeviceChangeNotify> DeviceChangeNofityMap;
 #define FACTORY_DEVICE_ID_MAX 4096
 
