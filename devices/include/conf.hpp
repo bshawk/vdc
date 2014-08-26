@@ -236,6 +236,13 @@ typedef struct __VSCVmsData {
     } data;
 }VSCVmsData;
 
+typedef struct __VSCVIPCData {
+    union {
+        VSCVIPCDataItem__ conf;
+        u8 whole[1024 * 128];
+    } data;
+}VSCVIPCData;
+
 #pragma pack(pop)
 
 #endif /* _CONF_H_ */
