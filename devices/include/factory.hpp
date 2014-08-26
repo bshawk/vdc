@@ -104,6 +104,7 @@ public:
 public:
 	/* UI can use this for display device tree */
 	BOOL GetDeviceParamMap(DeviceParamMap &pMap);
+       BOOL GetVIPCDeviceParamMap(VIPCDeviceParamMap &pMap);
 
 	s32 AddDevice(DeviceParam & pParam);
 	s32 GetDeviceParamById(DeviceParam & pParam, s32 nIndex);
