@@ -33,7 +33,7 @@ VSCToolBar::VSCToolBar(QWidget *parent)
 	
 	m_TimerAlarm = new QTimer(this);
 	connect(m_TimerAlarm, SIGNAL(timeout()), this, SLOT(showAlarm()));
-	ui.pbAlarm->setIcon(QIcon(":/action/resources/alarmno.jpg"));
+	ui.pbAlarm->setIcon(QIcon(":/action/resources/alarmno.png"));
 	//m_TimerAlarm->start(300);
 	m_alarm = false;
 }
@@ -65,16 +65,16 @@ void VSCToolBar::showAlarm()
 	if (m_alarmCnt <= 0)
 	{
 		m_TimerAlarm->stop();
-		ui.pbAlarm->setIcon(QIcon(":/action/resources/alarmno.jpg"));
+		ui.pbAlarm->setIcon(QIcon(":/action/resources/alarmno.png"));
 	}else
 	{
 		if (m_alarm == false)
 		{
-			ui.pbAlarm->setIcon(QIcon(":/action/resources/alarmno.jpg"));
+			ui.pbAlarm->setIcon(QIcon(":/action/resources/alarmno.png"));
 			m_alarm = true;
 		}else
 		{
-			ui.pbAlarm->setIcon(QIcon(":/action/resources/alarm.jpg"));
+			ui.pbAlarm->setIcon(QIcon(":/action/resources/alarm.png"));
 			m_alarm = false;
 		}
 		m_alarmCnt --;
