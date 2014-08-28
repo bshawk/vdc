@@ -35,29 +35,53 @@
    <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <property name="sizeConstraint">
       <enum>QLayout::SetNoConstraint</enum>
      </property>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>5</number>
+        <number>0</number>
        </property>
        <item>
         <widget class="QPushButton" name="pbSite">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
@@ -68,9 +92,33 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>40</width>
-           <height>40</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Arial Unicode MS</family>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Site</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::RichText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -78,15 +126,18 @@
         <widget class="QPushButton" name="pbRecorder">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">selection-background-color: rgb(0, 255, 0);</string>
          </property>
          <property name="text">
           <string/>
@@ -97,9 +148,22 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Recorder</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -107,13 +171,13 @@
         <widget class="QPushButton" name="pbCamera">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
@@ -129,9 +193,22 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>40</width>
-           <height>40</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Camera</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -139,13 +216,13 @@
         <widget class="QPushButton" name="pbSurveillance">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
@@ -167,9 +244,22 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>40</width>
-           <height>40</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>View</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -177,13 +267,13 @@
         <widget class="QPushButton" name="pbSearch">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
@@ -199,9 +289,22 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -209,13 +312,13 @@
         <widget class="QPushButton" name="pbPlayback">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
@@ -231,9 +334,22 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>40</width>
-           <height>40</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Playback </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -241,13 +357,13 @@
         <widget class="VSCDeviceTrash" name="pbTrash">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>40</width>
+           <width>65</width>
            <height>40</height>
           </size>
          </property>
@@ -263,9 +379,22 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>40</width>
-           <height>40</height>
+           <width>30</width>
+           <height>30</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Trush</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -356,7 +485,7 @@
        </item>
        <item>
         <property name="text">
-         <string>IP Cameras</string>
+         <string>Cameras</string>
         </property>
         <property name="icon">
          <iconset resource="vscmainwindows.qrc">
@@ -379,6 +508,15 @@
         <property name="icon">
          <iconset resource="vscmainwindows.qrc">
           <normaloff>:/device/resources/harddisk.png</normaloff>:/device/resources/harddisk.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Virtual Cameras</string>
+        </property>
+        <property name="icon">
+         <iconset resource="vscmainwindows.qrc">
+          <normaloff>:/device/resources/virtualipc.png</normaloff>:/device/resources/virtualipc.png</iconset>
         </property>
        </item>
       </widget>
