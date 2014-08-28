@@ -283,9 +283,9 @@ void VSCSearch::StartSearch()
     {
         QMessageBox msgBox;
         //Set text
-        msgBox.setText("Search is In Processing ...");
+        msgBox.setText(tr("Search is In Processing ..."));
             //Set predefined icon, icon is show on left side of text.
-        msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.jpg"));
+        msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
             //set inforative text
         //msgBox.setInformativeText("Just show infornation.");
             //Add ok and cancel button.
@@ -314,9 +314,9 @@ void VSCSearch::StopSearch()
     {
         QMessageBox msgBox;
         //Set text
-        msgBox.setText("Search is not Started ...");
+        msgBox.setText(tr("Search is not Started ..."));
             //Set predefined icon, icon is show on left side of text.
-        msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.jpg"));
+        msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
             //set inforative text
         //msgBox.setInformativeText("Just show infornation.");
             //Add ok and cancel button.
