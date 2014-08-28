@@ -3,7 +3,7 @@
 //
 // Desc: main - main.
 //
-// Copyright (c) 2014-2018 vdceye. All rights reserved.
+// Copyright (c) 2014-2018. All rights reserved.
 //------------------------------------------------------------------------------
 
 
@@ -17,6 +17,7 @@
 #include <QTranslator>
 #include "vschdddevice.h"
 #include "vevent.hpp"
+#include "vservicemgr.hpp"
 
 Factory *gFactory = NULL;
 
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
 
 	// Set the Application Language
 #if 0
-	if (QLocale::system().name() == "zh_CN")
+	//if (QLocale::system().name() == "zh_CN")
 	{
 		QTranslator *translator = new QTranslator(&a);
 		bool ok = translator->load("vscloudnode_zh.qm",
@@ -54,9 +55,23 @@ int main(int argc, char *argv[])
     
     splash->show();
 
-    QApplication::setStyle(QStyleFactory::create("Fusion"));
+    //QApplication::setStyle(QStyleFactory::create("Fusion"));
 	//QApplication::setStyle(QStyleFactory::create("Plastique"));
     //QApplication::setStyle("WindowsVista"); 
+#if 0
+	QFile f(":qdarkstyle/style.qss");
+	if (!f.exists())
+	{
+		printf("Unable to set stylesheet, file not found\n");
+	}
+	else 
+	{
+		f.open(QFile::ReadOnly | QFile::Text);
+		QTextStream ts(&f);
+		a.setStyleSheet(ts.readAll());
+	}
+#endif
+
 
     gFactory = new Factory;
     splash->showMessage("Starting ...");
@@ -82,6 +97,10 @@ int main(int argc, char *argv[])
    }
 
    VEvent::Init(*gFactory);
+   VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
+   //below is for testing
+   pServiceMgr->m_pONVIFDisMgr->AddHost("192.168.22.1", "8000", "NetworkVideoTransmitter");
+   pServiceMgr->m_pONVIFDisMgr->AddHost("192.168.22.11", "8002", "NetworkVideoTransmitter");
 
     VSCMainWindows w;
     //w.setWindowIcon(QIcon(":/logo/resources/vscsmall.jpg"));
