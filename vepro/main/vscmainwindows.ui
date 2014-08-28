@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="vscmainwindows.qrc">
-    <normaloff>:/logo/resources/vscsmall.jpg</normaloff>:/logo/resources/vscsmall.jpg</iconset>
+    <normaloff>:/logo/resources/vscsmall.png</normaloff>:/logo/resources/vscsmall.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">* {font: 10pt &quot;Arial Unicode MS&quot;; }
