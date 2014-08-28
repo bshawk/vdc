@@ -14,6 +14,7 @@
 #define VSC_DEVICE_INDEX_IPC 2
 #define VSC_DEVICE_INDEX_VIEW 3
 #define VSC_DEVICE_INDEX_DSIK 4
+#define VSC_DEVICE_INDEX_V_IPC 5
 
 class VSCDeviceList : public QWidget
 {
@@ -42,6 +43,7 @@ public:
 public:
     void AddIPCamera(DeviceParam &pParam);
     void AddSite(VSCVmsDataItem &pParam);
+    void AddVirtualIPC(VSCVmsDataItem &pParam);
     void AddDisk(astring strTitle);
     void RemoveAllCamera();
     BOOL GetRecorderMap(RecorderMap &pMap);
@@ -53,6 +55,7 @@ public slots:
     void PlaybackClick();
     void SearchClick();
     void RecorderClick();
+
     void SiteAddClick();
     
     void DiskTreeUpdated();
@@ -61,11 +64,12 @@ public slots:
 
 signals:
     void SurveillanceClicked();
-    void CameraAddClicked();
     void PlaybackClicked();
     void SearchClicked();
     void RecorderClicked();
     
+	/*ipc*/
+	void CameraAddClicked();
     void CameraEditClicked(int nId);
     void CameraDeleteClicked(int nId);
 
@@ -76,7 +80,8 @@ signals:
 	
     void DiskEditClicked();
 
-
+	//void VSCZbIpcDeleteClicked(int nId);
+	//void VSCZbIpcStopRecordClicked(int nId);
 private:
     Ui::VSCDeviceList ui;
 private:
