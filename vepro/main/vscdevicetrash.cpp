@@ -33,7 +33,7 @@ void VSCDeviceTrash::dropEvent(QDropEvent *event)
     msgBox.setText("Delete the Camera ...");
     msgBox.setIcon(QMessageBox::Information);
         //Set predefined icon, icon is show on left side of text.
-    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.jpg"));
+    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
         //set inforative text
     //msgBox.setInformativeText("Just show infornation.");
         //Add ok and cancel button.
