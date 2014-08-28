@@ -41,13 +41,17 @@ void VSCDeviceList::SetupConnections()
     connect(ui.treeWidget, SIGNAL(SiteEditClicked(int)), this, SIGNAL(SiteEditClicked(int)));
     connect(ui.treeWidget, SIGNAL(SiteDeleteClicked(int)), this, SIGNAL(SiteDeleteClicked(int)));
 
+	/*VSCZbIpc*/
+	//connect(ui.treeWidget, SIGNAL(VSCZbIpcDeleteClicked(int)), this, SIGNAL(CameraDeleteClicked(int)));
+	//connect(ui.treeWidget, SIGNAL(VSCZbIpcStopRecordClicked(int)), this, SIGNAL(RecorderClicked(int)));
 	
     connect(ui.treeWidget, SIGNAL(DiskEditClicked()), this, SIGNAL(DiskEditClicked()));
     connect(ui.pbTrash, SIGNAL(CameraDeleted()), this, SLOT(CameraTreeUpdated()));
 }
 
-bool VSCDeviceList::DeviceChangeCallbackFunc(void* pData, 
-								FactoryDeviceChangeData change)
+
+
+bool VSCDeviceList::DeviceChangeCallbackFunc(void* pData, FactoryDeviceChangeData change)
 {
 	if (pData)
 	{
@@ -56,6 +60,7 @@ bool VSCDeviceList::DeviceChangeCallbackFunc(void* pData,
 	}
 	return true;
 }
+
 bool VSCDeviceList::DeviceChangeCallbackFunc1(FactoryDeviceChangeData change)
 {
 	VDC_DEBUG( " %s Device Change Callback %d type %d\n", __FUNCTION__, change.id, change.type);
@@ -273,6 +278,11 @@ void VSCDeviceList::VmsTreeUpdated()
 		                
 		                break;
 		            }
+		            case VSC_VMS_VIRTUL_IPC:
+		            {
+		                AddVirtualIPC(pData.data.conf.vms[i]);
+		                break;
+		            }
 		            default:
 		            {
 
@@ -375,14 +385,14 @@ void VSCDeviceList::AddIPCamera(DeviceParam &pParam)//添加IPC
 
     qtreewidgetitemChild->setIcon(0, icon1);
 
-    qtreewidgetitemChild->setText(0, QApplication::translate("Camera",
+    qtreewidgetitemChild->setText(0, QApplication::translate("",
             pParam.m_Conf.data.conf.Name, 0));
 
     qtreewidgetitem->setExpanded(true);
     VSCDeviceIPC *pIPC = dynamic_cast<VSCDeviceIPC*>(qtreewidgetitemChild);
     if (pParam.m_Conf.data.conf.Recording == 1)
     {
-	pIPC->UpdateRecord(TRUE);
+		pIPC->UpdateRecord(TRUE);
     }else
     {
     	pIPC->UpdateRecord(FALSE);
@@ -406,6 +416,24 @@ void VSCDeviceList::AddSite(VSCVmsDataItem &pParam)//添加site
 
     qtreewidgetitem->setExpanded(true);
 }
+
+void VSCDeviceList::AddVirtualIPC(VSCVmsDataItem &pParam)//添加site
+{
+    QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_V_IPC);//所有的
+    QIcon icon1;
+    icon1.addFile(QStringLiteral(":/action/resources/dome.png"), QSize(), QIcon::Normal, QIcon::Off);
+    //icon1.addFile(QStringLiteral(":/device/resources/camera-record.png"), QSize(), QIcon::Normal, QIcon::Off);
+
+    QTreeWidgetItem *qtreewidgetitemChild = new VSCVmsVirtualIPC(qtreewidgetitem, pParam);
+
+    qtreewidgetitemChild->setIcon(0, icon1);
+
+    qtreewidgetitemChild->setText(0, QApplication::translate("Camera",
+            pParam.Name, 0));
+
+    qtreewidgetitem->setExpanded(true);
+}
+
 
 void VSCDeviceList::UpdateOnline()
 {
@@ -500,5 +528,3 @@ void VSCDeviceList::SiteAddClick()
     emit SiteAddClicked();
     return;
 }
-
-

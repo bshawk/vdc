@@ -11,7 +11,6 @@ VSCDeviceIPC::VSCDeviceIPC(QTreeWidgetItem *parent, DeviceParam &pParam)
 	m_Param = pParam;
     UpdateOnline(FALSE);
 	UpdateRecord(FALSE);
-
 }
 
 void VSCDeviceIPC::mousePressEvent(QMouseEvent *event)
