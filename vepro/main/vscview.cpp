@@ -31,7 +31,8 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed)
     m_pPlayControl = new VSCPlayControl();
     m_bPlayControl = FALSE;
     m_pPlayControl->hide();
-    //setMouseTracking(true);
+    setAcceptDrops(true);
+    setMouseTracking(true);
 }
 
 void VSCView::SetupConnections()
@@ -172,6 +173,7 @@ void VSCView::floatingClicked()
     setParent(NULL);
     showMaximized();
     m_bFloated = TRUE;
+    setAcceptDrops(true);
 }
 
 void VSCView::ControlPanelClicked()
