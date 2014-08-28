@@ -167,7 +167,7 @@ void VSCPlayback::TabbedClicked()
     {
         return;
     }
-    m_pTabbed.addTab(this,"Playback");
+    m_pTabbed.addTab(this,tr("Playback"));
     m_pTabbed.setCurrentWidget(this);
     //showFullScreen();
     //setParent(m_pParent);
