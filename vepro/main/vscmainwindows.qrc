@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/VSCMainWindows"/>
     <qresource prefix="/logo">
-        <file>resources/vscsmall.jpg</file>
         <file>resources/splash.png</file>
-        <file>resources/vsc32.jpg</file>
+        <file>resources/vscsmall.png</file>
+        <file>resources/vsc32.png</file>
     </qresource>
     <qresource prefix="/action">
         <file>resources/surveillance.png</file>
@@ -20,7 +20,6 @@
         <file>resources/computer.png</file>
         <file>resources/display.png</file>
         <file>resources/view-fullscreen.png</file>
-        <file>resources/alarm.jpg</file>
         <file>resources/setting.png</file>
         <file>resources/recordstart.png</file>
         <file>resources/recordstop.png</file>
@@ -29,10 +28,11 @@
         <file>resources/float.png</file>
         <file>resources/tabbed.png</file>
         <file>resources/stop.png</file>
-        <file>resources/alarmno.jpg</file>
         <file>resources/control_panel.png</file>
         <file>resources/site.png</file>
         <file>resources/refresh.png</file>
+        <file>resources/alarm.png</file>
+        <file>resources/alarmno.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/recorder.png</file>
@@ -44,6 +44,7 @@
         <file>resources/camera-record.png</file>
         <file>resources/dome.png</file>
         <file>resources/dome-record.png</file>
+        <file>resources/virtualipc.png</file>
     </qresource>
     <qresource prefix="/view">
         <file>resources/1x1.png</file>
