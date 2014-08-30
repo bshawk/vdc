@@ -264,13 +264,17 @@ inline BOOL Factory::Init()
     /* Init the Virtual Camera  */
     VIPCDeviceParam vipc;
     //add two fake one
-    strcpy(vipc.m_Conf.data.conf.IP, "192.168.1.1");
+    strcpy(vipc.m_Conf.data.conf.IP, "192.168.22.12");
     strcpy(vipc.m_Conf.data.conf.Port, "8000");
     m_VIPCDeviceParamMap[1] = vipc;
 
-    strcpy(vipc.m_Conf.data.conf.IP, "192.168.1.1");
-    strcpy(vipc.m_Conf.data.conf.Port, "8001");
+    strcpy(vipc.m_Conf.data.conf.IP, "192.168.22.15");
+    strcpy(vipc.m_Conf.data.conf.Port, "8000");
     m_VIPCDeviceParamMap[2] = vipc;
+
+    strcpy(vipc.m_Conf.data.conf.IP, "192.168.22.15");
+    strcpy(vipc.m_Conf.data.conf.Port, "8001");
+    m_VIPCDeviceParamMap[3] = vipc;
     
     InitLicense();
        //m_pThread = new thread(Factory::Run, (void *)this);

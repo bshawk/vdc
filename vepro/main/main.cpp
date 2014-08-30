@@ -99,8 +99,8 @@ int main(int argc, char *argv[])
    VEvent::Init(*gFactory);
    VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
    //below is for testing
-   pServiceMgr->m_pONVIFDisMgr->AddHost("192.168.22.1", "8000", "NetworkVideoTransmitter");
-   pServiceMgr->m_pONVIFDisMgr->AddHost("192.168.22.11", "8002", "NetworkVideoTransmitter");
+   //pServiceMgr->m_pONVIFDisMgr->AddHost("192.168.22.1", "8000", "NetworkVideoTransmitter");
+   //pServiceMgr->m_pONVIFDisMgr->AddHost("192.168.22.11", "8002", "NetworkVideoTransmitter");
 
     VSCMainWindows w;
     //w.setWindowIcon(QIcon(":/logo/resources/vscsmall.jpg"));
