@@ -1,4 +1,4 @@
-#include "VSCVersion.h"
+#include "vscversion.h"
 #include "hdddevice.hpp"
 #include "debug.hpp"
 #include "vschddone.h"
