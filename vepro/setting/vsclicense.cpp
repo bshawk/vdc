@@ -1,4 +1,4 @@
-#include "VSCLicense.h"
+#include "vsclicense.h"
 #include "hdddevice.hpp"
 #include "debug.hpp"
 #include "vschddone.h"
