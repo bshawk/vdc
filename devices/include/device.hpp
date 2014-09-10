@@ -288,6 +288,10 @@ inline std::string Replace(std::string &str, const char *string_to_replace, cons
 
 BOOL DeviceParam::CheckOnline()
 {
+    if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_RTSP)
+    {
+    	return TRUE;
+    }
     astring IP = m_Conf.data.conf.IP;
     astring Port = m_Conf.data.conf.Port;
     astring User = m_Conf.data.conf.User;
@@ -844,45 +848,46 @@ BOOL Device::ShowAlarm(HWND hWnd)
   BOOL Device::DataHandler1(VideoFrame& frame)
 {
 
-    if (m_pRecord == NULL)
-    {
-        m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
-        if (m_pRecord == NULL)
-        {
-            return TRUE;
-        }
-    }
-    // VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
+	if (m_pRecord == NULL)
+	{
+	    m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
+	    if (m_pRecord == NULL)
+	    {
+	        return TRUE;
+	    }
+	}
+   	// VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
 	// 	frame.streamType, frame.frameType, frame.secs, frame.msecs);
-    if (m_pRecord->PushAFrame(&frame) == MF_WRTIE_REACH_END)
-    {
-    	u32 endTime = m_pRecord->GetEndTime();
-    	if (endTime != 0)
-    	{
-    		m_pVdb.FinishRecord(m_pRecord);
-    	}
-        delete m_pRecord;
-        m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
-    	if (m_pRecord == NULL)
-    	{
-    		return TRUE;
-    	}
-        m_pRecord->PushAFrame(&frame);	 
-    }
-    Lock();
+	/* Just skip the info stream for recording */
+	if (frame.streamType != VIDEO_STREAM_INFO && m_pRecord->PushAFrame(&frame) == MF_WRTIE_REACH_END)
+	{
+		u32 endTime = m_pRecord->GetEndTime();
+		if (endTime != 0)
+		{
+			m_pVdb.FinishRecord(m_pRecord);
+		}
+	    	delete m_pRecord;
+	    	m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
+		if (m_pRecord == NULL)
+		{
+			return TRUE;
+		}
+	    m_pRecord->PushAFrame(&frame);	 
+	}
+	Lock();
 
-    DeviceDataCallbackMap::iterator it = m_DataMap.begin();
+	DeviceDataCallbackMap::iterator it = m_DataMap.begin();
 
-    for(; it!=m_DataMap.end(); ++it)
-    {
-        void *pParam = (*it).first;
-        DeviceDataCallbackFunctionPtr pFunc = (*it).second;
-        if (pFunc)
-        {
-            pFunc(frame, pParam);
-        }
-    }
-    UnLock();
+	for(; it!=m_DataMap.end(); ++it)
+	{
+	    void *pParam = (*it).first;
+	    DeviceDataCallbackFunctionPtr pFunc = (*it).second;
+	    if (pFunc)
+	    {
+	        pFunc(frame, pParam);
+	    }
+	}
+	UnLock();
 
     return TRUE;
 }
