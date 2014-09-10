@@ -897,7 +897,7 @@ inline void Factory::run()
             s32 nIndex = (*it).first;
             DeviceMap::iterator next = it;
 	     next ++;
-	     VDC_DEBUG( "%s run CheckDevice %d   1\n",__FUNCTION__, nIndex);
+	     //VDC_DEBUG( "%s run CheckDevice %d   1\n",__FUNCTION__, nIndex);
 	     
 	     if (lastIdx +1 > nIndex  && next != m_DeviceMap.end())
 	     {
@@ -910,7 +910,7 @@ inline void Factory::run()
             {
             	 lastIdx = nIndex;
             }
-	    VDC_DEBUG( "%s run CheckDevice %d   2\n",__FUNCTION__, nIndex);
+	    //VDC_DEBUG( "%s run CheckDevice %d   2\n",__FUNCTION__, nIndex);
 	     if (m_DeviceMap[nIndex])
 	     {
 	        FactoryDeviceChangeData change;
