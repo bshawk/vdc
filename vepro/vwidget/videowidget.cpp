@@ -18,6 +18,7 @@
 VideoWidget::VideoWidget(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags)
 {
+    setAcceptDrops(true);
     setMouseTracking(true);
 	setStyleSheet(QStringLiteral("background-color:rgb(0, 0, 0)"));
     //QPalette pal = palette();
@@ -57,7 +58,7 @@ void VideoWidget::paintEvent(QPaintEvent *)
 
 void VideoWidget::resizeEvent( QResizeEvent * event )
 {    
-	VDC_DEBUG( "%s Resize\n",__FUNCTION__);   
+	//VDC_DEBUG( "%s Resize\n",__FUNCTION__);   
 	QWidget::resizeEvent(event);    
 	emit videoResize();
 }
