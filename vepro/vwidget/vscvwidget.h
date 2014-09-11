@@ -167,6 +167,8 @@ private:
 	s32 m_lastPtzY;
 	BOOL m_PtzEnable;
 	struct timeval m_lastPtz;
+	struct timeval m_lastPtzZoom;
+	
     
 };
 
