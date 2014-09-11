@@ -39,6 +39,7 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     m_PtzStart = FALSE;
     m_PtzEnable = FALSE;
     gettimeofday(&m_lastPtz, NULL);
+    gettimeofday(&m_lastPtzZoom, NULL);
     
     setAcceptDrops(true);
     setMouseTracking(true);
@@ -87,6 +88,7 @@ VSCVWidget::VSCVWidget(s32 nId, QWidget *parent, Qt::WindowFlags flags)
     
     //ui.videoControl->setMaximumHeight(20);
     m_videoWindow = (HWND)ui.video->winId();
+
     setMouseTracking(true);
 
     connect(ui.video, SIGNAL(videoMouseMove(QMouseEvent *)), this, SLOT(videoMouseMove(QMouseEvent *)));
@@ -205,59 +207,15 @@ void VSCVWidget::UpdateVideoControl()
     //VDC_DEBUG( "UpdateVideoControl %d , m_lastMoveTime %d ", 
 //		m_nId, m_lastMoveTime);
     //VDC_DEBUG( "current time %d\n",  current);
-    if (current - m_lastMoveTime > 1)
+    if (current - m_lastMoveTime > 30)
     {
-        if (m_bFocus == FALSE){
-            ui.videoControl->hide();
-	     m_bFocus = FALSE;
+        if (m_bFocus == TRUE){
+            //ui.videoControl->hide();
+            SetVideoFocus(FALSE);
+	     //m_bFocus = FALSE;
         }
 	 
     }
-    if (m_pStarted == FALSE && m_InstantPbMode == FALSE)
-        return;
-    
-    BOOL bRecording = FALSE;
- #if 0
-    if (gFactory->GetRecordStatus(m_nPlayId, bRecording) == TRUE)
-    {
-         if (bRecording == TRUE)
-         {
-             ui.pbRecord->setIcon(QIcon(":/pb/resources/recordclick.jpg"));
-             ui.labelRecording->setText("Recording");
-         }else
-         {
-             ui.pbRecord->setIcon(QIcon(":/pb/resources/record.jpg"));
-             ui.labelRecording->setText("");
-         }
-    }
-
-    BOOL bonline = FALSE;
-    if (m_InstantPbMode != TRUE)
-    {
-        if (gFactory->GetDeviceOnline(m_nPlayId, bonline) == TRUE)
-        {
-            if (bonline != TRUE )
-            {
-            	    //SetVideoUpdate(true);
-            }else
-            {
-            	    //SetVideoUpdate(false);
-            }
-        }
-    }else
-    {
-         s32 nWidth = ui.video->width();
-         s32 nHeight = ui.video->height();
-
-         VDC_DEBUG( "current width %d nWidth last %d\n",  nWidth, m_lastWidth);
-         if ((nWidth != m_lastWidth ) && m_autoUpdate == FALSE)
-         {
-             ChangeLayout();
-         }
-         m_lastWidth = nWidth;
-         m_lastHeight = nHeight;
-    }
-   #endif
 }
 
 
@@ -424,10 +382,12 @@ void VSCVWidget::PTZEnable()
 {
     if (m_PtzEnable == FALSE)
     {
-    	m_PtzEnable = TRUE;
+	m_PtzEnable = TRUE;
+	gFactory->EnablePtz(m_nPlayId, m_videoWindow, true);
     }else
     {
-    	m_PtzEnable = FALSE;
+	m_PtzEnable = FALSE;
+	gFactory->EnablePtz(m_nPlayId, m_videoWindow, false);
     }
 }
 
@@ -632,37 +592,36 @@ void VSCVWidget::SetVideoFocus(BOOL bFocus)
 
 void VSCVWidget::mousePressEvent(QMouseEvent *e)
 {
-    //VDC_DEBUG( "%s mousePressEvent %d\n",__FUNCTION__, m_nId);
+    VDC_DEBUG( "%s mousePressEvent %d\n",__FUNCTION__, m_nId);
     QWidget::mousePressEvent(e);
     Qt::MouseButtons mouseButtons = e->buttons();
     if( mouseButtons != Qt::LeftButton )
     {
         return;
     }
-
+    m_lastMoveTime = time(NULL);
     emit ShowFocusClicked(m_nId);
     if (m_pStarted == TRUE || m_InstantPbMode == TRUE)
     {
-    	 if (m_PtzStart == FALSE)
+    	 if (m_PtzEnable == TRUE)
     	 {
-    	 	//if (abs(e->x() - width()/2) < 20 && abs(e->y() - height()/2) < 20)
-    	 	if (m_PtzEnable == TRUE)
-    	 	{
-            		VDC_DEBUG( "%s mousePressEvent %d PTZ Start\n",__FUNCTION__, m_nId);
-			m_PtzStart = TRUE;
-			m_lastPtzX = e->x();
-			m_lastPtzY = e->y();
-			return;
-    	 	}
+		VDC_DEBUG( "%s mousePressEvent %d PTZ Start\n",__FUNCTION__, m_nId);
+		//gFactory->DrawPtzDirection(m_nPlayId, m_videoWindow, 
+		//	width()/2, height()/2, e->x(), e->y());
+		PtzAction(width()/2, height()/2, e->x(), e->y());
+		e->accept();
+		return;
     	 }
         if (m_DragStart == FALSE)
         {
             m_lastDragX = e->x();
             VDC_DEBUG( "%s mousePressEvent %d start x %d\n",__FUNCTION__, m_nId, m_lastDragX);
             m_DragStart = TRUE;
+	    e->accept();
             return;
         }
     }
+    e->accept();
 
 }
 
@@ -672,7 +631,7 @@ void VSCVWidget::mouseReleaseEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_DragStart = false;
-	if (m_PtzStart == TRUE)
+	if (m_PtzEnable == TRUE)
 	{
 		if (m_pStarted == TRUE)
 		{
@@ -722,6 +681,8 @@ void VSCVWidget::PtzAction(int x1, int y1, int x2, int y2)
 		{
 			gFactory->PtzAction(m_nPlayId, F_PTZ_RIGHT, ((float)diffx / (float)x1));
 		}
+		gFactory->DrawPtzDirection(m_nPlayId, m_videoWindow, 
+					width()/2, (height() - 45)/2, x2, (height() - 45)/2);
 	}else
 	{
 		if (y1 - y2 > 0)
@@ -730,7 +691,9 @@ void VSCVWidget::PtzAction(int x1, int y1, int x2, int y2)
 		}else
 		{
 			gFactory->PtzAction(m_nPlayId, F_PTZ_DOWN, ((float)diffy / (float)y1));
-		}	
+		}
+		gFactory->DrawPtzDirection(m_nPlayId, m_videoWindow, 
+					width()/2, (height() - 45)/2, width()/2, y2);
 	}
 }
 
@@ -740,9 +703,13 @@ void VSCVWidget::videoMouseMove(QMouseEvent *e)
     //if (e->pos().y() > height() - ui.videoControl->height()) {
         if (1) {
             //ui.videoControl->show();
-            emit ShowFocusClicked(m_nId);
-	     m_lastMoveTime = time(NULL);
+            //emit ShowFocusClicked(m_nId);
+	     //m_lastMoveTime = time(NULL);
         }
+    if (m_PtzEnable == TRUE)
+    {
+    	return;
+    }
     if (m_pStarted == TRUE || m_InstantPbMode == TRUE)
     {
         if (m_DragStart == TRUE)
@@ -752,18 +719,6 @@ void VSCVWidget::videoMouseMove(QMouseEvent *e)
            {
                return;
            }
-        }else if (m_PtzStart == TRUE)
-        {
-		if (abs(e->x() - m_lastPtzX) < 2 || abs(e->y() - m_lastPtzY) < 2 )
-		{
-		   return;
-		}
-		gFactory->DrawPtzDirection(m_nPlayId, m_videoWindow, 
-			width()/2, height()/2, e->x(), e->y());
-		PtzAction(width()/2, height()/2, e->x(), e->y());
-		m_lastPtzX = e->x();
-		m_lastPtzY = e->y();
-		return;
         }
         else
         {
@@ -804,6 +759,7 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
     }
 #endif
     emit Layout1Clicked(m_nId);
+    e->accept();
     //ui.videoControl->setVisible(false);
     //setStyleSheet(QStringLiteral("background-color:rgb(255, 255, 255)"));
 }
@@ -811,6 +767,24 @@ void VSCVWidget::mouseDoubleClickEvent(QMouseEvent *e)
 
 void VSCVWidget::wheelEvent ( QWheelEvent * event )
 {
+	struct timeval current;
+	gettimeofday(&current, NULL);
+	if (current.tv_sec == m_lastPtzZoom.tv_sec)
+	{
+		if (current.tv_usec - m_lastPtzZoom.tv_usec < 200000)
+		{
+			return;
+		}
+	}
+	if (current.tv_sec -  m_lastPtzZoom.tv_sec == 1)
+	{
+		if (current.tv_usec + 1000000 - m_lastPtzZoom.tv_usec < 200000)
+		{
+			return;
+		}		
+	}
+	gettimeofday(&m_lastPtzZoom, NULL);
+    
 	VDC_DEBUG( "%s wheelEvent %d %d\n",__FUNCTION__, m_nId, event->delta());
 	float scale =(event->delta()/120); //or use any other step for zooming 
 	if(scale > 0)
@@ -820,7 +794,11 @@ void VSCVWidget::wheelEvent ( QWheelEvent * event )
 	{
 	    gFactory->PtzAction(m_nPlayId, F_PTZ_ZOOM_OUT, 0.2);//TODO Change//speed is 0.0 to 1.0
 	}
+#ifdef WIN32
 	Sleep(100);//TODO change 
+#else
+	usleep(100 * 1000);
+#endif
 	PtzActionStop();
 }
 
