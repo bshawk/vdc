@@ -73,7 +73,8 @@ VSCVideoWall::VSCVideoWall(QWidget *parent)
     createContentMenu();
 #endif
     UpdateVideoWallLayout();
-    //setMouseTracking(true);
+    setAcceptDrops(true);
+    setMouseTracking(true);
 }
 
 VSCVideoWall::~VSCVideoWall()
