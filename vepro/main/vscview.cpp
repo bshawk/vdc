@@ -124,7 +124,7 @@ void VSCView::ShowDisplayClicked(int nId)
 
 void VSCView::ShowFocusClicked(int nId)
 {
-    if (m_currentFocus != nId)
+    //if (m_currentFocus != nId)
     {
         if (m_currentFocus != -1)
         {
@@ -243,7 +243,7 @@ void VSCView::TabbedClicked()
         default:
             break;
     }
-    m_pTabbed.addTab(this,icon1, "View");
+    m_pTabbed.addTab(this,icon1, tr("View"));
     m_pTabbed.setCurrentWidget(this);
     //showFullScreen();
     //setParent(m_pParent);
