@@ -17,14 +17,17 @@
 
 using namespace UtilityLib;
 
+
+class VRTSPServerImpl;
 class VE_LIBRARY_API VRTSPServer
 {
 public:
-	VRTSPServer();
+	VRTSPServer(Factory & pFactory);
 	~VRTSPServer();
 public:
 private:
-
+    Factory & m_pFactory;
+    VRTSPServerImpl *m_pImpl;
 };
 
 #endif /* __V_RTSP_SERVER_HPP__ */
