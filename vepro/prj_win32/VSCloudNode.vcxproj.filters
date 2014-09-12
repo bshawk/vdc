@@ -68,6 +68,9 @@
     <Filter Include="vms">
       <UniqueIdentifier>{07fb6512-4b3f-4465-acf8-1cb684651bba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="darkstyle">
+      <UniqueIdentifier>{555f2489-4e8d-4d00-b271-14f1ebf3762c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\main\vscmainwindows.qrc">
@@ -240,6 +243,18 @@
     </CustomBuild>
     <CustomBuild Include="..\vms\vscrecorder.h">
       <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\vms\vsczbtreeitem.h">
+      <Filter>vms</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\playback\vscsearchpb.h">
+      <Filter>Playback</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\playback\vscsearchpb.ui">
+      <Filter>Playback</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\darkstyle\style.qrc">
+      <Filter>darkstyle</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -522,9 +537,6 @@
     <ClCompile Include="..\vms\vscvms.cpp">
       <Filter>vms</Filter>
     </ClCompile>
-    <ClCompile Include="..\vms\vsczbtreeitem.cpp">
-      <Filter>vms</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscvms.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -566,6 +578,27 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_vscrecorder.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vms\vsczbtreeitem.cpp">
+      <Filter>vms</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsczbtreeitem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsczbtreeitem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\playback\vscsearchpb.cpp">
+      <Filter>Playback</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscsearchpb.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscsearchpb.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_style.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -677,13 +710,13 @@
     <ClInclude Include="GeneratedFiles\ui_vscsiteadd.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\vms\vsczbtreeitem.h">
-      <Filter>vms</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscrecorderone.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscrecorderconf.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscsearchpb.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -694,6 +727,81 @@
     <None Include="icon1.ico" />
     <None Include="..\main\translations\vscloudnode_zh.ts">
       <Filter>Translation Files</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\up_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Hmovetoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\stylesheet-branch-end.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_closed-on.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\stylesheet-vline.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_closed.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_open-on.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\transparent.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\right_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\sizegrip.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\close.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\down_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Vmovetoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\left_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\stylesheet-branch-more.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\up_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\right_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\left_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Hsepartoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\checkbox.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_open.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Vsepartoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\down_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\undock.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\style.qss">
+      <Filter>Resource</Filter>
     </None>
   </ItemGroup>
 </Project>
