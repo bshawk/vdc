@@ -88,5 +88,32 @@ typedef void * HWND;
 #define snprintf _snprintf
 #endif
 
+#ifndef WIN32   
+    #ifndef _V_PACKED_1_   
+    #define _V_PACKED_1_  __attribute__ ((packed))     
+    #endif   
+#else   
+    #ifndef _V_PACKED_1_   
+    #define _V_PACKED_1_   
+    #endif   
+#endif   
+
+inline bool isPlatformLittleEndian()
+{
+   int n = 1;
+   return *((char*)&n) ? true : false;
+}
+
+#ifndef WIN32
+#ifdef __BIG_ENDIAN__
+#define BIG_ORDER 1
+#else
+#define BIG_ORDER 0
+#endif
+#else /* Windows */
+#define BIG_ORDER ((1 >> 1 == 0) ? 0 : 1)
+#endif
+
+
 
 #endif /* _VDC_UTILITY_H_ */

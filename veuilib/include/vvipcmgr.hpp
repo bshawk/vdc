@@ -14,17 +14,22 @@
 #include <QWidget>
 #include "factory.hpp"
 #include <QThread>
+#include "vonvifdismgr.hpp"
 
 using namespace UtilityLib;
+
+typedef std::map<int, QThread *> VIPCThreadMap;
 
 class VE_LIBRARY_API VVIPCMgr
 {
 public:
-	VVIPCMgr();
+	VVIPCMgr(Factory & pFactory, VONVIFDisMgr & pDisMgr);
 	~VVIPCMgr();
 public:
 private:
-
+    	Factory & m_pFactory;
+	VONVIFDisMgr & m_pDisMgr;
+       VIPCThreadMap m_ThreadMap;
 };
 
 #endif /* __V_V_IPC_MGR_HPP__ */
